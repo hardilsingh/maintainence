@@ -1,0 +1,63 @@
+.testimonial {
+
+    grid-row: 4 / span 1;
+    grid-column: 1/-1;
+
+    background:linear-gradient(to right , rgba(black , .9) 0% , rgba(black , .9) , 50% , $color-secondary 50% ),
+    url("../images/hero-2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    
+
+
+
+    display: flex;
+
+
+    &__by {
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+
+        .person {
+
+            display: flex;
+            align-items: center;
+            transform: translateX(-5rem);
+
+
+            
+
+            &__image {
+                height: 16rem;
+                width: 16rem;
+                object-fit: cover;
+                border-radius: 50%;
+                border: $color-primary 8px solid;
+            }
+
+            &__text {
+                color: white;
+                font-size: 1.9rem;
+                margin-left: 2rem;
+                font-weight: 300;
+            }
+
+            &__name{
+                align-self: flex-end;
+                color: $color-primary;
+                font-size: 1.8rem;
+                transform: translateX(-7rem);
+                text-transform: capitalize;
+                
+            }
+        }
+    }
+
+    .all__authors {
+        flex: 1;
+    }
+
+}

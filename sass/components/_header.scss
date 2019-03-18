@@ -1,0 +1,132 @@
+.header {
+    grid-row: 1 / span 1;
+    grid-column: 1/-1;
+
+
+    background: linear-gradient(to right, rgba(224, 224, 224, .95) 0%,
+        rgba(224, 224, 224, .95) 50%,
+        rgba(black, .85) 50%),
+        url("../images/hero-1.jpg");
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+
+    .cta-1 {
+
+        font-size: 1.7rem;
+        padding: 2rem 3rem;
+
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-right: 2rem;
+            font-weight: 400;
+
+
+            a {
+                text-decoration: none;
+                color: darkslategrey;
+                transition: all .2s;
+
+                &:hover {
+                    color: black;
+                }
+            }
+
+            i {
+                padding: 0 1rem;
+                color: $color-primary;
+            }
+        }
+
+        .sign__up,
+        .log__in,
+        .contact__us,
+        .helpline {
+            font-weight: bold;
+
+        }
+    }
+
+    .logo {
+        height: 5rem;
+        transition: all .2s;
+        margin-right: 2rem;
+
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    .moto {
+
+        font-size: 5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+        font-family: 'Overpass', sans-serif !important;
+        color: rgb(43, 43, 43);
+        transform: translate(10rem, -5rem);
+
+
+        display: flex;
+        flex-direction: column;
+
+        &__heading {
+            margin-bottom: 1rem;
+        }
+    }
+
+
+    .btn {
+
+        background: linear-gradient(to right, $color-primary 0%, $color-primary 52%, white 52%);
+        border-radius: 10rem;
+        text-transform: uppercase;
+        box-shadow: $box-shadow;
+        position: relative;
+        top: -10rem;
+        left: 10rem;
+
+        animation: moveDown 2s;
+        transition: all .5s;
+
+
+        &:hover {
+            box-shadow: $box-shadow;
+
+
+        }
+
+
+        &__link {
+            padding: 2rem 3rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: black;
+            font-weight: bold;
+            letter-spacing: .1rem;
+            display: block;
+            height: 100%;
+            width: 100%;
+            word-spacing: .8rem;
+
+
+
+            span {
+                color: white !important;
+                transform: translateX(-.2rem);
+
+            }
+        }
+    }
+
+}

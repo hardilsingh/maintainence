@@ -1,0 +1,172 @@
+.membership {
+    grid-row: 5/span 1;
+    grid-column: 1 /-1;
+
+
+    margin-top: 8rem;
+
+
+
+
+    &__cards {
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(28rem, min-content));
+        grid-column-gap: 7rem;
+        justify-content: center;
+        text-align: center;
+
+        margin-bottom: 3rem;
+        padding: 4rem 3rem;
+
+
+        .card {
+
+
+            display: flex;
+            flex-direction: column;
+            transition: transform .5s;
+            margin-bottom: 2rem;
+            border: 5px soild black;
+
+
+
+            &:hover {
+                transform: translateY(-1rem) scale(1.1);
+
+            }
+
+
+
+            &__type {
+                padding: 1rem;
+                font-size: 1.9rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-family: 'Overpass', sans-serif !important;
+
+
+
+                &--1 {
+                    background-color: black;
+                    color: silver;
+
+
+                }
+
+                &--2 {
+                    background-color: black;
+                    color: #DAA520
+                }
+
+                &--3 {
+                    background-color: black;
+                    color: #e5e4e2;
+                }
+
+                &--4 {
+                    background-color: black;
+                    color: white;
+                }
+            }
+
+
+            &__header {
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                padding: 5rem 3rem;
+
+
+                &--1 {
+                    background: linear-gradient(110deg, rgba(black, .7), rgba(black, .7)), url("../images/hero-5 (1).jpg");
+                    background-size: cover;
+                }
+
+                &--2 {
+                    background: linear-gradient(110deg, rgba(black, .7), rgba(black, .7)), url("../images/hero-5 (2).jpg");
+                    background-size: cover;
+                }
+
+                &--3 {
+                    background: linear-gradient(110deg, rgba(black, .7), rgba(black, .7)), url("../images/hero-5 (3).jpg");
+                    background-size: cover;
+
+                }
+
+
+                &--4 {
+                    background: linear-gradient(110deg, rgba(black, .7), rgba(black, .7)), url("../images/hero-1.jpg");
+                    background-size: cover;
+
+                }
+
+
+
+                span {
+                    font-weight: 400;
+                    color: #e5e4e2;
+                }
+
+
+                .price {
+                    background: linear-gradient(110deg, $color-primary, rgb(0, 177, 0));
+                    padding: .5rem 2rem;
+                    font-size: 3rem;
+
+                }
+
+            }
+
+
+
+            &__features {
+
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                align-items: flex-start;
+                justify-items: center;
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+                grid-gap: 1.8rem;
+
+                .list {
+                    list-style: none;
+                    font-size: 1.6rem;
+                    padding: 1rem;
+                    color: darkslategray;
+                    text-align: center;
+
+
+                    i {
+                        margin-right: .5rem;
+                    }
+                }
+            }
+
+
+            &__buynow {
+                text-decoration: none;
+                color: white;
+                font-size: 1.7rem;
+                background-color: $color-primary;
+                padding: 1.5rem;
+                margin-top: 1rem;
+                display: block;
+                transition: all .2s;
+
+
+                &:hover {
+                    background-color: lighten($color: limegreen, $amount: 5)
+                }
+
+            }
+        }
+
+    }
+
+}

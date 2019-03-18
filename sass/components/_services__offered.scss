@@ -1,0 +1,149 @@
+.services {
+    grid-row: 3 /span 1;
+    grid-column: 1/-1;
+
+    padding: 1rem;
+
+    &__heading {
+        font-size: 3rem;
+        text-transform: capitalize;
+        text-align: center;
+
+        span {
+            color: $color-primary;
+            font-size: 4.5rem;
+        }
+    }
+
+    &__list {
+
+        margin-top: 8rem;
+        transform: translateY(3rem);
+
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40rem, min-content));
+        justify-content: center;
+        grid-column-gap: 6rem;
+        grid-row-gap: 10rem;
+        grid-auto-flow: dense;
+
+
+
+
+        &__block {
+
+            display: grid;
+            grid-template-columns: min-content minmax(min-content, 30rem);
+            grid-column-gap: 1.8rem;
+            align-content: flex-start;
+
+            &__heading {
+
+                text-transform: uppercase;
+                font-size: 2.5rem;
+                color: darkgreen;
+                transition: all .2s;
+
+                grid-row: 1/ span 1;
+                grid-column: 2/-1;
+                justify-self: start;
+
+
+                &:hover {
+                    text-shadow: 0 1rem 2rem rgba(0, 0, 0, .45);
+                }
+
+
+                a {
+                    all: unset;
+                    cursor: pointer;
+
+
+
+                }
+            }
+
+
+            &__text {
+                grid-column: 2/ span 1;
+                font-size: 1.6rem;
+                word-spacing: .1rem;
+                color: rgb(68, 68, 68);
+
+            }
+        }
+    }
+
+
+    .icon {
+        grid-row: 1/-1;
+        grid-column: 1/1;
+        height: 5rem;
+        justify-self: center;
+        transition: all .2s;
+
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+
+    .view__all {
+
+        position: relative;
+        top: 5rem;
+        right: -90%;
+
+
+
+
+        a {
+            text-decoration: none;
+            color: $color-primary;
+            font-size: 1.8rem;
+        }
+    }
+}
+
+
+.drop__icon {
+    grid-row: 2/ span 1;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+
+    &--1 {
+        height: 6rem;
+       
+    }
+
+    &--2 {
+        height: 5rem;
+
+
+    }
+
+
+
+}
+
+
+.drop__icon--2 {
+    grid-row: 4/ span 1;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+
+    &--1 {
+        height: 10rem;
+        
+    }
+
+    &--2 {
+        height: 5rem;
+
+
+    }
+}

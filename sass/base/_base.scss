@@ -1,0 +1,37 @@
+//variables
+$color-primary: #43A047;
+$color-secondary: rgba(224, 224, 224, .95);
+$color-white:#ffffff;
+
+$box-shadow: 0 2rem 4rem rgba(black, .7);
+
+
+//RESET
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+
+body {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+    background-color: rgb(248, 242, 242);
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+
+
+//CONATINER
+.container {
+    display: grid;
+    grid-template-rows: minmax(100vh, min-content) min-content minmax(85vh, max-content) min-content minmax(100vh, max-content) minmax(60vh, max-content) minmax(min-content, max-content);
+    grid-template-columns: repeat(12, minmax(min-content, 14rem));
+}

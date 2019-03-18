@@ -1,0 +1,21 @@
+.heading {
+    font-size: 4rem;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 8rem;
+
+    text-shadow: 0 2rem 4rem rgba($color: black, $alpha: .15);
+
+
+    span {
+        color: $color-primary;
+        font-size: 5rem;
+    }
+
+}
+
+
+.certified {
+    height: 10rem;
+    background-attachment: fixed;
+}
