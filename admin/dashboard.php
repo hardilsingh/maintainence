@@ -143,11 +143,11 @@ if (!$session->is_signed_in()) {
 
                                 var data = google.visualization.arrayToDataTable([
                                     ['Galaxy', 'Distance', 'Brightness'],
-                                    ['Canis Major Dwarf', 8000, 23.3],
-                                    ['Sagittarius Dwarf', 24000, 4.5],
-                                    ['Ursa Major II Dwarf', 30000, 14.3],
-                                    ['Lg. Magellanic Cloud', 50000, 0.9],
-                                    ['Bootes I', 60000, 13.1]
+                                    ['Users', 8000 , 4.5],
+                                    ['Requests', 24000 , 4.5],
+                                    ['Pending Requests', 30000, 14.3],
+                                    ['Total Services provided', 30000, 14.3]
+
                                 ]);
 
                                 var materialOptions = {
