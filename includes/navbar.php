@@ -8,20 +8,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="index.html"><i class="fas fa-home" style="margin-right:8px"></i>
+                        <a class="nav-link text-white" href="index.php"><i class="fas fa-home" style="margin-right:8px"></i>
                             Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#"><i class="fas fa-user-plus" style="margin-right:8px"></i>
+                        <a class="nav-link text-white" href="signup.php"><i class="fas fa-user-plus" style="margin-right:8px"></i>
                             Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#"><i class="fas fa-sign-in-alt" style="margin-right:8px"></i>
+                        <a class="nav-link text-white" href="login.php"><i class="fas fa-sign-in-alt" style="margin-right:8px"></i>
                             Log in</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#"><i class="fas fa-id-card-alt" style="margin-right:8px"></i>
+                        <a class="nav-link text-white" href="membership.php"><i class="fas fa-id-card-alt" style="margin-right:8px"></i>
                             Membership</a>
                     </li>
                 </ul>

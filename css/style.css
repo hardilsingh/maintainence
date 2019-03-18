@@ -643,3 +643,8 @@ html {
         color: #43A047;
         font-weight: bold;
         margin-top: 1rem; }
+
+
+        .logout {
+          border:none;
+        }

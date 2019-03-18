@@ -7,10 +7,7 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="js/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="js/raphael.min.js"></script>
-<script src="js/morris.min.js"></script>
-<script src="js/morris-data.js"></script>
-
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script> 
+
+

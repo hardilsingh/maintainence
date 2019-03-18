@@ -1,7 +1,29 @@
 <?php include("includes/main-rest.php") ?>
+<?php if (!$session->is_signed_in()) {  ?>
+<?php
 
+if (isset($_POST['login'])) {
+    $user_email = trim($_POST['email']);
+    $user_password = trim($_POST['password']);
+
+    $user_found = Users::verifyUser($user_email, $user_password);
+
+
+    if ($user_found) {
+        $session->login($user_found);
+        redirect("index");
+    } else {
+        $msg = "Incorrect Email id or Password";
+    }
+} else {
+    $user_email = "";
+    $msg = "";
+}
+
+?>
 
 <body>
+
     <div class="container-fluid">
 
         <!-- START OF NAVIGATION BAR -->
@@ -21,14 +43,15 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center text-success">Sign In</h5>
-                            <form class="form-signin">
+                            <span style="color:red"><?php echo $msg ?></span>
+                            <form class="form-signin" method="post" action="">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" value="<?php htmlentities($user_email) ?>" required autofocus>
                                     <label for="inputEmail">Email address</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
 
@@ -36,7 +59,7 @@
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                                 </div>
-                                <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign in</button>
+                                <button class="btn btn-lg btn-success btn-block text-uppercase" name="login" type="submit">Sign in</button>
                                 <hr class="my-4">
                                 <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>
                                     Sign in with Google</button>
@@ -77,4 +100,11 @@
     </script>
 </body>
 
-</html> 
+</html>
+
+<?php
+
+} else {
+    redirect("index");
+}
+?> 

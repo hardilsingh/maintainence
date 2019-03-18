@@ -1,3 +1,12 @@
+
+<?php
+
+    ob_start();
+    include ("init.php")
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +18,10 @@
     <meta name="author" content="">
 
     <title>Startmin - Bootstrap Admin Theme</title>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,4 +47,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+
+
+        
 </head> 
