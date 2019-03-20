@@ -6,7 +6,7 @@
 
 
         <p class="footer-links">
-            <a href="#">Home</a>
+            <a href="index.php">Home</a>
             ·
             <a href="#">Blog</a>
             ·

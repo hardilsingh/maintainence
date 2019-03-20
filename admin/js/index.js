@@ -1,10 +1,4 @@
-$('.checkAll').click(function () {
-    if ($(this).prop('checked')) {
-        $('input:checkbox').prop('checked', true);
-    } else {
-        $('input:checkbox').prop('checked', false);
-    }
-});
+
 
 $(document).ready(function() {
     $('#search_text').keyup(function() {

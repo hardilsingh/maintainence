@@ -8,7 +8,15 @@
 <script src="js/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="js/startmin.js"></script> 
+<script src="js/startmin.js"></script>
 
 
-
+<script>
+    $('.checkAll').click(function() {
+        if ($(this).prop('checked')) {
+            $('input:checkbox').prop('checked', true);
+        } else {
+            $('input:checkbox').prop('checked', false);
+        }
+    });
+</script> 

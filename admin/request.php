@@ -22,8 +22,6 @@ if (isset($_GET['type'])) {
 
 
     switch ($page_request) {
-
-
         case 'pending_requests';
             $sub_heading = "New Requests";
             $list = Requests::pendingRequests();
@@ -44,6 +42,32 @@ if (isset($_GET['type'])) {
 }
 
 
+if (isset($_POST['apply'])) {
+    $actions = $_POST['action'];
+    $checkAllBoxes = $_POST['checkAllBoxes'];
+
+    echo $actions;
+
+
+
+    foreach ($checkAllBoxes as $id) {
+
+
+
+        switch ($actions) {
+
+            case 'completed';
+                $status = Requests::updateStatus($actions, $id);
+                header("Location:request.php?type=completed");
+                break;
+
+            case 'in_process';
+                $status = Requests::updateStatus($actions, $id);
+                header("Location:request.php?type=in_process");
+                break;
+        }
+    }
+}
 
 
 
@@ -82,81 +106,83 @@ if (isset($_GET['type'])) {
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="">Select action</option>
-                                <option value="delete">Delete</option>
-                                <option value="completed">Completed</option>
-                                <option value="in_process">In Process</option>
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <select class="form-control" id="exampleFormControlSelect1" name='action'>
+                                    <option value="">Select action</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="in_process">In Process</option>
 
-                            </select>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary" type='submit' name='apply'>Apply</button>
                         </div>
                     </div>
-                    <div class="col-lg-2">
-                        <button class="btn btn-primary" name='apply'>Apply</button>
-                    </div>
-                </div>
 
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-
-                                    <th class="col"><input type="checkbox" class="checkAll"></th>
-                                    <th class="col">#</th>
-                                    <th class="col">Request Type</th>
-                                    <th class="col">Name</th>
-                                    <th class="col">Address</th>
-                                    <th class="col">Ph. No</th>
-                                    <th class="col">Refrence Id</th>
-                                    <th class="col">View Request</th>
-                                    <th class="col">Update Status</th>
-                                    <th class="col"></th>
-
-                                </tr>
-                            </thead>
 
 
-                            <?php
-                            $i = 1;
-                            foreach ($list as $request) {
-                                $services = Services::requestName($request->request_type);
-                                echo "<td><input type='checkbox' name='checkAllBoxes[]' class='checkallboxes'></td>";
-                                echo "<td>" . $i++ . "</td>";
-                                echo "<td>$services->service_name</td>";
-                                echo "<td>$request->user_name</td>";
-                                echo "<td>$request->address</td>";
-                                echo "<td>$request->user_ph</td>";
-                                echo "<td>$request->refrence_id</td>";
-                                echo "<td><div class='form-group'><textarea class='form-control' rows='5' id='comment'>$request->msg</textarea></div></td>";
-                                if (isset($_GET['type'])) {
-                                    $type = $_GET['type'];
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
 
-                                    switch ($type) {
-                                        case 'pending_requests';
-                                            echo "<td><a href='request.php?type=in_process&update_status=in_process&request_id=$request->request_id' class='btn btn-primary'>In Process</a></td>";
-                                            break;
+                                        <th class="col"><input type="checkbox" class="checkAll"></th>
+                                        <th class="col">#</th>
+                                        <th class="col">Request Type</th>
+                                        <th class="col">Name</th>
+                                        <th class="col">Address</th>
+                                        <th class="col">Ph. No</th>
+                                        <th class="col">Refrence Id</th>
+                                        <th class="col">View Request</th>
+                                        <th class="col">Update Status</th>
+                                        <th class="col"></th>
 
-                                        case 'in_process';
-                                            echo "<td><a href='request.php?type=completed&update_status=completed&request_id=$request->request_id' class='btn btn-success'>Completed</a></td>";
-                                            break;
+                                    </tr>
+                                </thead>
 
-                                        case 'completed';
-                                            echo "<td>Success</td>";
-                                            break;
+
+                                <?php
+                                $i = 1;
+                                foreach ($list as $request) {
+                                    $services = Services::requestName($request->request_type);
+                                    echo "<td><input type='checkbox' value='$request->request_id'  name='checkAllBoxes[]' class='checkallboxes'></td>";
+                                    echo "<td>" . $i++ . "</td>";
+                                    echo "<td>$services->service_name</td>";
+                                    echo "<td>$request->user_name</td>";
+                                    echo "<td>$request->address</td>";
+                                    echo "<td>$request->user_ph</td>";
+                                    echo "<td>$request->refrence_id</td>";
+                                    echo "<td><div class='form-group'><textarea disabled class='form-control' rows='5' id='comment'>$request->msg</textarea></div></td>";
+                                    if (isset($_GET['type'])) {
+                                        $type = $_GET['type'];
+
+                                        switch ($type) {
+                                            case 'pending_requests';
+                                                echo "<td><a href='request.php?type=in_process&update_status=in_process&request_id=$request->request_id' class='btn btn-primary'>In Process</a></td>";
+                                                break;
+
+                                            case 'in_process';
+                                                echo "<td><a href='request.php?type=completed&update_status=completed&request_id=$request->request_id' class='btn btn-success'>Completed</a></td>";
+                                                break;
+
+                                            case 'completed';
+                                                echo "<td>Success</td>";
+                                                break;
+                                        }
                                     }
+                                    echo "</tr>";
                                 }
-                                echo "</tr>";
-                            }
-                            ?>
-                        </table>
+                                ?>
+                            </table>
+                        </div>
                     </div>
-                </div>
-
+                </form>
 
 
             </div>

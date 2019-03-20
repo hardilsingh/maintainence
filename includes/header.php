@@ -12,24 +12,8 @@ if (isset($_GET['logout_user'])) {
         <img src="images/logo.png" alt="logo" class="logo">
         <span class="contact__us"><a href="membership.php"><i class="fas fa-paperclip"></i>Membership plans</a></span>
         <span class="contact__us"><a href="contactus.php"><i class="fas fa-phone"></i>Contact Us</a></span>
-
-
-
-
-
         <span class='sign__up'><a href='signup.php'><i class='fas fa-user-plus'></i> Sign Up</a></span>
         <span class='log__in'><a href='login.php'><i class='fas fa-user-alt'></i>Log in</a></span>
-
-
-
-
-
-
-
-
-
-
-
     </div>
 
     <div class="moto">
