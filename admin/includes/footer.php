@@ -10,7 +10,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
 
-
+<!-- check all boxes script -->
 <script>
     $('.checkAll').click(function() {
         if ($(this).prop('checked')) {
@@ -20,3 +20,4 @@
         }
     });
 </script> 
+<!-- /.check all boxes script -->

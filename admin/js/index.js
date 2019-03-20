@@ -1,5 +1,4 @@
-
-
+// ajax script
 $(document).ready(function() {
     $('#search_text').keyup(function() {
         var txt = $(this).val();
@@ -15,3 +14,4 @@ $(document).ready(function() {
         }
     });
 });
+//.ajax script

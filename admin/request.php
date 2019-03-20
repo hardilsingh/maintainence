@@ -1,22 +1,19 @@
+<!-- header start -->
 <?php include("includes/header.php") ?>
+<!-- /.header end -->
 
-<?php
-if (!$session->is_signed_in()) {
+<!-- -------------------------------------------------------------------------- -->
+
+<!-- sign in check -->
+<?php if (!$session->is_signed_in()) {
     redirect("index");
-}
-?>
+} ?>
+<!-- /.sign in end -->
+
+<!-- -------------------------------------------------------------------------- -->
 
 <?php
-
-
-if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
-    $status = $_GET['update_status'];
-    $id = $_GET['request_id'];
-
-    $status = Requests::updateStatus($status, $id);
-}
-
-
+ // to check the type of page and change sub-heading
 if (isset($_GET['type'])) {
     $page_request = $_GET['type'];
 
@@ -41,19 +38,17 @@ if (isset($_GET['type'])) {
     $sub_heading = "";
 }
 
+?>
 
+<!-- ----------------------------------------------------------------------------- -->
+
+<?php
+ //to change the request status in bulk
 if (isset($_POST['apply'])) {
     $actions = $_POST['action'];
     $checkAllBoxes = $_POST['checkAllBoxes'];
 
-    echo $actions;
-
-
-
     foreach ($checkAllBoxes as $id) {
-
-
-
         switch ($actions) {
 
             case 'completed';
@@ -68,46 +63,70 @@ if (isset($_POST['apply'])) {
         }
     }
 }
-
-
-
 ?>
 
-<body>
+<!-- ------------------------------------------------------------------------------ -->
 
+<?php
+ //to update status of a request one at a time
+if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
+    $status = $_GET['update_status'];
+    $id = $_GET['request_id'];
+
+    $status = Requests::updateStatus($status, $id);
+}
+?>
+
+<!-- ------------------------------------------------------------------------------ -->
+
+<!-- body -->
+
+<body>
+    <!-- wrapper -->
     <div id="wrapper">
 
-        <!-- Navigation -->
+        <!-- navigation -->
         <?php include("includes/top_navigation.php") ?>
-        <!-- /.navbar-top-links -->
+        <!-- /.navigation-->
 
+        <!-- sidebar -->
         <?php include("includes/sidebar.php") ?>
+        <!-- /.end of sidebar -->
 
-
-
+        <!-- page wrapper -->
         <div id="page-wrapper">
+
+            <!-- container fluid -->
             <div class="container-fluid">
 
-
-
+                <!-- heading-row -->
                 <div class="row">
+                    <!-- col-lg-12 -->
                     <div class="col-lg-12">
                         <h1 class="page-header">Service Requests
                         </h1>
                     </div>
-                    <!-- /.col-lg-12 -->
+                    <!--/.col-lg-12 -->  
                 </div>
+                <!-- /.heading-row-->
 
+                <!-- subheading-row -->
                 <div class="row">
+                    <!-- col-lg-8 -->
                     <div class="col-lg-8">
                         <h4 class="page-header"> <?php echo $sub_heading ?>
                         </h4>
-
                     </div>
+                    <!--/.col-lg-8 -->
                 </div>
+                <!-- /.subheading-row -->
+                
 
+                <!-- form -->
                 <form action="" method="post">
+                    <!-- form-row -->
                     <div class="row">
+                        <!-- col-lg-5 -->
                         <div class="col-lg-5">
                             <div class="form-group">
                                 <select class="form-control" id="exampleFormControlSelect1" name='action'>
@@ -118,20 +137,22 @@ if (isset($_POST['apply'])) {
                                 </select>
                             </div>
                         </div>
+                        <!-- /.col-lg-5 -->
                         <div class="col-lg-2">
                             <button class="btn btn-primary" type='submit' name='apply'>Apply</button>
                         </div>
                     </div>
+                    <!-- form-row -->
 
-
-
-
+                    <!-- table-row -->
                     <div class="row">
+                        <!-- col-lg-12 -->
                         <div class="col-lg-12">
+                            <!-- table -->
                             <table class="table">
+                                <!-- table head -->
                                 <thead>
                                     <tr>
-
                                         <th class="col"><input type="checkbox" class="checkAll"></th>
                                         <th class="col">#</th>
                                         <th class="col">Request Type</th>
@@ -142,11 +163,10 @@ if (isset($_POST['apply'])) {
                                         <th class="col">View Request</th>
                                         <th class="col">Update Status</th>
                                         <th class="col"></th>
-
                                     </tr>
                                 </thead>
-
-
+                                <!-- /.table head -->
+                                <!-- table row -->
                                 <?php
                                 $i = 1;
                                 foreach ($list as $request) {
@@ -179,24 +199,30 @@ if (isset($_POST['apply'])) {
                                     echo "</tr>";
                                 }
                                 ?>
+                                <!-- /.table row -->
                             </table>
+                            <!-- /.table -->
                         </div>
+                        <!-- /.col-lg-12 -->
                     </div>
+                    <!-- /.table-row -->
                 </form>
+                <!-- /.form -->
 
 
             </div>
             <!-- /.container-fluid -->
         </div>
-        <!-- /#page-wrapper -->
-
+        <!-- /page-wrapper -->
     </div>
+    <!-- /wrapper -->
 
-    <!-- /#wrapper -->
+    <!-- footer -->
     <?php include("includes/footer.php") ?>
-
-
+    <!-- /.footer -->
 
 </body>
+<!-- /.body -->
 
 </html> 
+<!-- /.html -->

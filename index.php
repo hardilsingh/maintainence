@@ -1,73 +1,49 @@
+<!-- main-index -->
 <?php include("includes/main-index.php") ?>
-<!-- START OF BODY -->
+<!-- /.main-index -->
+
+<!-- body -->
 
 <body>
 
-
-
-    <!-- CONTAINS ALL THE BODY ELEMENTS -->
+    <!-- container -->
     <div class="container">
 
-        <!-- START OF HEADER SECTION -->
+        <!-- section header -->
         <?php include("includes/header.php") ?>
-        <!-- / END OF HEADER SECTION -->
+        <!-- /.section header-->
 
-
-
-
-        <!-- START OF REQUEST SECTION -->
+        <!-- request -->
         <?php include("includes/request.php") ?>
-        <!-- / END OF REQUEST SECTIOM -->
+        <!-- /.request -->
 
-
-
-
-        <!-- START SVG ICON DROP -->
+        <!-- svg drop -->
         <div class="drop__icon">
             <img src="images/dots-three-vertical.svg" alt="" class="drop__icon--1">
             <img src="images/circle.svg" alt="" class="drop__icon--2">
         </div>
+        <!-- /.svg drop -->
 
-        <!-- /END SVG ICON DROP -->
-
-
-
-
-        <!-- START OF SERVICES OFFERD SECTION -->
+        <!-- services offered -->
         <?php include("includes/services.php") ?>
-        <!-- / END OF SERVICES SECTION -->
+        <!--/.services offered -->
 
-
-
-
-
-        <!-- START OF MEMBERSHIP SECTION -->
+        <!-- membership-->
         <?php include("includes/membership.php") ?>
-        <!-- /END OF MEMBERSHIP SECTION -->
+        <!-- /.membership -->
 
-
-
-
-
-        <!-- START OF TEAM SECTION -->
+        <!-- team -->
         <?php include("includes/team.php") ?>
+        <!-- /.team-->
 
-        <!-- /END OF TEAM SECTION -->
-
-
-
-
-
-
-
-        <!-- START OF FOOTER -->
+        <!--footer-->
         <?php include("includes/footer.php") ?>
-        <!-- /END OF FOOTER -->
-
+        <!--/.footer -->
 
     </div>
-    <!-- END OF CONTAINER DIV -->
+    <!--/.container-->
 </body>
-<!-- /END OF BODY -->
+<!-- /.body-->
 
-</html> 
+</html>
+<!-- /.html --> 
