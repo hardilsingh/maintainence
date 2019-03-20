@@ -30,7 +30,14 @@
                 die("query failed");
             }
         }
+
+        public function numRows($result) {
+            return $this->connection->num_rows($result);
+        }
     }
+
+
+
 
     $database = new Database();
 ?>

@@ -1,26 +1,4 @@
 <?php include("includes/main-rest.php") ?>
-<?php if (!$session->is_signed_in()) {  ?>
-<?php
-
-if (isset($_POST['login'])) {
-    $user_email = trim($_POST['email']);
-    $user_password = trim($_POST['password']);
-
-    $user_found = Users::verifyUser($user_email, $user_password);
-
-
-    if ($user_found) {
-        $session->login($user_found);
-        redirect("index");
-    } else {
-        $msg = "Incorrect Email id or Password";
-    }
-} else {
-    $user_email = "";
-    $msg = "";
-}
-
-?>
 
 <body>
 
@@ -43,10 +21,10 @@ if (isset($_POST['login'])) {
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center text-success">Sign In</h5>
-                            <span style="color:red"><?php echo $msg ?></span>
+                            <span style="color:red"></span>
                             <form class="form-signin" method="post" action="">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" value="<?php htmlentities($user_email) ?>" required autofocus>
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
                                     <label for="inputEmail">Email address</label>
                                 </div>
 
@@ -101,10 +79,3 @@ if (isset($_POST['login'])) {
 </body>
 
 </html>
-
-<?php
-
-} else {
-    redirect("index");
-}
-?> 

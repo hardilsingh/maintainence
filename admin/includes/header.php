@@ -1,8 +1,7 @@
-
 <?php
 
-    ob_start();
-    include ("init.php")
+ob_start();
+include("init.php")
 
 
 ?>
@@ -41,6 +40,12 @@
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+
+    
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -50,5 +55,5 @@
 
 
 
-        
+
 </head> 

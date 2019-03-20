@@ -15,6 +15,10 @@
             <li>
                 <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
+
+            <li>
+                <a href="search_requests.php"><i class="fa fa-dashboard fa-fw"></i> Search Requests</a>
+            </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Users<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -35,13 +39,13 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Service requests<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="flot.html">New requests</a>
+                        <a href="request.php?type=pending_requests">New requests</a>
                     </li>
                     <li>
-                        <a href="morris.html">Pending requests</a>
+                        <a href="request.php?type=in_process">In process</a>
                     </li>
                     <li>
-                        <a href="morris.html">Completed requests</a>
+                        <a href="request.php?type=completed">Completed requests</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -74,4 +78,4 @@
         </ul>
     </div>
 </div>
-</nav>
+</nav> 
