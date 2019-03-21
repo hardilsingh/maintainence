@@ -1,25 +1,25 @@
-<!-- START OF FOOTER -->
-<footer class="footer-distributed">
+<!-- footer -->
+<footer class="footer-distributed" role="footer">
     <div class="footer-left">
 
-        <img src="images/logo.png" height="30rem" alt="logo" class="logo">
+        <img src="images/logo.png" role="img" height="30rem" alt="logo" class="logo">
 
 
         <p class="footer-links">
-            <a href="index.php">Home</a>
+            <a href="index.php" role="link">Home</a>
             ·
-            <a href="#">Blog</a>
+            <a href="blog.php" role="link">Blog</a>
             ·
-            <a href="#">Pricing</a>
+            <a href="pricing.php" role="link">Pricing</a>
+            .
+            <a href="about.php" role="link">About</a>
             ·
-            <a href="#">About</a>
+            <a href="faq.php" role="link">Faq</a>
             ·
-            <a href="#">Faq</a>
-            ·
-            <a href="#">Contact</a>
+            <a href="contactus.php" role="link">Contact</a>
         </p>
 
-        <p class="footer-company-name">Town Helpline &copy;2019
+        <p class="footer-company-name" role="doc-footnote">Town Helpline &copy;2019
 
         </p>
     </div>
@@ -54,14 +54,14 @@
 
         <div class="footer-icons">
 
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></i></a>
+            <a href="#" role="link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" role="link"><i class="fab fa-twitter"></i></a>
+            <a href="#" role="link"><i class="fab fa-linkedin"></i></i></a>
+            <a href="#" role="link"><i class="fab fa-instagram"></i></i></a>
 
         </div>
 
     </div>
 
 </footer>
-<!-- /END OF FOOTER --> 
+<!-- /.footer --> 
