@@ -8,7 +8,7 @@ if ($session->is_signed_in()) {
 ?>
 
 <?php
-
+//the login and verify system to get inide the admin
 if (isset($_POST['login'])) {
     $user_email = trim($_POST['email']);
     $user_password = trim($_POST['password']);

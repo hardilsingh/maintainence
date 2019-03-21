@@ -3,33 +3,45 @@
 
 
 <?php
+ //start the session to see if the user is logged in already if not the redirect to index to see the page
 if (!$session->is_signed_in()) {
     redirect("index");
 }
 ?>
+<!-- body -->
 
 <body>
-
+    <!-- wrapper -->
     <div id="wrapper">
 
-        <!-- Navigation -->
+        <!-- top navigation -->
         <?php include("includes/top_navigation.php") ?>
-        <!-- /.navbar-top-links -->
+        <!-- /.top navigation -->
 
+        <!-- sidebar -->
         <?php include("includes/sidebar.php") ?>
+        <!-- /.sidebar -->
 
 
-
+        <!-- page wrapper -->
         <div id="page-wrapper">
+            <!-- conatiner fluid -->
             <div class="container-fluid">
+                <!-- row -->
                 <div class="row">
+                    <!-- col-lg-12 -->
                     <div class="col-lg-12">
+                        <!-- page header -->
                         <h1 class="page-header">Dashboard
                         </h1>
+                        <!-- /.page header -->
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+
+
+                <!-- row -->
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
@@ -126,7 +138,7 @@ if (!$session->is_signed_in()) {
                 </div>
                 <!-- /.row -->
 
-
+<!-- ******************************CHART***************************************************************************** -->
                 <div class="row">
                     <div class="col-lg-12 mx-auto">
 
@@ -143,8 +155,8 @@ if (!$session->is_signed_in()) {
 
                                 var data = google.visualization.arrayToDataTable([
                                     ['Galaxy', 'Distance', 'Brightness'],
-                                    ['Users', 8000 , 4.5],
-                                    ['Requests', 24000 , 4.5],
+                                    ['Users', 8000, 4.5],
+                                    ['Requests', 24000, 4.5],
                                     ['Pending Requests', 30000, 14.3],
                                     ['Total Services provided', 30000, 14.3]
 
@@ -235,7 +247,7 @@ if (!$session->is_signed_in()) {
 
     </div>
     <!-- /#wrapper -->
-<?php include ("includes/footer.php")?>
+    <?php include("includes/footer.php") ?>
 
 </body>
 

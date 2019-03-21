@@ -1,12 +1,10 @@
 <?php
-
+ //to logout the user from its current session
 if (isset($_GET['logout'])) {
     $session->logout();
     redirect("index");
 }
 ?>
-
-
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">

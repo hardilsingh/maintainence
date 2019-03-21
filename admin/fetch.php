@@ -6,11 +6,15 @@ if (!$session->is_signed_in()) {
 }
 ?>
 
-
+<!-- row -->
 <div class="row">
-    <div class="col-lg-12">
+    <!-- col-lg-12 -->
+    <div class="col-lg-12 table-responsive">
+        <!-- table -->
         <table class="table">
+            <!-- thead -->
             <thead>
+                <!-- table row -->
                 <tr>
                     <th class="col"><input type="checkbox" class="checkAll"></th>
                     <th class="col">#</th>
@@ -22,9 +26,10 @@ if (!$session->is_signed_in()) {
                     <th class="col">View Request</th>
                     <th class="col">Update Status</th>
                     <th class="col"></th>
-
                 </tr>
+                <!-- /.table row -->
             </thead>
+            <!-- /.thead -->
 
 
             <?php
@@ -46,7 +51,7 @@ if (!$session->is_signed_in()) {
                     echo "<td>$list->refrence_id</td>";
                     echo "<td><div class='form-group'><textarea disabled class='form-control' rows='4' id='comment'>$list->msg</textarea></div></td>";
                     echo "<td class='text-uppercase'>$list->request_status</td>";
-                    
+
                     echo "</tr>";
                 }
             }
@@ -54,8 +59,17 @@ if (!$session->is_signed_in()) {
             ?>
 
         </table>
+        <!-- /.table -->
     </div>
+    <!-- /.col-lg-12 -->
 </div>
+<!-- /.row -->
+<!-- footer -->
+<?php include("includes/footer.php") ?>
+<!-- /.footer -->
 
+</body>
+<!-- /.body-->
 
-<?php include("includes/footer.php") ?> 
+</html>
+<!-- /.html --> 
