@@ -18,16 +18,11 @@ class Users extends Db_object
 
 
 
-    public static function verifyUser($user_email , $user_password) {
+    public static function verifyUser($user_email) {
         global $database;
         $user_email = $database->escapeString($user_email);
-        $user_password = $database->escapeString($user_password);
-
-        $result_set = self::find_this_query("SELECT * FROM ". self::$db_table ." WHERE user_email = '{$user_email}' AND user_password = '{$user_password}' LIMIT 1");
-
-        return !empty($result_set) ? array_shift($result_set) : false;
-        
-
+        $result_set = self::find_this_query("SELECT * FROM ". self::$db_table ." WHERE user_email = '{$user_email}'  LIMIT 1");
+        return !empty($result_set) ? array_shift($result_set) : false;         
     } 
 
 
@@ -58,5 +53,20 @@ class Users extends Db_object
         return $clean_properties;
     }
 
- }
- 
+
+    public static function emailExists($email) {
+        global $database;
+        $clean_email = $database->escapeString($email);
+        $sql = "SELECT * FROM ". self::$db_table ." WHERE user_email = '{$clean_email}'";
+        $result  = $database->query($sql);
+        return mysqli_num_rows($result);
+    }
+
+
+    public static function encryptPassword($password) {
+        global $database;
+        $clean_password = $database->escapeString($password);
+        return password_hash($clean_password , PASSWORD_BCRYPT , array('hackthisyoupunk' => 10));
+    }
+
+}

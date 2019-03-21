@@ -71,6 +71,10 @@ class Requests extends Db_object
         return  self::find_this_query("SELECT * FROM requests WHERE refrence_id LIKE '%". $searchTxt ."%' OR user_ph LIKE '%". $searchTxt ."%'");
     }
 
+    public function calculateRows($result) {
+        global $database;
+        return $database->countRows($result);
+    }
+
 
 }
- 

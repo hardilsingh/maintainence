@@ -1,5 +1,40 @@
 <?php include("includes/main-rest.php") ?>
 
+<?php
+
+if (isset($_POST['register'])) {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
+
+
+    if ($password == $confirm_password) {
+        //check if the email exits
+
+        $email_exists = Users::emailExists($email);
+
+        if ($email_exists == 0) {
+            //encrypt the password
+            $hashed_password = Users::encryptPassword($password);
+
+            //send it to the database
+            $signup = new Users;
+            $signup->user_email = $email;
+            $signup->user_password = $hashed_password;
+            $signup->create();
+        }else {
+            $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
+        }
+    } else {
+        $msg = "<div class='alert alert-danger' role='alert'>The passwords do not match</div>";
+    }
+
+    }else {
+        $msg = "";
+        $password_msg = "";
+        $email = "";
+    }
+    ?>
 
 <body>
     <div class="container-fluid signup">
@@ -22,28 +57,24 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center text-success">Register now</h5>
-                        <form class="form-signin">
+                        <?php echo $msg ?>
+                        <form class="form-signin" action="" method="post">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" value="<?php echo htmlentities($email)?>" required autofocus>
                                 <label for="inputEmail">Email address</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 <label for="inputPassword">Password</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="confirminputPassword" class="form-control" placeholder="Confirm password" required>
+                                <input type="password" name="confirm_password" id="confirminputPassword" class="form-control" placeholder="Confirm password" required>
                                 <label for="confirminputPassword">Confirm Password</label>
                             </div>
 
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">By checking this box you agree to our tearms and conditions.</label>
-                            </div>
-
-                            <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Register</button>
+                            <button class="btn btn-lg btn-success btn-block text-uppercase" name="register" type="submit">Register</button>
                             <hr class="my-4">
                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>
                                 Sign up with Google</button>

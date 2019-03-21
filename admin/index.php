@@ -2,31 +2,37 @@
 
 <?php
 
-  if($session->is_signed_in()) {
+if ($session->is_signed_in()) {
     redirect("dashboard");
-  }
+}
 ?>
 
 <?php
 
 if (isset($_POST['login'])) {
-  $user_email = trim($_POST['email']);
-  $user_password = trim($_POST['password']);
+    $user_email = trim($_POST['email']);
+    $user_password = trim($_POST['password']);
 
-  $user_found = Users::verifyUser($user_email, $user_password);
+    $user_found = Users::verifyUser($user_email);
 
+    if ($user_found) {
+        if ($user_found->user_role == 'admin') {
+            if (password_verify($user_password, $user_found->user_password)) {
 
-  if ($user_found) {
-      $session->login($user_found);
-      redirect("dashboard");
-  } else {
-      $msg = "<div class='alert alert-danger' role='alert'>
-      Incorrect Email Id or Password
-    </div>";
-  }
+                $session->login($user_found);
+                redirect("dashboard");
+            } else {
+                $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password.</div>";
+            }
+        } else {
+            $msg = "<div class='alert alert-danger' role='alert'>You are not the administrator. Please conatct the owner for futher assistence.</div>";
+        }
+    } else {
+        $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
+    }
 } else {
-  $user_email = "";
-  $msg = "";
+    $user_email = "";
+    $msg = "";
 }
 
 ?>
@@ -84,21 +90,21 @@ if (isset($_POST['login'])) {
 
 
     input {
-      margin-bottom:1rem;
+        margin-bottom: 1rem;
     }
 </style>
 
 <body>
 
-    
+
 
     <div class="wrapper">
         <form class="form-signin" method="post" action="">
-          <?php echo $msg?>
+            <?php echo $msg ?>
             <h2 class="form-signin-heading">Admin Login</h2>
-            <input type="text" class="form-control" name="email" placeholder="Email Address" value="<?php echo htmlentities($user_email)?>" required autofocus /> <br>
-            <input type="password" class="form-control"  name="password" placeholder="Password" required="" />
-            
+            <input type="text" class="form-control" name="email" placeholder="Email Address" value="<?php echo htmlentities($user_email) ?>" required autofocus /> <br>
+            <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+
             <input class="btn btn-lg btn-success btn-block" type="submit" name="login" value="Login"><br>
 
             <a href="cacc.php">Create an admin account</a>

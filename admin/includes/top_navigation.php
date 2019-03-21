@@ -10,7 +10,7 @@ if (isset($_GET['logout'])) {
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">Service Admin</a>
+        <a class="navbar-brand" href="dashboard.php">Service Admin</a>
     </div>
 
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
     </button>
 
     <ul class="nav navbar-nav navbar-left navbar-top-links">
-        <li><a href="#"><i class="fa fa-home fa-fw"></i> Go to Home Page</a></li>
+        <li><a href="../index.php"><i class="fa fa-home fa-fw"></i> Go to Home Page</a></li>
     </ul>
 
     <ul class="nav navbar-right navbar-top-links">

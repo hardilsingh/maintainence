@@ -44,7 +44,7 @@ if (!$session->is_signed_in()) {
                     echo "<td>$list->address</td>";
                     echo "<td>$list->user_ph</td>";
                     echo "<td>$list->refrence_id</td>";
-                    echo "<td><div class='form-group'><textarea class='form-control' rows='5' id='comment'>$list->msg</textarea></div></td>";
+                    echo "<td><div class='form-group'><textarea disabled class='form-control' rows='4' id='comment'>$list->msg</textarea></div></td>";
                     echo "<td class='text-uppercase'>$list->request_status</td>";
                     
                     echo "</tr>";
