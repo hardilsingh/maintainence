@@ -184,9 +184,6 @@
         </div>
         <!-- /.content row -->
 
-
-
-
         <!-- footer row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
