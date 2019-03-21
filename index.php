@@ -7,7 +7,7 @@
 <body>
 
     <!-- container -->
-    <div class="container">
+    <div class="container" role="grid">
 
         <!-- section header -->
         <?php include("includes/header.php") ?>
@@ -18,7 +18,7 @@
         <!-- /.request -->
 
         <!-- svg drop -->
-        <div class="drop__icon">
+        <div class="drop__icon" role="separator">
             <img src="images/dots-three-vertical.svg" alt="" class="drop__icon--1">
             <img src="images/circle.svg" alt="" class="drop__icon--2">
         </div>

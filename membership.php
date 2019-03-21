@@ -2,7 +2,7 @@
 
 
 <body>
-    <div class="container-fluid signup">
+    <div role="columnheader" class="container-fluid signup">
 
 
         <!-- START OF NAVIGATION BAR -->
@@ -10,9 +10,9 @@
         <!-- /END OF NAVIGATION BAR -->
 
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h6 class="display-4 text-center">Membership Plans<span style="color: green">.</span></h1>
+        <div class="row" role="row">
+            <div class="col-lg-12" role="columnheader">
+                <h6 class="display-4 text-center" role="heading">Membership Plans<span style="color: green">.</span></h1>
                 </h6>
             </div>
         </div>
@@ -21,8 +21,8 @@
 
 
 
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="row" role="row">
+            <div class="col-lg-12" role="columnheader">
 
                 <!-- START OF FOOTER -->
                 <?php include("includes/footer.php") ?>
@@ -30,16 +30,7 @@
 
             </div>
         </div>
-
     </div>
-
-    <!--===============================================================================================-->
-    <script src="tilt.jquery.min.js"></script>
-    <script>
-        $('.js-tilt').tilt({
-            scale: 1.1
-        })
-    </script>
 </body>
 
 </html> 
