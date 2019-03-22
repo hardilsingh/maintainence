@@ -80,14 +80,6 @@ if (isset($_GET['logout'])) {
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>
-
-                <?php
-
-                $users = Users::find_by_id($_SESSION['user_id']);
-                echo $users->username;
-
-                ?>
-
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-user">

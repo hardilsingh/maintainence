@@ -51,12 +51,16 @@ if (!$session->is_signed_in()) {
                                         <i class="fa fa-comments fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>New Requests</div>
+                                        <div class="huge">
+                                            <?php
+                                            echo Requests::completedRequestsTotal();
+                                            ?>
+                                        </div>
+                                        <div>Completed Requests</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="request.php?type=completed">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -74,12 +78,16 @@ if (!$session->is_signed_in()) {
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
+                                        <div class="huge">
+                                            <?php
+                                            echo Requests::newRequestsTotal();
+                                            ?>
+                                        </div>
                                         <div>Pending Requests</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="request.php?type=pending_requests">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -97,12 +105,18 @@ if (!$session->is_signed_in()) {
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
+                                        <div class="huge">
+                                            <?php
+
+                                            echo Users::num();
+
+                                            ?>
+                                        </div>
                                         <div>Users</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="users.php?user_type=customer">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -120,12 +134,16 @@ if (!$session->is_signed_in()) {
                                         <i class="fa fa-support fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Services Provided</div>
+                                        <div class="huge">
+                                            <?php
+                                            echo Users::numProviders();
+                                            ?>
+                                        </div>
+                                        <div>Services Providers</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="users.php?user_type=provider">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -138,101 +156,58 @@ if (!$session->is_signed_in()) {
                 </div>
                 <!-- /.row -->
 
-<!-- ******************************CHART***************************************************************************** -->
+
+
+                <!-- ******************************CHART***************************************************************************** -->
                 <div class="row">
                     <div class="col-lg-12 mx-auto">
 
                         <script type="text/javascript">
                             google.charts.load('current', {
-                                'packages': ['corechart', 'bar']
+                                'packages': ['bar']
                             });
                             google.charts.setOnLoadCallback(drawStuff);
 
                             function drawStuff() {
-
-                                var button = document.getElementById('change-chart');
-                                var chartDiv = document.getElementById('chart_div');
-
-                                var data = google.visualization.arrayToDataTable([
-                                    ['Galaxy', 'Distance', 'Brightness'],
-                                    ['Users', 8000, 4.5],
-                                    ['Requests', 24000, 4.5],
-                                    ['Pending Requests', 30000, 14.3],
-                                    ['Total Services provided', 30000, 14.3]
-
+                                var data = new google.visualization.arrayToDataTable([
+                                    ['Move', 'Total'],
+                                    ["Completed requests", <?php echo Requests::completedRequestsTotal()?>],
+                                    ["Pending Requests", <?php echo Requests::newRequestsTotal()?>],
+                                    ["Users", <?php echo Users::num()?>],
+                                    ["Service Providers", <?php echo Users::numProviders()?>]
                                 ]);
 
-                                var materialOptions = {
-                                    width: 900,
-                                    chart: {
-                                        title: 'Nearby galaxies',
-                                        subtitle: 'distance on the left, brightness on the right'
+                                var options = {
+                                    width: 800,
+                                    legend: {
+                                        position: 'none'
                                     },
-                                    series: {
-                                        0: {
-                                            axis: 'distance'
-                                        }, // Bind series 0 to an axis named 'distance'.
-                                        1: {
-                                            axis: 'brightness'
-                                        } // Bind series 1 to an axis named 'brightness'.
+                                    chart: {
+                                        title: '',
+                                        subtitle: ''
                                     },
                                     axes: {
-                                        y: {
-                                            distance: {
-                                                label: 'parsecs'
-                                            }, // Left y-axis.
-                                            brightness: {
-                                                side: 'right',
-                                                label: 'apparent magnitude'
-                                            } // Right y-axis.
-                                        }
-                                    }
-                                };
-
-                                var classicOptions = {
-                                    width: 900,
-                                    series: {
-                                        0: {
-                                            targetAxisIndex: 0
-                                        },
-                                        1: {
-                                            targetAxisIndex: 1
+                                        x: {
+                                            0: {
+                                                side: 'top',
+                                                label: ''
+                                            } // Top x-axis.
                                         }
                                     },
-                                    title: 'Nearby galaxies - distance on the left, brightness on the right',
-                                    vAxes: {
-                                        // Adds titles to each axis.
-                                        0: {
-                                            title: 'parsecs'
-                                        },
-                                        1: {
-                                            title: 'apparent magnitude'
-                                        }
+                                    bar: {
+                                        groupWidth: "50%"
                                     }
                                 };
 
-                                function drawMaterialChart() {
-                                    var materialChart = new google.charts.Bar(chartDiv);
-                                    materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
-                                    button.innerText = 'Change to Classic';
-                                    button.onclick = drawClassicChart;
-                                }
-
-                                function drawClassicChart() {
-                                    var classicChart = new google.visualization.ColumnChart(chartDiv);
-                                    classicChart.draw(data, classicOptions);
-                                    button.innerText = 'Change to Material';
-                                    button.onclick = drawMaterialChart;
-                                }
-
-                                drawMaterialChart();
+                                var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+                                // Convert the Classic options to Material options.
+                                chart.draw(data, google.charts.Bar.convertOptions(options));
                             };
                         </script>
                         </head>
 
                         <body>
-                            <br><br>
-                            <div id="chart_div" style="width: 800px; height: 500px;"></div>
+                            <div id="top_x_div" style="width: 800px; height: 600px;"></div>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-<?php header("refresh:10; url=index.php")  ?>
+<?php header("refresh:5; url=login.php")  ?>
 
 <?php include("includes/main-rest.php") ?>
 
@@ -15,7 +15,7 @@
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-3 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"> Success<span style="color: green">!</span></h1>
+                <h1 class="display-3 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"> Welcome<span style="color: green">.</span> (Email Sent)</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -35,44 +35,25 @@
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12 text-center" role="columnheader">
-                <span style="font-size:20px; padding:20px 10px; color:red;" role="text">Your request No :
-                    <?php
-                    $last_id = Requests::selectMaxId();
-                    foreach ($last_id as $refrence_id) {
-                        echo $refrence_id->refrence_id;
-                    }
-                    ?>
-                </span><br>
-                Please keep it with you for future refrence.
+                <p class='text-center' style="font-size:17px" role="doc-notice">Welcome to the family user.<br>
+                    Now you can enjoy the best home service experience.<br>
+                    A welcome Email has been sent to your registerd email.<br>
+                    Thankyou! for choosing us.
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-
-        <!-- conatiner -->
-        <div class="container" role="columnheader">
-            <div class="row" style="margin-top:30px">
-                <!-- col-lg-12 -->
-                <div class="col-lg-12 text-center mx-auto" role="columnheader">
-                    <span style="font-size:18px" role="doc-notice">Your request has been submitted successfully.<br>
-                        Our service executive will get in touch with you shortly.
-                    </span><br>
-                    <span role="doc-notice">If you have any complaints or suggestions you can ring up our customer care for the same.</span>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-        </div>
 
         <!-- row -->
-        <div class="row" role="row" style="margin-top:20px">
+        <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12 text-center" role="columnheader">
-                <h4 class="h4 text-warning">You will be redirected to Home page in 10 seconds <a href="index.php">Home</h4>
+                <h4 class="h4 text-warning">You will be redirected to login page in 10 seconds <a href="login.php">Login Now</h4>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-        <!-- /.conatiner -->
+
 
 
         <!-- row -->
@@ -91,5 +72,5 @@
 </body>
 <!-- /.body -->
 
-</html>
-<!-- /.html --> 
+</html> 
+<!-- /.html -->

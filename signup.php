@@ -22,6 +22,7 @@ if (isset($_POST['register'])) {
             $signup->user_email = $email;
             $signup->user_password = $hashed_password;
             $signup->create();
+            redirect("welcome");
         } else {
             $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
         }
@@ -47,7 +48,7 @@ if (isset($_POST['register'])) {
         <div class="row" role="row">
             <div class="col-lg-6" role="columnheader">
                 <h6 class="display-4 text-center" role="heading" style="margin-top:13rem;">Already Have an Account<span style="color: green">?</span></h1>
-                    <h4 class="text-center" role="heading" style="margin-top:4rem;"><a href="login.html">Sign in now. <i class="fas fa-arrow-right"></i></a>
+                    <h4 class="text-center" role="heading" style="margin-top:4rem;"><a href="login.php">Sign in now. <i class="fas fa-arrow-right"></i></a>
                 </h6>
             </div>
 

@@ -102,6 +102,14 @@ class Db_object
         $sql = "DELETE FROM  " . static::$db_table . " WHERE user_id = " . $database->escapeString($this->user_id) . "  ";
         return $database->query($sql);
     }
+
+
+    //number of table data
+    public static function num() {
+        global $database;
+        $users = $database->query("SELECT * FROM " . static::$db_table . "");
+        return mysqli_num_rows($users);
+    }
 }
 
 

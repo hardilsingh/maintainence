@@ -40,42 +40,18 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Service requests<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="request.php?type=pending_requests">New requests <span style="color:green; margin-left:90px; font-size:18px">1</span></a>
+                        <a href="request.php?type=pending_requests">New requests</a>
                     </li>
                     <li>
-                        <a href="request.php?type=in_process">In process <span style="color:green; margin-left:110px; font-size:18px">1</span></a>
+                        <a href="request.php?type=in_process">In process</a>
                     </li>
                     <li>
-                        <a href="request.php?type=completed">Completed requests <span style="color:green; margin-left:50px; font-size:18px">1</span></a>
+                        <a href="request.php?type=completed">Completed requests</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
 
-            <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Pages<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="contact.php">Contact Us</a>
-                    </li>
-                    <li>
-                        <a href="signup.php">Sign Up</a>
-                    </li>
-                    <li>
-                        <a href="login.php">Login</a>
-                    </li>
-                    <li>
-                        <a href="membership.php">Membership</a>
-                    </li>
-                    <li>
-                        <a href="fgpassword.php">Forgot Password</a>
-                    </li>
-                    <li>
-                        <a href="welcome.php">Welcome</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
         </ul>
     </div>
 </div>

@@ -77,6 +77,32 @@ class Users extends Db_object
         $clean_password = $database->escapeString($password);
         return password_hash($clean_password, PASSWORD_BCRYPT, array('hackthisyoupunk' => 10));
     }
+
+    //method to find only admin users
+    public static function adminUsers() {
+        return self::find_this_query("SELECT * FROM ". self::$db_table ." WHERE user_role = 'admin' ORDER BY user_id DESC");
+    }
+
+    //method to find only customers
+    public static function customerUsers() {
+        return self::find_this_query("SELECT * FROM ". self::$db_table ." WHERE user_role = 'customer' ORDER BY user_id DESC");
+    }
+
+    //method to find only service providers
+    public static function serviceProviderUsers() {
+        return self::find_this_query("SELECT * FROM ". self::$db_table ." WHERE user_role = 'provider' ORDER BY user_id DESC");
+    }
+
+    //to find number of service providers
+    public static function numProviders() {
+        global $database;
+        $users = $database->query("SELECT * FROM users WHERE user_role = 'provider'");
+        return mysqli_num_rows($users);
+    }
+
+
+
+
 }
 
 

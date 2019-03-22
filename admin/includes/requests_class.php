@@ -77,10 +77,22 @@ class Requests extends Db_object
     }
 
     //method to calculate num of rows
-    public function calculateRows($result) {
+    public static function newRequestsTotal() {
         global $database;
-        return $database->countRows($result);
+        $newRequests = $database->query("SELECT * FROM requests WHERE request_status = 'pending'");
+        return mysqli_num_rows($newRequests);
     }
+
+    //method to calculate num of rows
+    public static function completedRequestsTotal() {
+        global $database;
+        $newRequests = $database->query("SELECT * FROM requests WHERE request_status = 'pending'");
+        return mysqli_num_rows($newRequests);
+    }
+
+
+
+
 
 }
 
