@@ -2,7 +2,7 @@
 
 <?php
 if (!$session->is_signed_in()) {
-    redirect("index");
+    redirect("../login");
 }
 ?>
 

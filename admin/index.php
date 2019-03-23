@@ -1,118 +1,231 @@
 <?php include("includes/header.php") ?>
 
-<?php
 
-if ($session->is_signed_in()) {
-    redirect("dashboard");
-}
-?>
 
 <?php
-//the login and verify system to get inide the admin
-if (isset($_POST['login'])) {
-    $user_email = trim($_POST['email']);
-    $user_password = trim($_POST['password']);
+ //start the session to see if the user is logged in already if not the redirect to index to see the page
 
-    $user_found = Users::verifyUser($user_email);
-
-    if ($user_found) {
-        if ($user_found->user_role == 'admin') {
-            if (password_verify($user_password, $user_found->user_password)) {
-
-                $session->login($user_found);
-                redirect("dashboard");
-            } else {
-                $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password.</div>";
-            }
-        } else {
-            $msg = "<div class='alert alert-danger' role='alert'>You are not the administrator. Please conatct the owner for futher assistence.</div>";
-        }
-    } else {
-        $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
-    }
-} else {
-    $user_email = "";
-    $msg = "";
+$user_role = Users::find_by_id($session->user_id);
+if (!$session->is_signed_in()) {
+    redirect("../login");
+}elseif($user_role->user_role !== 'admin') {
+    redirect("../profile");
 }
 
-?>
-
-
-
-<style>
-    .wrapper {
-        margin-top: 80px;
-        margin-bottom: 80px;
-    }
-
-    .form-signin {
-        max-width: 380px;
-        padding: 15px 35px 45px;
-        margin: 0 auto;
-        background-color: #fff;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .form-signin .form-signin-heading,
-    .form-signin .checkbox {
-        margin-bottom: 30px;
-    }
-
-    .form-signin .checkbox {
-        font-weight: normal;
-    }
-
-    .form-signin .form-control {
-        position: relative;
-        font-size: 16px;
-        height: auto;
-        padding: 10px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .form-signin .form-control:focus {
-        z-index: 2;
-    }
-
-    .form-signin input[type="text"] {
-        margin-bottom: -1px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .form-signin input[type="password"] {
-        margin-bottom: 20px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-
-    input {
-        margin-bottom: 1rem;
-    }
-</style>
+    ?>
+<!-- body -->
 
 <body>
+    <!-- wrapper -->
+    <div id="wrapper">
+
+        <!-- top navigation -->
+        <?php include("includes/top_navigation.php") ?>
+        <!-- /.top navigation -->
+
+        <!-- sidebar -->
+        <?php include("includes/sidebar.php") ?>
+        <!-- /.sidebar -->
+
+
+        <!-- page wrapper -->
+        <div id="page-wrapper">
+            <!-- conatiner fluid -->
+            <div class="container-fluid">
+                <!-- row -->
+                <div class="row">
+                    <!-- col-lg-12 -->
+                    <div class="col-lg-12">
+                        <!-- page header -->
+                        <h1 class="page-header">Dashboard
+                        </h1>
+                        <!-- /.page header -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+
+
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">
+                                            <?php echo Requests::completedRequestsTotal(); ?>
+                                        </div>
+                                        <div>Completed Requests</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="request.php?type=completed">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">
+                                            <?php echo Requests::newRequestsTotal(); ?>
+                                        </div>
+                                        <div>Pending Requests</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="request.php?type=pending_requests">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">
+                                            <?php
+
+                                            echo Users::num();
+
+                                            ?>
+                                        </div>
+                                        <div>Users</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="users.php?user_type=customer">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-support fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">
+                                            <?php
+                                            echo Users::numProviders();
+                                            ?>
+                                        </div>
+                                        <div>Services Providers</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="users.php?user_type=provider">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
 
 
-    <div class="wrapper">
-        <form class="form-signin" method="post" action="">
-            <?php echo $msg ?>
-            <h2 class="form-signin-heading">Admin Login</h2>
-            <input type="text" class="form-control" name="email" placeholder="Email Address" value="<?php echo htmlentities($user_email) ?>" required autofocus /> <br>
-            <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+                <!-- ******************************CHART***************************************************************************** -->
+                <div class="row">
+                    <div class="col-lg-12 mx-auto">
 
-            <input class="btn btn-lg btn-success btn-block" type="submit" name="login" value="Login"><br>
+                        <script type="text/javascript">
+                            google.charts.load('current', {
+                                'packages': ['bar']
+                            });
+                            google.charts.setOnLoadCallback(drawStuff);
 
-            <a href="cacc.php">Create an admin account</a>
-        </form>
+                            function drawStuff() {
+                                var data = new google.visualization.arrayToDataTable([
+                                    ['Move', 'Total'],
+                                    ["Completed requests", <?php echo Requests::completedRequestsTotal() ?>],
+                                    ["Pending Requests", <?php echo Requests::newRequestsTotal() ?>],
+                                    ["Users", <?php echo Users::num() ?>],
+                                    ["Service Providers", <?php echo Users::numProviders() ?>]
+                                ]);
+
+                                var options = {
+                                    width: 800,
+                                    legend: {
+                                        position: 'none'
+                                    },
+                                    chart: {
+                                        title: '',
+                                        subtitle: ''
+                                    },
+                                    axes: {
+                                        x: {
+                                            0: {
+                                                side: 'top',
+                                                label: ''
+                                            } // Top x-axis.
+                                        }
+                                    },
+                                    bar: {
+                                        groupWidth: "50%"
+                                    }
+                                };
+
+                                var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+                                // Convert the Classic options to Material options.
+                                chart.draw(data, google.charts.Bar.convertOptions(options));
+                            };
+                        </script>
+                        </head>
+
+                        <body>
+                            <div id="top_x_div" style="width: 800px; height: 450px;"></div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
     </div>
-
-
+    <!-- /#wrapper -->
+    <?php include("includes/footer.php") ?>
 
 </body>
 
-</html> 
+</html>
+

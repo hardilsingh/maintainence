@@ -6,7 +6,7 @@
 
 <!-- sign in check -->
 <?php if (!$session->is_signed_in()) {
-    redirect("index");
+    redirect("../login");
 } ?>
 <!-- /.sign in end -->
 
@@ -91,9 +91,9 @@ if (isset($_GET['user_type'])) {
                     <!-- table-row -->
                     <div class="row">
                         <!-- col-lg-12 -->
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 table-responsive">
                             <!-- table -->
-                            <table class="table">
+                            <table class="table table-hover">
                                 <!-- table head -->
                                 <thead>
                                     <tr>

@@ -7,7 +7,7 @@ class Users extends Db_object
     //property for table name
     protected static $db_table = "users";
     //property for fields of table
-    protected static $db_table_fields = array('username', 'user_email', 'user_password', 'user_role', 'user_state', 'user_city', 'user_pincode', 'user_address', 'user_photo');
+    protected static $db_table_fields = array('username' , 'user_email', 'user_password', 'user_role', 'user_state', 'user_city', 'user_pincode', 'user_address', 'user_photo' , 'user_ph' , 'name');
     //properties with same name as table fields
     public $user_id;
     public $username;
@@ -19,6 +19,8 @@ class Users extends Db_object
     public $user_pincode;
     public $user_address;
     public $user_photo;
+    public $user_ph;
+    public $name;
 
 
     //method used to verify user

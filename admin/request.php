@@ -6,7 +6,7 @@
 
 <!-- sign in check -->
 <?php if (!$session->is_signed_in()) {
-    redirect("index");
+    redirect("../login");
 } ?>
 <!-- /.sign in end -->
 
@@ -147,11 +147,11 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
                     <!-- table-row -->
                     <div class="row">
                         <!-- col-lg-12 -->
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 table-responsive" >
                             <!-- table -->
-                            <table class="table">
+                            <table class="table  table-hover">
                                 <!-- table head -->
-                                <thead>
+                                <thead class="thead-dark">
                                     <tr>
                                         <th class="col"><input type="checkbox" class="checkAll"></th>
                                         <th class="col">#</th>

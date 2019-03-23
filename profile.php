@@ -1,5 +1,17 @@
 <?php include("includes/main-rest.php") ?>
 
+<?php
+
+if (!$session->is_signed_in()) {
+    redirect("login");
+}
+?>
+
+
+<?php
+$user_profile = Users::find_by_id($session->user_id);
+?>
+
 <body>
     <div class="container-fluid signup" role="columnheader">
 
@@ -33,7 +45,7 @@
                                         <h5>Developer</h5>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
-                                        <a href="/search" class="btn btn-primary btn-block">Request a Service</a>
+                                        <a href="index.php?request_service=<?php echo $session->user_id?>" class="btn btn-primary btn-block">Instant Request Service</a>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +69,7 @@
                                                         <label>Username</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>509230671</p>
+                                                        <p><?php echo $user_profile->username ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -65,7 +77,7 @@
                                                         <label>Name</label>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <p>Juan Perez</p>
+                                                        <p><?php echo $user_profile->name ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -73,7 +85,7 @@
                                                         <label>Email</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>juanp@gmail.com</p>
+                                                        <p><?php echo $user_profile->user_email ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -81,7 +93,7 @@
                                                         <label>Telephone</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>12345678</p>
+                                                        <p><?php echo $user_profile->user_ph ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -89,7 +101,7 @@
                                                         <label>Address</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>662/7 Mehar cahnd road , Gurdaspur</p>
+                                                        <p><?php echo $user_profile->user_address ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -97,7 +109,7 @@
                                                         <label>Plan</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>Platinum</p> <a href = "#">Change Plan</a>
+                                                        <p>Platinum</p> <a href="#">Change Plan</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -4,6 +4,42 @@
 
 <!-- body -->
 
+<?php
+
+if (isset($_POST['login'])) {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    //check database for the email and password
+    $user_found = Users::verifyUser($email);
+    if ($user_found) {
+        if (password_verify($password, $user_found->user_password)) {
+
+            if ($user_found->user_role == 'customer') {
+                //start session
+                $session->login($user_found);
+                //send to profile
+                redirect("profile");
+
+            } elseif ($user_found->user_role == 'admin') {
+                //start session
+                $session->login($user_found);
+                //send to profile
+                redirect("admin/index");
+            }
+        } else {
+            $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
+        }
+    } else {
+        $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
+    }
+}else {
+    $msg ="";
+    $email ="";
+}
+
+?>
+
 <body>
 
     <!-- container-fluid -->
@@ -31,6 +67,7 @@
                     <div class="card card-signin my-5">
                         <!-- card-body -->
                         <div class="card-body">
+                            <?php echo $msg?>
                             <!-- card heading -->
                             <h5 role="heading" class="card-title text-center text-success">
                                 Sign In
@@ -39,14 +76,12 @@
                             <!-- form -->
                             <form role="form" class="form-signin" method="post" action="">
                                 <div role="textbox" class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                                        name="email" required autofocus>
+                                    <input type="email" id="inputEmail" class="form-control" value="<?php echo htmlentities($email)?>" placeholder="Email address" name="email" required autofocus>
                                     <label for="inputEmail">Email address</label>
                                 </div>
 
                                 <div role="textbox" class="form-label-group">
-                                    <input type="password" id="inputPassword" class="form-control" name="password"
-                                        placeholder="Password" required>
+                                    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
 
@@ -54,14 +89,11 @@
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                                 </div>
-                                <button role="button" class="btn btn-lg btn-success btn-block text-uppercase" name="login"
-                                    type="submit">Sign in</button>
+                                <button role="button" class="btn btn-lg btn-success btn-block text-uppercase" name="login" type="submit">Sign in</button>
                                 <hr class="my-4">
-                                <button role="button"class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                                        class="fab fa-google mr-2"></i>
+                                <button role="button" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>
                                     Sign in with Google</button>
-                                <button role="button" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                                        class="fab fa-facebook-f mr-2"></i>
+                                <button role="button" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i>
                                     Sign in with Facebook</button>
                             </form>
                             <!-- form -->
@@ -113,4 +145,4 @@
 <!-- /.body -->
 
 </html>
-<!-- /.html -->
+<!-- /.html --> 

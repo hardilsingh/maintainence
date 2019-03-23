@@ -5,7 +5,7 @@
 <?php
 //to check the login if not signed in send him to index.php to sign in.
 if (!$session->is_signed_in()) {
-    redirect("index");
+    redirect("../login");
 }
 ?>
 
