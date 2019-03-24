@@ -6,6 +6,23 @@ if (!$session->is_signed_in()) {
     redirect("login");
 }
 ?>
+<?php
+
+if (isset($_GET['request_status']) && isset($_GET['id'])) {
+    $request_id = $_GET['id'];
+    $status = $_GET['request_status'];
+    Requests::updateStatus($status, $request_id);
+    header("Location:profile.php?update_status=success");
+}
+
+if (isset($_GET['update_status'])) {
+    $msg = "<div class='alert alert-success' role='alert'>Your request has been cancelled successfully</div>";
+} else {
+    $msg = "";
+}
+
+
+?>
 
 
 <?php
@@ -45,13 +62,13 @@ $user_profile = Users::find_by_id($session->user_id);
                                         <h5>Developer</h5>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
-                                        <a href="index.php?request_service=<?php echo $session->user_id?>" class="btn btn-primary btn-block">Instant Request Service</a>
+                                        <a href="index.php?request_service=<?php echo $session->user_id ?>" class="btn btn-primary btn-block">Instant Request Service</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> User Details</a>
@@ -115,50 +132,45 @@ $user_profile = Users::find_by_id($session->user_id);
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="buzz">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Experience</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>Expert</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Hourly Rate</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>10$/hr</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Total Projects</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>230</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>English Level</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>Expert</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Availability</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>6 months</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>Your Bio</label>
-                                                        <br />
-                                                        <p>Your detail description</p>
+                                                    <div class="col-lg-12 table-responsive">
+                                                        <!-- table -->
+                                                        <table class="table  table-hover">
+                                                            <!-- table head -->
+                                                            <thead class="thead-dark">
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Request</th>
+                                                                    <th>RefrenceId</th>
+                                                                    <th>Status</th>
+                                                                    <th>Open</th>
+                                                                    <th>Closed</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <!-- /.table head -->
+                                                            <?php
+                                                            $user_id = $session->user_id;
+                                                            $foundHistory = Requests::requestHistory($user_id);
+                                                            $i = 1;
+                                                            foreach ($foundHistory as $historyItem) {
+                                                                $services = Services::requestName($historyItem->request_type);
+                                                                echo "<tr>";
+                                                                echo "<td>" . $i++ . "</td>";
+                                                                echo "<td>$services->service_name</td>";
+                                                                echo "<td>$historyItem->refrence_id</td>";
+                                                                echo "<td class='text-uppercase'>$historyItem->request_status</td>";
+                                                                echo "<td>$historyItem->open</td>";
+                                                                echo "<td>$historyItem->closed</td>";
+                                                                if ($historyItem->request_status !== 'completed' && $historyItem->request_status !== 'cancelled' ) {
+                                                                    echo "<td><a href='profile.php?request_status=cancelled&id=$historyItem->request_id' class='btn btn-danger'>Cancel</a></td>";
+                                                                }
+                                                                echo "</tr>";
+                                                            }
+                                                            ?>
+
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>

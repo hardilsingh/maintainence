@@ -18,9 +18,7 @@
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i
-                    class="fas fa-unlock-alt" style="color:green; margin-right: 1.5rem"></i>Password Reset<span
-                    style="color: green">.</span>
+                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="fas fa-unlock-alt" style="color:green; margin-right: 1.5rem"></i>Password Reset<span style="color: green">.</span>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -29,13 +27,32 @@
 
         <!-- content-row -->
         <div class="row" role="row">
-<!-- ---------------------------------------STEP 1------------------------------------------------------------------ -->
+            <!-- ---------------------------------------STEP 1------------------------------------------------------------------ -->
+
+            <?php
+
+            if (isset($_POST['next'])) {
+                $email = trim($_POST['email']);
+                $user_found = Users::forgotPasswordVerify($email);
+                if ($user_found) {
+                    header("Location:forgot_password.php?customer_id=$user_found->user_id");
+                }else {
+                    $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id </div>";
+
+                }
+            }else {
+                $msg = "";
+            }
+
+            ?>
+
+
+
             <!-- col-lg-4 -->
             <div class="col-lg-4" style="padding:0 3rem" role="columnheader">
 
                 <!-- step 1 heading -->
-                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"><i
-                        class="fas fa-envelope"></i>
+                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"><i class="fas fa-envelope"></i>
                     Enter Email<span class="h2 text-danger" style="margin-left:.5rem">(Step 1)</span> </h3>
                 <!-- /.step 1 heading -->
 
@@ -47,19 +64,16 @@
                 <div class="text-center" style="padding:0rem 5rem">
                     <!-- panel body -->
                     <div class="panel-body">
-
+                        <?php echo $msg?>
                         <!-- form -->
-                        <form id="register-form" role="form" class="form-signin" role="form" style="margin-top: 10rem"
-                            autocomplete="off" class="form" method="post">
+                        <form id="register-form" role="form" class="form-signin" method="post" role="form" style="margin-top: 10rem" autocomplete="off" class="form" method="post">
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="email" role="textbox" id="inputEmail" class="form-control" placeholder="Email address"
-                                        required autofocus>
+                                    <input type="email" role="textbox" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                                     <label for="inputEmail">Email address</label>
                                 </div>
                             </div>
-                            <button class="btn btn-lg btn-primary text-uppercase" role="button" type="submit"
-                                style="margin-top:1rem">Next
+                            <button class="btn btn-lg btn-primary text-uppercase" name="next" role="button" type="submit" style="margin-top:1rem">Next
                                 <i class="fas fa-arrow-right"></i></button>
                             <input type="hidden" class="hide" name="token" id="token" value="">
                         </form>
@@ -71,14 +85,19 @@
             </div>
             <!-- col-lg-4 -->
 
-<!-- -------------------------------STEP 2----------------------------------------------------------- -->
+            <!-- -------------------------------STEP 2----------------------------------------------------------- -->
+
+
+            <?php
+
+            if (isset($_GET['customer_id'])) {
+                ?>
 
             <!-- col-lg-4 -->
             <div class="col-lg-4" role="columnheader">
 
                 <!-- step 2 heading -->
-                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"><i
-                        class="fas fa-shield-alt"></i>
+                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"><i class="fas fa-shield-alt"></i>
                     Security Questions <span class="h2 text-danger" style="margin-left:.5rem">(Step 2)</span> </h3>
                 <!-- /.step 2 heading -->
 
@@ -92,12 +111,12 @@
                 <div class="text-center" style="padding:0rem 3rem">
                     <!-- panel body -->
                     <div class="panel-body">
+
                         <!-- form -->
-                        <form id="register-form" role="form" class="form-signin" role="form" style="margin-top: 5rem"
-                            autocomplete="off" class="form" method="post">
+                        <form id="register-form" role="form" class="form-signin" role="form" style="margin-top: 5rem" autocomplete="off" class="form" method="post">
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <select name="" role="slider" id="" disabled="disabled" class="form-control myselect">
+                                    <select name="" role="slider" id=""  class="form-control myselect">
                                         <option value="#" role="option">Secutity question 1</option>
                                     </select>
                                 </div>
@@ -105,15 +124,14 @@
 
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="email" role="textbox" id="inputEmail" class="form-control" placeholder="Email address"
-                                        required autofocus>
-                                    <label for="inputEmail">Answer 1</label>
+                                    <input type="email" role="textbox" id="ans1" class="form-control" placeholder="Email address" required autofocus>
+                                    <label for="ans1">Answer 1</label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <select name="" role="slider" id="" disabled="disabled" class="form-control">
+                                    <select name="" role="slider" id=""  class="form-control">
                                         <option value="#" role="option">Security question 2</option>
                                     </select>
                                 </div>
@@ -121,14 +139,12 @@
 
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="email" role="textbox" id="inputEmail" class="form-control" placeholder="Email address"
-                                        required autofocus>
-                                    <label for="inputEmail">Answer 2</label>
+                                    <input type="email" role="textbox" id="ans2" class="form-control" placeholder="Email address" required autofocus>
+                                    <label for="ans2">Answer 2</label>
                                 </div>
                             </div>
 
-                            <button disabled  role="button" class="btn btn-lg btn-primary text-uppercase" type="submit"
-                                style="margin-top:1rem">Submit
+                            <button disabled role="button" class="btn btn-lg btn-primary text-uppercase" type="submit" style="margin-top:1rem">Submit
                                 <i class="fas fa-arrow-right"></i></button>
 
                             <input type="hidden" role="button" class="hide" name="token" id="token" value="">
@@ -141,13 +157,12 @@
             <!-- /.col-lg-4 -->
 
 
-<!-- -------------------------------------------STEP 3-------------------------------------------------------- -->
+            <!-- -------------------------------------------STEP 3-------------------------------------------------------- -->
 
             <!-- col-lg-4 -->
             <div class="col-lg-4" style="padding:0 3rem" role="columnheader">
                 <!-- step 3 heading -->
-                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"> <i
-                        class="fas fa-key"></i>
+                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"> <i class="fas fa-key"></i>
                     New Password <span class="h2 text-danger" style="margin-left:.5rem">(Step 3)</span>
                 </h3>
                 <!-- /. step 3 heading -->
@@ -159,20 +174,16 @@
                 <div class="text-center" style="padding:.5rem 3rem">
                     <!-- panel body -->
                     <div class="panel-body">
-                        <form action="" role="form" method="post" class="form-signin" style="margin-top:6rem" class="form"
-                            role="form">
+                        <form action="" role="form" method="post" class="form-signin" style="margin-top:6rem" class="form" role="form">
                             <div class="form-label-group">
-                                <input type="password" role="textbox" disabled id="inputPassword" class="form-control"
-                                    placeholder="Password" required>
+                                <input type="password" role="textbox" disabled id="inputPassword" class="form-control" placeholder="Password" required>
                                 <label for="inputPassword">New Password</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="password" role="textbox" disabled id="confirminputPassword" class="form-control"
-                                    placeholder="Password" required>
+                                <input type="password" role="textbox" disabled id="confirminputPassword" class="form-control" placeholder="Password" required>
                                 <label for="confirminputPassword text-center">Confirm Password</label>
                             </div>
-                            <button disabled role="button" class="btn btn-lg btn-success text-uppercase" type="submit"
-                                style="margin-top:1rem">Reset
+                            <button disabled role="button" class="btn btn-lg btn-success text-uppercase" type="submit" style="margin-top:1rem">Reset
                                 <i class="fas fa-arrow-right"></i></button>
                         </form>
                         <!-- /.form -->
@@ -183,7 +194,13 @@
             <!-- /.col-lg-4 -->
         </div>
         <!-- /.content row -->
+    </div>
+    <?php
 
+}
+
+?>
+    <div class="container-fluid">
         <!-- footer row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
@@ -196,8 +213,10 @@
         </div>
         <!-- /.footer row -->
     </div>
+
+    </div>
     <!-- /.container-fluid -->
 </body>
 <!-- /.body -->
 
-</html>
+</html> 

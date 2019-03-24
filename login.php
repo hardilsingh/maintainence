@@ -100,7 +100,7 @@ if (isset($_POST['login'])) {
 
                             <!-- options -->
                             <div role="option" class="options">
-                                <a href="forgot_password.html" class="forgot__password">Forgot password?</a>
+                                <a href="forgot_password.php" class="forgot__password">Forgot password?</a>
                                 <a href="#">Sign up now</a>
                             </div>
                             <!-- /.options -->

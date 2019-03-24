@@ -103,6 +103,12 @@ class Users extends Db_object
     }
 
 
+    public static function forgotPasswordVerify($email) {
+        $result = self::find_this_query("SELECT * FROM users WHERE user_email = '{$email}' LIMIT 1 ");
+        return !empty($result) ? array_shift($result) : false;
+    }
+
+
 
 
 }

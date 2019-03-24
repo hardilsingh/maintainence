@@ -8,6 +8,8 @@ if (isset($_POST['request'])) {
     $address = $_POST['address'];
     $service = $_POST['service'];
     $user_msg = $_POST['msg'];
+    $user_id = $session->user_id;
+    $open = date('d-m-y');
 
 
     if ($service !== null) {
@@ -18,7 +20,9 @@ if (isset($_POST['request'])) {
         $request->msg = $user_msg;
         $request->user_ph = $ph;
         $request->address = $address;
+        $request->user_id = $user_id;
         $request->refrence_id = uniqid(rand(1, 5, true));
+        $request->open = $open;
 
         $request->create();
         redirect("success");
