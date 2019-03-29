@@ -58,8 +58,13 @@ $user_profile = Users::find_by_id($session->user_id);
                             <div class="col-md-12 profile-header">
                                 <div class="row">
                                     <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left" style="padding:20px">
-                                        <h1>Juan Perez</h1>
-                                        <h5>Developer</h5>
+                                        <h1><?php echo $user_profile->name ?></h1>
+                                        <h5 id="success_msg" style="margin-top:10px"><?php echo $msg ?></h5>
+                                        <script>
+                                            setTimeout(() => {
+                                                document.getElementById("success_msg").style.display = "none";
+                                            }, 5000);
+                                        </script>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
                                         <a href="index.php?request_service=<?php echo $session->user_id ?>" class="btn btn-primary btn-block">Instant Request Service</a>
@@ -140,10 +145,10 @@ $user_profile = Users::find_by_id($session->user_id);
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>Request</th>
-                                                                    <th>RefrenceId</th>
+                                                                    <th>Refrence Id</th>
                                                                     <th>Status</th>
-                                                                    <th>Open</th>
-                                                                    <th>Closed</th>
+                                                                    <th>Opened on</th>
+                                                                    <th>Closed on</th>
                                                                     <th></th>
                                                                     <th></th>
 
@@ -163,7 +168,7 @@ $user_profile = Users::find_by_id($session->user_id);
                                                                 echo "<td class='text-uppercase'>$historyItem->request_status</td>";
                                                                 echo "<td>$historyItem->open</td>";
                                                                 echo "<td>$historyItem->closed</td>";
-                                                                if ($historyItem->request_status !== 'completed' && $historyItem->request_status !== 'cancelled' ) {
+                                                                if ($historyItem->request_status !== 'completed' && $historyItem->request_status !== 'cancelled') {
                                                                     echo "<td><a href='profile.php?request_status=cancelled&id=$historyItem->request_id' class='btn btn-danger'>Cancel</a></td>";
                                                                 }
                                                                 echo "</tr>";
