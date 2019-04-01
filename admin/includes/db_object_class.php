@@ -5,6 +5,8 @@
 class Db_object
 {
 
+
+
     //method used to process the sql statement and assign the values to the object properties using instantiate method
     public static function find_this_query($sql)
     {
@@ -105,11 +107,47 @@ class Db_object
 
 
     //number of table data
-    public static function num() {
+    public static function num()
+    {
         global $database;
         $users = $database->query("SELECT * FROM " . static::$db_table . "");
         return mysqli_num_rows($users);
     }
-}
 
+
+    /******************************************************************************** */
+
+    //pagination
+
+    public static function paginationQuery($limit_results , $user_id)
+    {
+        static::$limit = $limit_results;
+        if (isset($_GET['page'])) {
+            static::$pn = $_GET['page'];
+        } else {
+            static::$pn = 1;
+        }
+
+        $start_from = (static::$pn - 1) * $limit_results;
+        return static::find_all("SELECT * FROM  " . static::$db_table . " WHERE user_id = '{$user_id}' LIMIT $start_from , $limit_results");
+    }
+
+    public static function displayPagination()
+    {
+        global $database;
+        $sql = $database->query("SELECT * FROM  " . static::$db_table . " ");
+        $total_records = mysqli_num_rows($sql);
+
+        $total_pages = ceil($total_records / static::$limit);
+            $pagLink = "";
+
+        for ($i = 0; $i <= $total_pages; $i++) {
+            if ($i == static::$pn)
+                $pagLink .= "<li class='active'><a href='profile.php?page= " . $i . "'>" . $i . "</a></li>";
+            else
+                $pagLink .= "<li><a href='profile.php?page=" . $i . "'> " . $i . "</a></li>";
+        }
+        echo $pagLink;
+    }
+}
 

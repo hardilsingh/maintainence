@@ -35,14 +35,18 @@
                 $email = trim($_POST['email']);
                 $user_found = Users::forgotPasswordVerify($email);
                 if ($user_found) {
-                    header("Location:forgot_password.php?customer_id=$user_found->user_id");
-                }else {
+                    header("Location:forgot_password.php?customer_id=$user_found->user_id&otp_send=true");
+                    $email = $user_found->user_email;
+                } else {
                     $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id </div>";
-
                 }
-            }else {
+            } else {
                 $msg = "";
+                $email ="";
             }
+
+
+
 
             ?>
 
@@ -64,142 +68,119 @@
                 <div class="text-center" style="padding:0rem 5rem">
                     <!-- panel body -->
                     <div class="panel-body">
-                        <?php echo $msg?>
+                        <?php echo $msg ?>
                         <!-- form -->
+
                         <form id="register-form" role="form" class="form-signin" method="post" role="form" style="margin-top: 10rem" autocomplete="off" class="form" method="post">
                             <div class="form-group">
+                                <?php
+                                if (isset($_GET['customer_id'])) {
+                                    ?>
                                 <div class="form-label-group">
-                                    <input type="email" role="textbox" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                    <input type="email" disabled role="textbox" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                                     <label for="inputEmail">Email address</label>
                                 </div>
                             </div>
                             <button class="btn btn-lg btn-primary text-uppercase" name="next" role="button" type="submit" style="margin-top:1rem">Next
                                 <i class="fas fa-arrow-right"></i></button>
-                            <input type="hidden" class="hide" name="token" id="token" value="">
-                        </form>
-                        <!-- /.form -->
+                            <input type="hidden" disabled class="hide" name="token" id="token" value="">
+                            <?php 
+                        } else {
 
-                    </div>
-                    <!-- /.panel vody -->
-                </div>
-            </div>
-            <!-- col-lg-4 -->
+                            ?>
 
-            <!-- -------------------------------STEP 2----------------------------------------------------------- -->
-
-
-            <?php
-
-            if (isset($_GET['customer_id'])) {
-                ?>
-
-            <!-- col-lg-4 -->
-            <div class="col-lg-4" role="columnheader">
-
-                <!-- step 2 heading -->
-                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"><i class="fas fa-shield-alt"></i>
-                    Security Questions <span class="h2 text-danger" style="margin-left:.5rem">(Step 2)</span> </h3>
-                <!-- /.step 2 heading -->
-
-                <!-- step 2 instruction -->
-                <p class="text-center" role="doc-notice" style="font-size:17px; margin-top:2rem">Please Answer the following questions to
-                    reset your password</p>
-                <!-- /.step 2 instruction -->
-
-
-
-                <div class="text-center" style="padding:0rem 3rem">
-                    <!-- panel body -->
-                    <div class="panel-body">
-
-                        <!-- form -->
-                        <form id="register-form" role="form" class="form-signin" role="form" style="margin-top: 5rem" autocomplete="off" class="form" method="post">
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <select name="" role="slider" id=""  class="form-control myselect">
-                                        <option value="#" role="option">Secutity question 1</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <input type="email" role="textbox" id="ans1" class="form-control" placeholder="Email address" required autofocus>
-                                    <label for="ans1">Answer 1</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <select name="" role="slider" id=""  class="form-control">
-                                        <option value="#" role="option">Security question 2</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <input type="email" role="textbox" id="ans2" class="form-control" placeholder="Email address" required autofocus>
-                                    <label for="ans2">Answer 2</label>
-                                </div>
-                            </div>
-
-                            <button disabled role="button" class="btn btn-lg btn-primary text-uppercase" type="submit" style="margin-top:1rem">Submit
-                                <i class="fas fa-arrow-right"></i></button>
-
-                            <input type="hidden" role="button" class="hide" name="token" id="token" value="">
-                        </form>
-                        <!-- /.form -->
-                    </div>
-                    <!-- /.panel body -->
-                </div>
-            </div>
-            <!-- /.col-lg-4 -->
-
-
-            <!-- -------------------------------------------STEP 3-------------------------------------------------------- -->
-
-            <!-- col-lg-4 -->
-            <div class="col-lg-4" style="padding:0 3rem" role="columnheader">
-                <!-- step 3 heading -->
-                <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"> <i class="fas fa-key"></i>
-                    New Password <span class="h2 text-danger" style="margin-left:.5rem">(Step 3)</span>
-                </h3>
-                <!-- /. step 3 heading -->
-
-                <!-- step 3 instructions -->
-                <p class="text-center" role="doc-notice" style="font-size:17px; margin-top:2rem">Please enter a new password</p>
-                <!-- /.step 3 instructions -->
-
-                <div class="text-center" style="padding:.5rem 3rem">
-                    <!-- panel body -->
-                    <div class="panel-body">
-                        <form action="" role="form" method="post" class="form-signin" style="margin-top:6rem" class="form" role="form">
                             <div class="form-label-group">
-                                <input type="password" role="textbox" disabled id="inputPassword" class="form-control" placeholder="Password" required>
-                                <label for="inputPassword">New Password</label>
+                                <input type="email"  role="textbox" name="email" id="inputEmail" class="form-control" placeholder="Email address"  required autofocus>
+                                <label for="inputEmail">Email address</label>
                             </div>
-                            <div class="form-label-group">
-                                <input type="password" role="textbox" disabled id="confirminputPassword" class="form-control" placeholder="Password" required>
-                                <label for="confirminputPassword text-center">Confirm Password</label>
-                            </div>
-                            <button disabled role="button" class="btn btn-lg btn-success text-uppercase" type="submit" style="margin-top:1rem">Reset
-                                <i class="fas fa-arrow-right"></i></button>
-                        </form>
-                        <!-- /.form -->
                     </div>
-                    <!-- /.panel body -->
+                    <button class="btn btn-lg btn-primary text-uppercase" name="next" role="button" type="submit" style="margin-top:1rem">Next
+                        <i class="fas fa-arrow-right"></i></button>
+                    <input type="hidden"  class="hide" name="token" id="token" value="">
+                    <?php 
+                } ?>
+                    </form>
+                    <!-- /.form -->
+
                 </div>
+                <!-- /.panel vody -->
             </div>
-            <!-- /.col-lg-4 -->
         </div>
-        <!-- /.content row -->
+        <!-- col-lg-4 -->
+
+        <!-- -------------------------------STEP 2----------------------------------------------------------- -->
+
+
+        <div class="col-lg-4" style="padding:0 3rem" role="columnheader">
+            <!-- step 3 heading -->
+            <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"> <i class="fas fa-key"></i>
+                New Password <span class="h2 text-danger" style="margin-left:.5rem">(Step 2)</span>
+            </h3>
+            <!-- /. step 3 heading -->
+
+            <!-- step 3 instructions -->
+            <p class="text-center" role="doc-notice" style="font-size:17px; margin-top:2rem">Please enter OTP. Sent to registered Email id</p>
+            <!-- /.step 3 instructions -->
+
+            <div class="text-center" style="padding:.5rem 3rem">
+                <!-- panel body -->
+                <div class="panel-body">
+                    <form action="" role="form" method="post" class="form-signin" style="margin-top:6rem" class="form" role="form">
+                        <div class="form-label-group">
+                            <input type="text" role="textbox" id="inputotp" class="form-control" placeholder="OTP" required>
+                            <label for="inputotp">OTP</label>
+                        </div>
+                        
+                        <button role="button" class="btn btn-lg btn-success text-uppercase" type="submit" style="margin-top:1rem">Reset
+                            <i class="fas fa-arrow-right"></i></button>
+                    </form>
+                    <!-- /.form -->
+                </div>
+                <!-- /.panel body -->
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+
+
+        <!-- -------------------------------------------STEP 3-------------------------------------------------------- -->
+
+        <!-- col-lg-4 -->
+        <div class="col-lg-4" style="padding:0 3rem" role="columnheader">
+            <!-- step 3 heading -->
+            <h3 class="text-center" role="heading" style="margin-top:1rem; font-family: 'lato' , sans-serif"> <i class="fas fa-key"></i>
+                New Password <span class="h2 text-danger" style="margin-left:.5rem">(Step 3)</span>
+            </h3>
+            <!-- /. step 3 heading -->
+
+            <!-- step 3 instructions -->
+            <p class="text-center" role="doc-notice" style="font-size:17px; margin-top:2rem">Please enter a new password</p>
+            <!-- /.step 3 instructions -->
+
+            <div class="text-center" style="padding:.5rem 3rem">
+                <!-- panel body -->
+                <div class="panel-body">
+                    <form action="" role="form" method="post" class="form-signin" style="margin-top:6rem" class="form" role="form">
+                        <div class="form-label-group">
+                            <input type="password" role="textbox" disabled id="inputPassword" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">New Password</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="password" role="textbox" disabled id="confirminputPassword" class="form-control" placeholder="Password" required>
+                            <label for="confirminputPassword text-center">Confirm Password</label>
+                        </div>
+                        <button disabled role="button" class="btn btn-lg btn-success text-uppercase" type="submit" style="margin-top:1rem">Reset
+                            <i class="fas fa-arrow-right"></i></button>
+                    </form>
+                    <!-- /.form -->
+                </div>
+                <!-- /.panel body -->
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
     </div>
-    <?php
+    <!-- /.content row -->
+    </div>
 
-}
-
-?>
     <div class="container-fluid">
         <!-- footer row -->
         <div class="row" role="row">

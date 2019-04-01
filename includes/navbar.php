@@ -27,13 +27,20 @@ if (isset($_GET['logout'])) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="membership.php"><i class="fab fa-servicestack" style="margin-right:8px"></i>
+                        <a class="nav-link text-white" href="index.php#services_section"><i class="fab fa-servicestack" style="margin-right:8px"></i>
                             Services</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="contactus.php"><i class="fas fa-id-badge" style="margin-right:8px"></i>
+                            Contact us</a>
+                    </li>
 
-                    <?php
-                    if (!$session->is_signed_in()) {
-                        ?>
+                </ul>
+
+                <?php
+                if (!$session->is_signed_in()) {
+                    ?>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item">
                         <a class="nav-link text-white" href="signup.php"><i class="fas fa-user-plus" style="margin-right:8px"></i>
                             Sign up</a>
@@ -42,17 +49,18 @@ if (isset($_GET['logout'])) {
                         <a class="nav-link text-white" href="login.php"><i class="fas fa-sign-in-alt" style="margin-right:8px"></i>
                             Log in</a>
                     </li>
-                    <?php
-
-                }
-                ?>
-
-
                 </ul>
+                <?php
+
+            }
+            ?>
+
+
+
+                <?php
+                if ($session->is_signed_in()) {
+                    ?>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <?php
-                    if ($session->is_signed_in()) {
-                        ?>
 
                     <li class="nav-item">
                         <a class="nav-link text-white" href="index.php?logout=true"><i class="fas fa-sign-out-alt"></i></i>
@@ -60,13 +68,31 @@ if (isset($_GET['logout'])) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.php"><i class="fas fa-user-alt"></i>
-                            <a class="navbar-brand" href="#"><img src="images/dummy.jpg" height="30px" width="30px" style="border-radius:50%; object-fit:cover"></a>
+                        <a class="nav-link text-white" href="profile.php">
+                            <?php 
+                            $user = Users::find_by_id($session->user_id);
+
+                            if ($user->user_photo !== "") {
+
+                                ?>
+                            <img src="images/users/<?php echo $user->user_photo ?>" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white">
+
+                            <?php 
+                        } else {
+                            ?>
+
+                            <img src="images/users/dummy.jpg" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
+
+
+                            <?php 
+                        } ?>
+
                         </a>
                     </li>
-                    <?php 
-                } ?>
                 </ul>
+                <?php 
+            } ?>
+
 
             </div>
 

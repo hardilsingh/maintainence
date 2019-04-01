@@ -5,7 +5,7 @@ if (isset($_GET['logout_user'])) {
     redirect("index");
 }
 
-if(isset($_GET['logout'])) {
+if (isset($_GET['logout'])) {
     $session->logout();
     redirect("login");
 }
@@ -32,7 +32,23 @@ if(isset($_GET['logout'])) {
         ?>
 
         <span class='sign__up'><a href='index.php?logout=true'><i class='fas fa-user-plus'></i> Logout</a></span>
-        <span class='log__in'><a href='profile.php'><i class='fas fa-user-alt'></i>View Profile</a></span>
+
+        <?php 
+        $user = Users::find_by_id($session->user_id);
+        if ($user->user_photo !==  "") {
+            ?>
+        <span class='log__in' style="margin-left:20px"><a href='profile.php'><img src="images/users/<?php echo $user->user_photo ?>" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a></span>
+        <?php 
+    } else {
+        ?>
+        <span class='log__in' style="margin-left:20px"><a href='profile.php'><img src="images/users/dummy.jpg" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a></span>
+        <?php 
+    }
+
+
+
+    ?>
+
         <?php
 
     }

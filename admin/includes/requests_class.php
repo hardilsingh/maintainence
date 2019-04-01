@@ -20,6 +20,8 @@ class Requests extends Db_object
     public $user_id;
     public $open;
     public $closed;
+    public static $limit;
+    public static $pn;
 
 
     //get properties from the class and assign them the values bought from the database

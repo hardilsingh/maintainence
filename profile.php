@@ -22,6 +22,23 @@ if (isset($_GET['update_status'])) {
 }
 
 
+if (isset($_POST['upload_photo'])) {
+    $image_tmp = $_FILES['profile_image']['tmp_name'];
+    $image = $_FILES['profile_image']['name'];
+
+    if ($image !== "") {
+        $upload_image = Users::updateProfilePhoto($session->user_id, $image);
+        move_uploaded_file($image_tmp, "images/users/$image");
+    } else {
+        $msg = "<div class='alert alert-warning' role='alert'>
+        Please select a photo to upload.
+    </div>";
+    }
+} else {
+    $msg = "";
+}
+
+
 ?>
 
 
@@ -44,13 +61,32 @@ $user_profile = Users::find_by_id($session->user_id);
                     <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
                         <div class="row ">
                             <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center" style="padding:20px">
-                                <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle">
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                                <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="#contact" class="btn btn-success btn-block follow">Update Photo</button>
-                                <button class="btn btn-warning btn-block">Remove Photo</button>
-                            </div>
 
+                                <?php if ($user_profile->user_photo !== '') {
+                                    ?>
+
+                                <img src="images/users/<?php $user = Users::find_by_id($session->user_id);
+                                                        echo $user->user_photo ?>" class="rounded-circle" style="object-fit:cover">
+                                <?php 
+                            } else {
+
+                                ?>
+
+                                <img src="images/users/dummy.jpg" class="rounded-circle" style="object-fit:cover">
+
+                                <?php 
+                            } ?>
+
+                            </div>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                                    <input type="file" name="profile_image">
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                                    <button name="upload_photo" class="btn btn-success btn-block follow" style="margin-right:20px">Update Photo</button>
+                                    <button class="btn btn-warning btn-block" style="margin-right:20px">Remove Photo</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section" style="padding:20px;">
@@ -63,7 +99,7 @@ $user_profile = Users::find_by_id($session->user_id);
                                         <script>
                                             setTimeout(() => {
                                                 document.getElementById("success_msg").style.display = "none";
-                                            }, 5000);
+                                            }, 3000);
                                         </script>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">

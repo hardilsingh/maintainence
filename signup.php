@@ -21,6 +21,7 @@ if (isset($_POST['register'])) {
             $signup = new Users;
             $signup->user_email = $email;
             $signup->user_password = $hashed_password;
+            $signup->user_role = 'customer';
             $signup->create();
             redirect("welcome");
         } else {

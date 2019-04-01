@@ -1,4 +1,4 @@
-<section class="services">
+<section class="services" id="services_section">
     <!-- HEADING FOR SECTIOM -->
     <h2 class="heading"><span>Services</span> we offer</h2>
     <!-- /END OF HEADING -->

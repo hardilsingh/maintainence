@@ -14,7 +14,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="dashboard.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
 
             
