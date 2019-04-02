@@ -114,6 +114,14 @@ class Users extends Db_object
         return $database->query("UPDATE users SET user_photo = '{$image}' WHERE user_id = $user_id");
     }
     
+    public static function storeOTP($id , $otp) {
+        return self::find_this_query("UPDATE ". self::$db_table ." SET otp = '{$otp}' WHERE user_id = $id ");
+    }
+
+
+    public static function updatePassword($id , $password) {
+    return self::find_this_query("UPDATE users SET user_password = '{$password}' WHERE user_id = $id");
+    }
 
 }
 

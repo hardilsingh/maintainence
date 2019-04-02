@@ -20,7 +20,6 @@ if (isset($_POST['login'])) {
                 $session->login($user_found);
                 //send to profile
                 redirect("profile");
-
             } elseif ($user_found->user_role == 'admin') {
                 //start session
                 $session->login($user_found);
@@ -33,9 +32,9 @@ if (isset($_POST['login'])) {
     } else {
         $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
     }
-}else {
-    $msg ="";
-    $email ="";
+} else {
+    $msg = "";
+    $email = "";
 }
 
 ?>
@@ -44,6 +43,17 @@ if (isset($_POST['login'])) {
 
     <!-- container-fluid -->
     <div class="container-fluid" role="grid">
+        <?php
+
+        if (isset($_GET['password_reset'])) {
+            $msg_reset = "<div class='alert alert-success' role='alert'>
+            Password reset was successful
+          </div>";
+        } else {
+            $msg_reset = "";
+        }
+
+        ?>
 
         <!-- navigation -->
         <?php include("includes/navbar.php") ?>
@@ -67,7 +77,8 @@ if (isset($_POST['login'])) {
                     <div class="card card-signin my-5">
                         <!-- card-body -->
                         <div class="card-body">
-                            <?php echo $msg?>
+                        <?php echo $msg?>
+                        <?php echo $msg_reset?>
                             <!-- card heading -->
                             <h5 role="heading" class="card-title text-center text-success">
                                 Sign In
@@ -76,7 +87,7 @@ if (isset($_POST['login'])) {
                             <!-- form -->
                             <form role="form" class="form-signin" method="post" action="">
                                 <div role="textbox" class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" value="<?php echo htmlentities($email)?>" placeholder="Email address" name="email" required autofocus>
+                                    <input type="email" id="inputEmail" class="form-control" value="<?php echo htmlentities($email) ?>" placeholder="Email address" name="email" required autofocus>
                                     <label for="inputEmail">Email address</label>
                                 </div>
 
