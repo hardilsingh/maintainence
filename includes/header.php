@@ -65,4 +65,21 @@ if (isset($_GET['logout'])) {
     <div class="btn">
         <a href="#" class="btn__link"><span>Discover</span> services</a>
     </div>
-</header> 
+</header>
+
+
+<?php
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $user_found = Users::verifyUser($_COOKIE['email']);
+
+    if ($user_found->user_role == 'customer') {
+        //start session
+        $session->login($user_found);
+        //send to profile
+    } elseif ($user_found->user_role == 'admin') {
+        //start session
+        $session->login($user_found);
+        //send to profile
+    }
+} //rememberme is on
+?> 

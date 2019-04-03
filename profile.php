@@ -85,6 +85,9 @@ $user_profile = Users::find_by_id($session->user_id);
                                 <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
                                     <button name="upload_photo" class="btn btn-success btn-block follow" style="margin-right:20px">Update Photo</button>
                                     <button class="btn btn-warning btn-block" style="margin-right:20px">Remove Photo</button>
+                                    <a href="update_profile.php" class="btn btn-secondary btn-block" style="margin-right:20px">Edit Profile</a>
+
+
                                 </div>
                             </form>
                         </div>

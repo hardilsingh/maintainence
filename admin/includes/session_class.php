@@ -37,6 +37,7 @@ class Sessions
         unset($this->user_id);
         unset($_SESSION['user_id']);
         $this->signed_in = false;
+
     }
 
     //to chheck the login to see if the user is already logged in

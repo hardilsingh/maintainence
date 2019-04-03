@@ -4,40 +4,50 @@
 
 <!-- body -->
 
+
 <?php
 
 if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+    $rememberme = $_POST['rememberme'];
 
     //check database for the email and password
-    $user_found = Users::verifyUser($email);
-    if ($user_found) {
-        if (password_verify($password, $user_found->user_password)) {
 
-            if ($user_found->user_role == 'customer') {
-                //start session
-                $session->login($user_found);
-                //send to profile
-                redirect("profile");
-            } elseif ($user_found->user_role == 'admin') {
-                //start session
-                $session->login($user_found);
-                //send to profile
-                redirect("admin/index");
+        $user_found = Users::verifyUser($email);
+
+        if ($user_found) {
+            
+            if ($rememberme == 'on') {
+                $hour = time() + 3600 * 24 * 30;
+                setcookie('email', $email, $hour);
+                setcookie('password', $user_found->user_password, $hour);
+            }
+            if (password_verify($password, $user_found->user_password)) {
+
+                if ($user_found->user_role == 'customer') {
+                    //start session
+                    $session->login($user_found);
+                    //send to profile
+                    redirect("profile");
+                } elseif ($user_found->user_role == 'admin') {
+                    //start session
+                    $session->login($user_found);
+                    //send to profile
+                    redirect("admin/index");
+                }
+            } else {
+                $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
             }
         } else {
             $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
         }
     } else {
-        $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
+        $msg = "";
+        $email = "";
     }
-} else {
-    $msg = "";
-    $email = "";
-}
 
-?>
+    ?>
 
 <body>
 
@@ -95,7 +105,7 @@ if (isset($_POST['login'])) {
                                 </div>
 
                                 <div role="checkbox" class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <input type="checkbox" class="custom-control-input" name="rememberme" value="on" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                                 </div>
                                 <button role="button" class="btn btn-lg btn-success btn-block text-uppercase" name="login" type="submit">Sign in</button>

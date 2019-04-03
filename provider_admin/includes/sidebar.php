@@ -16,23 +16,6 @@
             <li>
                 <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
-
-            
-            <li>
-                <a href="users.php"><i class="fa fa-bar-chart-o fa-fw"></i> Users<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="users.php?user_type=admin">Admin</a>
-                    </li>
-                    <li>
-                        <a href="users.php?user_type=customer">Customer</a>
-                    </li>
-                    <li>
-                        <a href="users.php?user_type=provider">Service providers</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
             <li>
                 <a href="search_requests.php"><i class="fa fa-dashboard fa-fw"></i> Search Requests</a>
             </li>

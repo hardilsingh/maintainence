@@ -34,4 +34,20 @@ require_once("init.php");
 
 
 
-</head> 
+</head>
+
+<?php
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $user_found = Users::verifyUser($_COOKIE['email']);
+
+    if ($user_found->user_role == 'customer') {
+        //start session
+        $session->login($user_found);
+        //send to profile
+    } elseif ($user_found->user_role == 'admin') {
+        //start session
+        $session->login($user_found);
+        //send to profile
+    }
+} //rememberme is on
+?> 

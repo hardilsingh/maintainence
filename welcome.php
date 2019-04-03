@@ -37,7 +37,7 @@
             <div class="col-lg-12 text-center" role="columnheader">
                 <p class='text-center' style="font-size:17px" role="doc-notice">Welcome to the family user.<br>
                     Now you can enjoy the best home service experience.<br>
-                    A welcome Email has been sent to your registerd email.<br>
+                    A welcome Email with OTP has been sent to your registerd email.<br>
                     Thankyou! for choosing us.
             </div>
             <!-- /.col-lg-12 -->

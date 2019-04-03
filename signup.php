@@ -6,6 +6,7 @@ if (isset($_POST['register'])) {
     $given_email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
+    $role = $_POST['designation'];
 
 
     if ($password == $confirm_password) {
@@ -21,11 +22,8 @@ if (isset($_POST['register'])) {
             $signup = new Users;
             $signup->user_email = $given_email;
             $signup->user_password = $hashed_password;
-            $signup->user_role = 'customer';
+            $signup->user_role = $role;
             $signup->create();
-            $email = $given_email;
-            $name = "";
-            include ("includes/mail.php");
             redirect("welcome");
         } else {
             $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
@@ -77,7 +75,14 @@ if (isset($_POST['register'])) {
                                 <input type="password" role="textbox" name="confirm_password" id="confirminputPassword" class="form-control" placeholder="Confirm password" required>
                                 <label for="confirminputPassword">Confirm Password</label>
                             </div>
-
+                            <div role="checkbox" class="custom-control custom-checkbox mb-3">
+                                <input type="radio" checked class="custom-control-input" name="designation" value="customer" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Customer</label>
+                            </div>
+                            <div role="checkbox" class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="designation" value="provider" id="provider">
+                                <label class="custom-control-label" for="provider">Service Provider</label>
+                            </div>
                             <button role="button" class="btn btn-lg btn-success btn-block text-uppercase" name="register" type="submit">Register</button>
                             <hr class="my-4">
                             <button role="button" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>

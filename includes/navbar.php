@@ -1,6 +1,9 @@
 <?php
 if (isset($_GET['logout'])) {
     $session->logout();
+    $hour = time() - 3600 * 24 * 30;
+        setcookie('email', "", $hour);
+        setcookie('password', "", $hour);
     redirect("index");
 }
 ?>
@@ -63,7 +66,7 @@ if (isset($_GET['logout'])) {
                 <ul class="navbar-nav ml-auto nav-flex-icons">
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php?logout=true"><i class="fas fa-sign-out-alt"></i></i>
+                        <a class="nav-link text-white" href="profile.php?logout=true"><i class="fas fa-sign-out-alt"></i></i>
                             Logout</a>
                     </li>
 
