@@ -9,21 +9,6 @@ if (!$session->is_signed_in()) {
 
 ?>
 
-
-<?php
-
-if (isset($_POST['update_profile'])) {
-    $name = trim($_POST['name']);
-    $ph = trim($_POST['ph']);
-    $address = trim($_POST['address']);
-    $state = trim($_POST['state']);
-    $city = trim($_POST['city']);
-    $pincode = trim($_POST['pincode']);
-}
-
-
-?>
-
 <style>
     .form-label-group {
         display: flex;
@@ -41,12 +26,31 @@ if (isset($_POST['update_profile'])) {
     <?php
 
     if (isset($_POST['update_profile'])) {
-        $name = trim($_POST['name']);
-        $ph = trim($_POST['ph']);
-        $address = trim($_POST['address']);
-        $state = trim($_POST['state']);
-        $city = trim($_POST['city']);
-        $pincode = trim($_POST['pincode']);
+
+        if ($user->user_role == 'customer') {
+            $name = trim($_POST['name']);
+            $ph = trim($_POST['ph']);
+            $address = trim($_POST['address']);
+            $state = trim($_POST['state']);
+            $city = trim($_POST['city']);
+            $pincode = trim($_POST['pincode']);
+
+            if ($user->user_role == 'admin' || $user->user_role == 'provider') {
+                $addhar = trim($_POST['addhar']);
+                $designation = trim($_POST['desig']);
+            }
+
+
+            $updated_information = new Users;
+            $updated_information->name = $name;
+            $updated_information->user_email = $user->user_email;
+            $updated_information->user_password = $user->user_password;
+            $updated_information->user_role = $user->user_role;
+            $updated_information->user_state = $state;
+            $updated_information->user_address = $address;
+
+
+        }
     }
 
 
