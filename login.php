@@ -46,9 +46,7 @@ if (isset($_POST['login'])) {
         <?php
 
         if (isset($_GET['password_reset'])) {
-            $msg_reset = "<div class='alert alert-success' role='alert'>
-            Password reset was successful
-          </div>";
+            $msg_reset = "<div class='alert alert-success' role='alert'>Password reset was successful</div>";
         } else {
             $msg_reset = "";
         }
@@ -77,8 +75,8 @@ if (isset($_POST['login'])) {
                     <div class="card card-signin my-5">
                         <!-- card-body -->
                         <div class="card-body">
-                        <?php echo $msg?>
-                        <?php echo $msg_reset?>
+                            <?php echo $msg ?>
+                            <?php echo $msg_reset ?>
                             <!-- card heading -->
                             <h5 role="heading" class="card-title text-center text-success">
                                 Sign In

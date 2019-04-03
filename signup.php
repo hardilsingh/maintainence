@@ -3,7 +3,7 @@
 <?php
 
 if (isset($_POST['register'])) {
-    $email = trim($_POST['email']);
+    $given_email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
 
@@ -11,7 +11,7 @@ if (isset($_POST['register'])) {
     if ($password == $confirm_password) {
         //check if the email exits
 
-        $email_exists = Users::emailExists($email);
+        $email_exists = Users::emailExists($given_email);
 
         if ($email_exists == 0) {
             //encrypt the password
@@ -19,10 +19,13 @@ if (isset($_POST['register'])) {
 
             //send it to the database
             $signup = new Users;
-            $signup->user_email = $email;
+            $signup->user_email = $given_email;
             $signup->user_password = $hashed_password;
             $signup->user_role = 'customer';
             $signup->create();
+            $email = $given_email;
+            $name = "";
+            include ("includes/mail.php");
             redirect("welcome");
         } else {
             $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
