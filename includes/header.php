@@ -1,18 +1,76 @@
 <?php
 
-if (isset($_GET['logout_user'])) {
+if (isset($_GET['logout'])) {
     $session->logout();
+    $hour = time() - 3600 * 24 * 30;
+    setcookie('email', "", $hour);
+    setcookie('password', "", $hour);
     redirect("index");
 }
 
-if (isset($_GET['logout'])) {
-    $session->logout();
-    redirect("login");
-}
+
+
 
 ?>
 
+
+<style>
+    i {
+        color:green;
+        margin-right:1rem;
+    }
+</style>
+
 <header class="header">
+    <div class="topnav" id="myTopnav">
+        <a href="#home" class="active"><img src="images/logo.png" alt="logo" class="logo"> </a>
+
+        <a href="membership.php"><i class="fas fa-paperclip"></i> Membership Plans</a>
+        <a href="contactus.php"><i class="fas fa-phone"></i> Contact Us</a>
+        <a href="aboutus.php"><i class="fas fa-address-card"></i> About us</a>
+
+        <?php
+
+        if (!$session->is_signed_in()) { 
+
+        ?>
+
+        <a href="login.php"><i class='fas fa-user-alt'></i>Login</a>
+        <a href="signup.php"><i class='fas fa-user-plus'></i>Signup</a>
+        <?php }else {?>
+        <a href="index.php?logout=true">Logout</a>
+        <?php 
+        $user = Users::find_by_id($session->user_id);
+        if ($user->user_photo !==  "") {
+            ?>
+        <a href='profile.php'><img src="images/users/<?php echo $user->user_photo ?>" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a>
+        <?php 
+    } else {
+        ?>
+        <a href='profile.php'><img src="images/users/dummy.jpg" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a>
+        <?php 
+    }
+
+
+
+    ?>
+
+<?php }?>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars" height="2rem"></i>
+        </a>
+    </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
     <div class="cta-1">
         <img src="images/logo.png" alt="logo" class="logo">
         <span class="contact__us"><a href="membership.php"><i class="fas fa-paperclip"></i>Membership plans</a></span>

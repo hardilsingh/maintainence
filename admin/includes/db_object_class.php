@@ -80,7 +80,7 @@ class Db_object
     }
 
     //update an entery in database
-    public function update()
+    public function update($id)
     {
         global $database;
 
@@ -92,7 +92,7 @@ class Db_object
         }
 
 
-        $sql = "UPDATE  " . static::$db_table . "  SET  " . implode(",", $property_pairs) . "  WHERE user_id = " . $database->escapeString($this->user_id) . "  ";
+        $sql = "UPDATE  " . static::$db_table . "  SET  " . implode(",", $property_pairs) . "  WHERE user_id = $id  ";
         return $database->query($sql);
     }
 

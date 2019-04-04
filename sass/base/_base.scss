@@ -6,6 +6,14 @@ $color-white:#ffffff;
 $box-shadow: 0 2rem 4rem rgba(black, .7);
 
 
+$res-1310: 82em;
+$res-1200:75em;
+$res-960:60em;
+$res-762:47em;
+$res-682:42.7em;
+$res-500:31em;
+
+
 //RESET
 *,
 *::after,
@@ -24,7 +32,23 @@ body {
 
 html {
     font-size: 62.5%;
-    scroll-behavior: smooth;
+
+
+
+    @media only screen and (max-width: $res-1200) {
+        font-size: 50%;
+    }
+
+    @media only screen and (max-width: $res-762) {
+        font-size: 43.5%;
+    }
+
+    @media only screen and (max-width: $res-500) {
+        font-size: 39.5%;
+    }
+
+
+
 }
 
 
@@ -34,4 +58,11 @@ html {
     display: grid;
     grid-template-rows: minmax(100vh, min-content) min-content minmax(85vh, max-content) min-content minmax(100vh, max-content) minmax(60vh, max-content) minmax(min-content, max-content);
     grid-template-columns: repeat(12, minmax(min-content, 14rem));
+
+
+    @media only screen and (orientation: landscape) {
+        display: grid;
+        grid-template-rows: minmax(60vh, min-content) min-content minmax(40vh, max-content) min-content minmax(60vh, max-content) minmax(30vh, max-content) minmax(min-content, max-content);
+        grid-template-columns: repeat(12, minmax(min-content, 14rem));
+    }
 }

@@ -4,6 +4,15 @@
     align-self: center;
     justify-self: center;
 
+
+    @media only screen and (max-width: $res-682) {
+        grid-column: 1/-1;
+    }
+
+    @media only screen and (max-width: $res-500) {
+        margin-top: 8rem;
+    }
+
     #contact input[type="text"],
     #contact input[type="email"],
     #contact input[type="tel"],
@@ -12,6 +21,8 @@
     #contact button[type="submit"] {
         font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
     }
+
+
 
     #contact {
         background: #F9F9F9;
