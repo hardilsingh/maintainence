@@ -28,8 +28,12 @@ if (isset($_POST['login'])) {
                 if ($user_found->user_role == 'customer') {
                     //start session
                     $session->login($user_found);
-                    //send to profile
-                    redirect("profile");
+                    if($user_found->name == "" || $user_found->user_address == "" || $user_found->user_ph) {
+                        redirect("update_profile");
+                    }else {
+                        redirect("index");
+                    }
+                    
                 } elseif ($user_found->user_role == 'admin') {
                     //start session
                     $session->login($user_found);
@@ -72,9 +76,9 @@ if (isset($_POST['login'])) {
             <!-- row -->
             <div class="row" role="row">
                 <!-- col-sm-7 col-md-7 col-lg-6 mx-auto -->
-                <div class="col-sm-7 col-md-7 col-lg-6 mx-auto" role="columnheader" style="margin-top:8rem;">
+                <div class="col-sm-7 col-md-7 col-lg-6 mx-auto" role="columnheader" style="position:relative; top:-50%; transform:translateY(36%)">
                     <div class="login100-pic js-tilt " role="img" data-tilt>
-                        <img src="images/img-01.png" class="img-responsive" alt="IMG">
+                        <img src="images/logo.png" class="img-responsive" alt="IMG">
                     </div>
                 </div>
                 <!-- /.col-sm-7 col-md-7 col-lg-6 mx-auto -->
@@ -106,20 +110,18 @@ if (isset($_POST['login'])) {
 
                                 <div role="checkbox" class="custom-control custom-checkbox mb-3">
                                     <input type="checkbox" class="custom-control-input" name="rememberme" value="on" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                    <label class="custom-control-label" for="customCheck1">Keep Me logged in</label>
                                 </div>
                                 <button role="button" class="btn btn-lg btn-success btn-block text-uppercase" name="login" type="submit">Sign in</button>
                                 <hr class="my-4">
                                 <button role="button" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>
                                     Sign in with Google</button>
-                                <button role="button" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i>
-                                    Sign in with Facebook</button>
                             </form>
                             <!-- form -->
 
                             <!-- options -->
                             <div role="option" class="options">
-                                <a href="forgot_password.php" class="forgot__password">Forgot password?</a>
+                                <a href="forgot_password.php?initial=check_account" class="forgot__password">Forgot password?</a>
                                 <a href="signup.php">Sign up now</a>
                             </div>
                             <!-- /.options -->

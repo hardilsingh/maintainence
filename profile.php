@@ -21,30 +21,49 @@ if (isset($_GET['update_status'])) {
     $msg = "";
 }
 
+$user_profile = Users::find_by_id($session->user_id);
 
-if (isset($_POST['upload_photo'])) {
-    $image_tmp = $_FILES['profile_image']['tmp_name'];
-    $image = $_FILES['profile_image']['name'];
 
-    if ($image !== "") {
-        $upload_image = Users::updateProfilePhoto($session->user_id, $image);
-        move_uploaded_file($image_tmp, "images/users/$image");
-    } else {
-        $msg = "<div class='alert alert-warning' role='alert'>
-        Please select a photo to upload.
-    </div>";
+if (isset($_GET['upload_photo'])) {
+    if ($image_name !== "") {
+        $image_name = $user_profile->user_photo;
+        $path = "images/users/$image_name";
+        unlink($path);
     }
-} else {
-    $msg = "";
+
+    $image_tmp = $_FILES['profile_photo']['tmp_name'];
+    $temp = explode(".", $_FILES["profile_photo"]["name"]);
+    $newfilename = round(microtime(true)) . '.' . end($temp);
+    $upload_image = Users::updateProfilePhoto($session->user_id, $newfilename);
+    move_uploaded_file($image_tmp, "images/users/$newfilename");
+    $source = "images/users/$newfilename";
+    $destination = "images/users/$newfilename";
+    compress($source , $destination , 5);
+    redirect("profile");
+}
+
+
+if (isset($_GET['delete_photo'])) {
+    $image_name = Users::find_by_id($session->user_id);
+    $name = $image_name->user_photo;
+    echo $path = "images/users/$name";
+    $image = "";
+    $image_name = Users::updateProfilePhoto($session->user_id, $image);
+    unlink($path);
+    redirect("profile");
 }
 
 
 ?>
 
 
-<?php
-$user_profile = Users::find_by_id($session->user_id);
-?>
+
+
+<style>
+    label {
+        font-weight: bolder;
+    }
+</style>
 
 <body>
     <div class="container-fluid signup" role="columnheader">
@@ -62,34 +81,43 @@ $user_profile = Users::find_by_id($session->user_id);
                         <div class="row ">
                             <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center" style="padding:20px">
 
-                                <?php if ($user_profile->user_photo !== '') {
-                                    ?>
+                                <form action="profile.php?upload_photo=start" method="post" id="profile" enctype="multipart/form-data">
+                                    <?php if ($user_profile->user_photo !== '') {
+                                        ?>
 
-                                <img src="images/users/<?php $user = Users::find_by_id($session->user_id);
-                                                        echo $user->user_photo ?>" class="rounded-circle" style="object-fit:cover">
-                                <?php 
-                            } else {
+                                        <input type="file" name="profile_photo" id="clicktoupload" style="display:none">
+                                        <label for="clicktoupload">
+                                            <img src="images/users/<?php $user = Users::find_by_id($session->user_id);
+                                                                echo $user->user_photo ?>" class="rounded-circle" style="object-fit:cover">
 
-                                ?>
 
-                                <img src="images/users/dummy.jpg" class="rounded-circle" style="object-fit:cover">
+                                                                </label>
 
-                                <?php 
-                            } ?>
+
+                                                                                        <?php
+                                                            } elseif ($user_profile->user_photo == "") {
+
+                                                                ?>
+                                                                <input type="file" name="profile_photo" id="clicktoupload" style="display:none">
+                                                                <label for="clicktoupload">
+                                                                    <img src="images/users/dummy.jpg" class="rounded-circle" style="object-fit:cover">
+                                                                </label>
+                                                                                        <?php
+                                                            } ?>
+
 
                             </div>
-                            <form action="" method="post" enctype="multipart/form-data">
-                                <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                                    <input type="file" name="profile_image">
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                                    <button name="upload_photo" class="btn btn-success btn-block follow" style="margin-right:20px">Update Photo</button>
-                                    <button class="btn btn-warning btn-block" style="margin-right:20px">Remove Photo</button>
-                                    <a href="update_profile.php" class="btn btn-secondary btn-block" style="margin-right:20px">Edit Profile</a>
-
-
-                                </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 mx-auto user-detail-section1 text-center">
+                                <a href="profile.php?delete_photo" class="btn btn-warning btn-lg" style="margin-top:30px;">Remove Photo</a>
+                            </div>
                             </form>
+
+                            <script>
+                                $('#clicktoupload').change(function() {
+                                    $('#profile').submit();
+                                });
+                            </script>
+
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section" style="padding:20px;">
@@ -105,8 +133,9 @@ $user_profile = Users::find_by_id($session->user_id);
                                             }, 3000);
                                         </script>
                                     </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
-                                        <a href="index.php?request_service=<?php echo $session->user_id ?>" class="btn btn-primary btn-block">Instant Request Service</a>
+                                    <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth" style="padding:20px">
+                                        <a href="index.php?request_service=<?php echo $session->user_id ?>" class="btn btn-primary btn-block">Instant service request</a>
+                                        <a href="update_profile.php" class="btn btn-secondary btn-block">Edit Profile</a>
                                     </div>
                                 </div>
                             </div>
@@ -117,18 +146,13 @@ $user_profile = Users::find_by_id($session->user_id);
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> User Details</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> Services Requested History</a>
-                                            </li>
+
                                         </ul>
 
                                         <!-- Tab panes -->
                                         <div class="tab-content" style="padding:20px;">
                                             <div role="tabpanel" class="tab-pane fade show active" id="profile">
                                                 <div class="row">
-                                                    <div class="col-md-2">
-                                                        <label>Username</label>
-                                                    </div>
                                                     <div class="col-md-6">
                                                         <p><?php echo $user_profile->username ?></p>
                                                     </div>
@@ -171,50 +195,6 @@ $user_profile = Users::find_by_id($session->user_id);
                                                     </div>
                                                     <div class="col-md-6">
                                                         <p>Platinum</p> <a href="#">Change Plan</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="buzz">
-                                                <div class="row">
-                                                    <div class="col-lg-12 table-responsive">
-                                                        <!-- table -->
-                                                        <table class="table  table-hover">
-                                                            <!-- table head -->
-                                                            <thead class="thead-dark">
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th>Request</th>
-                                                                    <th>Refrence Id</th>
-                                                                    <th>Status</th>
-                                                                    <th>Opened on</th>
-                                                                    <th>Closed on</th>
-                                                                    <th></th>
-                                                                    <th></th>
-
-                                                                </tr>
-                                                            </thead>
-                                                            <!-- /.table head -->
-                                                            <?php
-                                                            $user_id = $session->user_id;
-                                                            $foundHistory = Requests::requestHistory($user_id);
-                                                            $i = 1;
-                                                            foreach ($foundHistory as $historyItem) {
-                                                                $services = Services::requestName($historyItem->request_type);
-                                                                echo "<tr>";
-                                                                echo "<td>" . $i++ . "</td>";
-                                                                echo "<td>$services->service_name</td>";
-                                                                echo "<td>$historyItem->refrence_id</td>";
-                                                                echo "<td class='text-uppercase'>$historyItem->request_status</td>";
-                                                                echo "<td>$historyItem->open</td>";
-                                                                echo "<td>$historyItem->closed</td>";
-                                                                if ($historyItem->request_status !== 'completed' && $historyItem->request_status !== 'cancelled') {
-                                                                    echo "<td><a href='profile.php?request_status=cancelled&id=$historyItem->request_id' class='btn btn-danger'>Cancel</a></td>";
-                                                                }
-                                                                echo "</tr>";
-                                                            }
-                                                            ?>
-
-                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
@@ -276,4 +256,4 @@ $user_profile = Users::find_by_id($session->user_id);
     </div>
 </body>
 
-</html> 
+</html>

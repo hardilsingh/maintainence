@@ -35,8 +35,8 @@ if (isset($_GET['logout'])) {
 
         ?>
 
-        <a href="login.php"><i class='fas fa-user-alt'></i>Login</a>
-        <a href="signup.php"><i class='fas fa-user-plus'></i>Signup</a>
+        <a href="login.php" class="last"><i class='fas fa-user-alt'></i>Login</a>
+        <a href="signup.php" class="last"><i class='fas fa-user-plus'></i>Signup</a>
         <?php }else {?>
         <a href="index.php?logout=true">Logout</a>
         <?php 

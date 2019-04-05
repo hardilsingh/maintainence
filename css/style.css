@@ -40,13 +40,13 @@ html {
 
 @media only screen and (max-width: 47em) {
   html {
-    font-size: 43.5%;
+    font-size: 46%;
   }
 }
 
 @media only screen and (max-width: 31em) {
   html {
-    font-size: 39.5%;
+    font-size: 45%;
   }
 }
 
@@ -63,6 +63,18 @@ html {
     grid-template-columns: repeat(12, minmax(min-content, 14rem));
   }
 }
+
+@media only screen and (orientation: landscape) {
+  .container {
+    display: grid;
+    grid-template-rows: minmax(100vh, min-content) min-content minmax(40vh, max-content) min-content minmax(60vh, max-content) minmax(30vh, max-content) minmax(min-content, max-content);
+    grid-template-columns: repeat(12, minmax(min-content, 14rem));
+  }
+}
+
+
+
+
 
 .heading {
   font-size: 4rem;
@@ -447,6 +459,12 @@ html {
   align-items: flex-start;
 }
 
+@media only screen and (max-width: 1030px) {
+  .header {
+    background: linear-gradient(to right, rgba(224, 224, 224, 0.95) 0%, rgba(224, 224, 224, 0.95) 60%, rgba(0, 0, 0, 0.85) 60%), url("../images/hero-1.jpg");
+  }
+}
+
 @media only screen and (max-width: 60em) {
   .header {
     background: linear-gradient(to right, rgba(224, 224, 224, 0.95) 0%, rgba(224, 224, 224, 0.95) 80%, rgba(0, 0, 0, 0.85) 80%), url("../images/hero-1.jpg");
@@ -466,9 +484,19 @@ html {
   align-items: center;
 }
 
-@media only screen and (max-width: 82em) {
+@media only screen and (max-width: 1370px) {
   .header .cta-1 {
+    font-size: 1.7rem;
     padding: 2rem 0rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+@media only screen and (max-width:1447) {
+  .test {
+    transform: translateX(-10px);
   }
 }
 
@@ -499,6 +527,12 @@ html {
   font-weight: 400;
 }
 
+@media only screen and (max-width: 1030px) {
+  .header .cta-1 span {
+    margin-right: .5rem;
+  }
+}
+
 @media only screen and (max-width: 82em) {
   .header .cta-1 span {
     margin-right: .5rem;
@@ -510,6 +544,14 @@ html {
     margin-right: 3.5rem;
   }
 }
+
+@media only screen and (max-width: 1370px) {
+  .header .cta-1 span {
+    margin-right: .5rem;
+  }
+}
+
+
 
 @media only screen and (max-width: 31em) {
   .header .cta-1 span {
@@ -818,6 +860,14 @@ html {
 
 .membership__cards .card:hover {
   transform: translateY(-1rem) scale(1.1);
+
+  
+}
+
+@media only screen and (max-width: 60em) {
+  .membership__cards .card:hover {
+    transform: translateY(0rem) scale(1);
+  }
 }
 
 .membership__cards .card__type {

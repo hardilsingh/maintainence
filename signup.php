@@ -9,27 +9,37 @@ if (isset($_POST['register'])) {
     $role = $_POST['designation'];
 
 
-    if ($password == $confirm_password) {
-        //check if the email exits
+    if (filter_var($given_email, FILTER_VALIDATE_EMAIL)) {
+        if (strlen($password) >= 8) {
+            if ($password == $confirm_password) {
+                //check if the email exits
 
-        $email_exists = Users::emailExists($given_email);
+                $email_exists = Users::emailExists($given_email);
 
-        if ($email_exists == 0) {
-            //encrypt the password
-            $hashed_password = Users::encryptPassword($password);
-
-            //send it to the database
-            $signup = new Users;
-            $signup->user_email = $given_email;
-            $signup->user_password = $hashed_password;
-            $signup->user_role = $role;
-            $signup->create();
-            redirect("welcome");
+                if ($email_exists == 0) {
+                    //encrypt the password
+                    $hashed_password = Users::encryptPassword($password);
+                    $gen_otp = rand(1000, 9999);
+                    $_SESSION['given_email'] = $given_email;
+                    $_SESSION['hashed_password'] = $hashed_password;
+                    $_SESSION['role'] = $role;
+                    $_SESSION['otp'] = $gen_otp;
+                    $email = $given_email;
+                    $otp = $_SESSION['otp'];
+                    include("includes/mail.php");
+                    redirect("verify_email");
+                } else {
+                    $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
+                }
+            } else {
+                $msg = "<div class='alert alert-danger' role='alert'>The passwords do not match</div>";
+            }
         } else {
-            $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
+            $msg = "<div class='alert alert-danger' role='alert'>The password is too small(min:8)</div>";
         }
-    } else {
-        $msg = "<div class='alert alert-danger' role='alert'>The passwords do not match</div>";
+    }else {
+        $msg = "<div class='alert alert-danger' role='alert'>Please enter standard email id</div>";
+
     }
 } else {
     $msg = "";
@@ -67,12 +77,12 @@ if (isset($_POST['register'])) {
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" role="textbox" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <input type="password" minlength="8" maxlength="16" role="textbox" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 <label for="inputPassword">Password</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" role="textbox" name="confirm_password" id="confirminputPassword" class="form-control" placeholder="Confirm password" required>
+                                <input type="password" minlength="8" maxlength="16" role="textbox" name="confirm_password" id="confirminputPassword" class="form-control" placeholder="Confirm password" required>
                                 <label for="confirminputPassword">Confirm Password</label>
                             </div>
                             <div role="checkbox" class="custom-control custom-checkbox mb-3">
@@ -87,8 +97,6 @@ if (isset($_POST['register'])) {
                             <hr class="my-4">
                             <button role="button" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>
                                 Sign up with Google</button>
-                            <button role="button" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i>
-                                Sign up with Facebook</button>
                         </form>
                         <div class="options" role="option">
                             <!-- <a href="" class="signup">Already have an account? Sign in</a> -->
@@ -110,4 +118,4 @@ if (isset($_POST['register'])) {
     </div>
 </body>
 
-</html> 
+</html>

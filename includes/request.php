@@ -21,17 +21,24 @@ if (isset($_POST['request'])) {
         $request->user_ph = $ph;
         $request->address = $address;
         $request->user_id = $user_id;
-        $request->refrence_id = uniqid(rand(1, 5, true));
+        $uniqueid = uniqid(rand(1, 5, true));
+        $request->refrence_id =  $uniqueid;
         $request->open = $open;
 
         $request->create();
+        $msg = "Your request has been submitted successfully with refrence id " . $uniqueid . " We will conatct you shortly";
+        $number = $ph;
+        $cSession = curl_init();
+        curl_setopt($cSession, CURLOPT_URL, "http://my.msgwow.com/api/sendhttp.php?authkey=207485A7Y9ujYeSFT5ac45f4f&mobiles=$number&message=$msg&sender=CDACGP&route=1&country=91");
+        curl_setopt($cSession, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cSession, CURLOPT_HEADER, false);
         redirect("success");
     } elseif ($service == null) {
         $msg = "<div class='alert alert-danger' role='alert'>Please select you service.</div>";
     }
 }
 
-if($session->is_signed_in()) {
+if ($session->is_signed_in()) {
     $instant_service = Users::find_by_id($session->user_id);
 }
 ?>
@@ -43,14 +50,20 @@ if($session->is_signed_in()) {
     <form id="contact" action="" method="post">
         <h4><span>Contact Us</span> for any service</h4>
         <fieldset>
-            <input placeholder="Your name" value="<?php if($session->is_signed_in()){echo htmlentities($instant_service->name);} ?>" type="text" tabindex="1" name="name" required autofocus>
+            <input placeholder="Your name" value="<?php if ($session->is_signed_in()) {
+                                                        echo htmlentities($instant_service->name);
+                                                    } ?>" type="text" tabindex="1" name="name" required autofocus>
         </fieldset>
 
         <fieldset>
-            <input placeholder="Your Phone Number" value="<?php if($session->is_signed_in()){echo htmlentities($instant_service->user_ph);}  ?>" type="tel" name="ph" tabindex="2" required>
+            <input placeholder="Your Phone Number" value="<?php if ($session->is_signed_in()) {
+                                                                echo htmlentities($instant_service->user_ph);
+                                                            }  ?>" type="tel" name="ph" tabindex="2" required>
         </fieldset>
         <fieldset>
-            <input placeholder="Address" value="<?php if($session->is_signed_in()){echo htmlentities($instant_service->user_address);} ?>" type="tel" name="address" tabindex="3" required>
+            <input placeholder="Address" value="<?php if ($session->is_signed_in()) {
+                                                                echo htmlentities($instant_service->user_address);
+                                                            } ?>" type="tel" name="address" tabindex="3" required>
         </fieldset>
         <fieldset>
             <select name="service" tabindex="4" id="" required>
@@ -59,13 +72,13 @@ if($session->is_signed_in()) {
 
                 <?php
 
-                $list = Services::find_all();
+                                                            $list = Services::find_all();
 
-                foreach ($list as $service) {
-                    echo "<option value='$service->service_id'>$service->service_name</option>";
-                }
+                                                            foreach ($list as $service) {
+                                                                echo "<option value='$service->service_id'>$service->service_name</option>";
+                                                            }
 
-                ?>
+                                                            ?>
 
                 <!--  -->
             </select>
@@ -80,4 +93,4 @@ if($session->is_signed_in()) {
         <span class="copyright">Having trouble filling the form. Please <a href="#">Contact Us</a></span>
     </form>
     <!-- /END OF FORM -->
-</section> 
+</section>

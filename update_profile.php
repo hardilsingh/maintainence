@@ -7,7 +7,7 @@ if (!$session->is_signed_in()) {
 }
 
 if (isset($_GET['update_profile'])) {
-    $msg = "<div class='alert alert-success' role='alert'>Profile updated successfully</div>";
+    $msg = "<div class='alert alert-success' role='alert'>Profile updated successfully <a href='profile.php' style='margin-left:10px' class='btn btn-success'>Go to profile</a></div>";
 } else {
     $msg = "";
 }
@@ -55,7 +55,7 @@ if (isset($_GET['update_profile'])) {
         $updated_information->user_photo = $user->user_photo;
 
         $updated_information->update($session->user_id);
-        // header("Location:update_profile.php?update_profile=success");
+        header("Location:update_profile.php?update_profile=success");
     }
 
 
@@ -80,7 +80,6 @@ if (isset($_GET['update_profile'])) {
                 <div class="card-body">
                     <h5 class="card-title text-center text-success" style="margin-bottom:5px" role="heading">Personal Info</h5>
                     <?php echo $msg  ?>
-
                     <form class="form-signin" action="" method="post" role="form">
                         <div class="row">
                             <div class="col-lg-4">
@@ -90,7 +89,7 @@ if (isset($_GET['update_profile'])) {
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="number" name="ph" value="<?php echo $user->user_ph ?>" role="textbox" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                    <input type="number" maxlength="10" name="ph" value="<?php echo $user->user_ph ?>" role="textbox" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                     <label for="inputPassword">Phone Number*</label>
                                 </div>
                                 <div class="form-label-group">
@@ -156,9 +155,6 @@ if (isset($_GET['update_profile'])) {
 
 
                     </form>
-                    <div class="options" role="option">
-                        <!-- <a href="" class="signup">Already have an account? Sign in</a> -->
-                    </div>
                 </div>
             </div>
         </div>
