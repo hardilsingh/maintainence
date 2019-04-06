@@ -84,7 +84,7 @@ if (isset($_GET['logout'])) {
                         } else {
                             ?>
 
-                            <img src="images/users/dummy.jpg" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
+                            <img src="images/dummy.png" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
 
 
                             <?php 

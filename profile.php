@@ -100,7 +100,7 @@ if (isset($_GET['delete_photo'])) {
                                                                 ?>
                                                                 <input type="file" name="profile_photo" id="clicktoupload" style="display:none">
                                                                 <label for="clicktoupload">
-                                                                    <img src="images/users/dummy.jpg" class="rounded-circle" style="object-fit:cover">
+                                                                    <img src="images/dummy.png" class="rounded-circle" style="object-fit:cover">
                                                                 </label>
                                                                                         <?php
                                                             } ?>

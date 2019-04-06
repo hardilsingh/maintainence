@@ -2,7 +2,7 @@
 <footer class="footer-distributed" role="footer">
     <div class="footer-left">
 
-        <img src="images/logo.png" role="img" height="30rem" alt="logo" class="logo">
+        <a href ="index.php"> <img src="images/logo.png" role="img" height="30rem" alt="logo" class="logo"></a>
 
 
         <p class="footer-links">
@@ -38,7 +38,7 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@company.com</a></p>
+            <p><a href="mailto:support@company.com">info@clubdesign.in</a></p>
         </div>
 
     </div>

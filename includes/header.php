@@ -1,11 +1,11 @@
 <?php
 
-if (isset($_GET['logout'])) {
+if (isset($_GET['logout']) == true) {
     $session->logout();
     $hour = time() - 3600 * 24 * 30;
     setcookie('email', "", $hour);
     setcookie('password', "", $hour);
-    redirect("index");
+    redirect("login");
 }
 
 
@@ -23,7 +23,7 @@ if (isset($_GET['logout'])) {
 
 <header class="header">
     <div class="topnav" id="myTopnav">
-        <a href="#home" class="active"><img src="images/logo.png" alt="logo" class="logo"> </a>
+        <a href="index.php" class="active"><img src="images/logo.png" alt="logo" class="logo"> </a>
 
         <a href="membership.php"><i class="fas fa-paperclip"></i> Membership Plans</a>
         <a href="contactus.php"><i class="fas fa-phone"></i> Contact Us</a>
@@ -36,7 +36,6 @@ if (isset($_GET['logout'])) {
         ?>
 
         <a href="login.php" class="last"><i class='fas fa-user-alt'></i>Login</a>
-        <a href="signup.php" class="last"><i class='fas fa-user-plus'></i>Signup</a>
         <?php }else {?>
         <a href="index.php?logout=true">Logout</a>
         <?php 
@@ -45,9 +44,9 @@ if (isset($_GET['logout'])) {
             ?>
         <a href='profile.php'><img src="images/users/<?php echo $user->user_photo ?>" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a>
         <?php 
-    } else {
+    } elseif($user->user_photo == "") {
         ?>
-        <a href='profile.php'><img src="images/users/dummy.jpg" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a>
+        <a href='profile.php'><img src="images/dummy.png" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a>
         <?php 
     }
 
@@ -72,7 +71,7 @@ if (isset($_GET['logout'])) {
         }
     </script>
     <div class="cta-1">
-        <img src="images/logo.png" alt="logo" class="logo">
+        <a href="index.php"><img src="images/logo.png" alt="logo" class="logo"></a>
         <span class="contact__us"><a href="membership.php"><i class="fas fa-paperclip"></i>Membership plans</a></span>
         <span class="contact__us"><a href="contactus.php"><i class="fas fa-phone"></i>Contact Us</a></span>
 
@@ -99,7 +98,7 @@ if (isset($_GET['logout'])) {
         <?php 
     } else {
         ?>
-        <span class='log__in' style="margin-left:20px"><a href='profile.php'><img src="images/users/dummy.jpg" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a></span>
+        <span class='log__in' style="margin-left:20px"><a href='profile.php'><img src="images/dummy.png" height="40px" width="40px" style="border-radius:50%; object-fit:cover"></a></span>
         <?php 
     }
 

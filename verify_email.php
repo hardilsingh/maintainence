@@ -4,10 +4,17 @@
 
 <!-- body -->
 
+<?php
 
+    if(isset($_SESSION['given_email'])) {
+
+    }else {
+        redirect("signup.php");
+    }
+
+?>
 
 <body>
-
     <!-- container-fluid -->
     <div class="container-fluid" role="columnheader">
 
@@ -29,7 +36,6 @@
         <?php $msg = "" ?>
 
         <?php
-
 
         if (isset($_POST['verify_email'])) {
             $otp = $_POST['otp'];

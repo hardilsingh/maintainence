@@ -4,6 +4,11 @@
 
 <!-- body -->
 
+<?php if(!$session->is_signed_in()) {
+
+}else {
+    redirect("profile");
+} ?>
 
 
 <body>
@@ -41,7 +46,7 @@
                 $otp = rand(1000, 9999);
                 $id = $user_found->user_id;
                 $store_otp = Users::storeOTP($id, $otp);
-                $_SESSION['user_id'] = $id;
+                $_SESSION['id'] = $id;
                 include("includes/mail.php");
                 header("Location:forgot_password.php?otp_send=true");
             } else {
@@ -55,7 +60,7 @@
 
         if (isset($_POST['verify_otp'])) {
             $otp = trim($_POST['otp']);
-            $user_id = $_SESSION['user_id'];
+            $user_id = $_SESSION['id'];
             $find_otp = Users::find_by_id($user_id);
             $db_otp = $find_otp->otp;
 
@@ -77,8 +82,8 @@
 
             if ($password == $confirmpassword) {
                 $e_password = Users::encryptPassword($password);
-                Users::updatePassword($_SESSION['user_id'], $e_password);
-                $_SESSION['user_id'] = null;
+                $id = $_SESSION['id'];
+                Users::updatePassword($id, $e_password);
                 header("Location:login.php?password_reset=success");
             }
         }

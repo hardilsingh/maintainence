@@ -1,6 +1,13 @@
 <?php include("includes/main-rest.php") ?>
 
+<?php if(!$session->is_signed_in()) {
+
+}else {
+    redirect("profile");
+} ?>
 <?php
+
+
 
 if (isset($_POST['register'])) {
     $given_email = trim($_POST['email']);
@@ -13,7 +20,6 @@ if (isset($_POST['register'])) {
         if (strlen($password) >= 8) {
             if ($password == $confirm_password) {
                 //check if the email exits
-
                 $email_exists = Users::emailExists($given_email);
 
                 if ($email_exists == 0) {
@@ -30,17 +36,16 @@ if (isset($_POST['register'])) {
                     redirect("verify_email");
                 } else {
                     $msg = "<div class='alert alert-danger' role='alert'>The email address already exits <a href='login.php'>Login now</a></div>";
-                }
+                } //email already exists
             } else {
                 $msg = "<div class='alert alert-danger' role='alert'>The passwords do not match</div>";
-            }
+            }//password does not match
         } else {
             $msg = "<div class='alert alert-danger' role='alert'>The password is too small(min:8)</div>";
-        }
+        }//Password is to small
     }else {
         $msg = "<div class='alert alert-danger' role='alert'>Please enter standard email id</div>";
-
-    }
+    }//please enter correct email id
 } else {
     $msg = "";
     $password_msg = "";

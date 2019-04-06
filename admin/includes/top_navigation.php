@@ -1,8 +1,11 @@
 <?php
  //to logout the user from its current session
-if (isset($_GET['logout'])) {
+ if (isset($_GET['logout']) == true) {
     $session->logout();
-    redirect("index");
+    $hour = time() - 3600 * 24 * 30;
+    setcookie('email', "", $hour);
+    setcookie('password', "", $hour);
+    redirect("../login");
 }
 ?>
 
@@ -88,7 +91,7 @@ if (isset($_GET['logout'])) {
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="dashboard.php?logout=true"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="index.php?logout=true"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
         </li>

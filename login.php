@@ -4,54 +4,61 @@
 
 <!-- body -->
 
+<?php if(!$session->is_signed_in()) {
+
+}else {
+    redirect("profile");
+} ?>
+
 
 <?php
 
 if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $rememberme = $_POST['rememberme'];
 
     //check database for the email and password
 
-        $user_found = Users::verifyUser($email);
+    $user_found = Users::verifyUser($email);
 
-        if ($user_found) {
-            
-            if ($rememberme == 'on') {
-                $hour = time() + 3600 * 24 * 30;
-                setcookie('email', $email, $hour);
-                setcookie('password', $user_found->user_password, $hour);
-            }
-            if (password_verify($password, $user_found->user_password)) {
+    if ($user_found) {
 
-                if ($user_found->user_role == 'customer') {
-                    //start session
-                    $session->login($user_found);
-                    if($user_found->name == "" || $user_found->user_address == "" || $user_found->user_ph) {
-                        redirect("update_profile");
-                    }else {
-                        redirect("index");
-                    }
-                    
-                } elseif ($user_found->user_role == 'admin') {
-                    //start session
-                    $session->login($user_found);
-                    //send to profile
-                    redirect("admin/index");
+        if (password_verify($password, $user_found->user_password)) {
+
+            if ($user_found->user_role == 'customer') {
+                $rememberme = $_POST['rememberme'];
+                if ($rememberme == 'on') {
+                    $hour = time() + 3600 * 24 * 30;
+                    setcookie('email', $email, $hour);
+                    setcookie('password', $user_found->user_password, $hour);
                 }
-            } else {
-                $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
+                //start session
+                $session->login($user_found);
+                redirect("profile");
+            } elseif ($user_found->user_role == 'admin') {
+                $rememberme = $_POST['rememberme'];
+                if ($rememberme == 'on') {
+                    $hour = time() + 3600 * 24 * 30;
+                    setcookie('email', $email, $hour);
+                    setcookie('password', $user_found->user_password, $hour);
+                }
+                //start session
+                $session->login($user_found);
+                //send to profile
+                redirect("admin/index");
             }
         } else {
             $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
         }
     } else {
-        $msg = "";
-        $email = "";
+        $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id or Password</div>";
     }
+} else {
+    $msg = "";
+    $email = "";
+}
 
-    ?>
+?>
 
 <body>
 
@@ -78,7 +85,7 @@ if (isset($_POST['login'])) {
                 <!-- col-sm-7 col-md-7 col-lg-6 mx-auto -->
                 <div class="col-sm-7 col-md-7 col-lg-6 mx-auto" role="columnheader" style="position:relative; top:-50%; transform:translateY(36%)">
                     <div class="login100-pic js-tilt " role="img" data-tilt>
-                        <img src="images/logo.png" class="img-responsive" alt="IMG">
+                    <a href="index.php"><img src="images/logo.png" class="img-responsive" alt="IMG"></a>
                     </div>
                 </div>
                 <!-- /.col-sm-7 col-md-7 col-lg-6 mx-auto -->
@@ -166,4 +173,4 @@ if (isset($_POST['login'])) {
 <!-- /.body -->
 
 </html>
-<!-- /.html --> 
+<!-- /.html -->

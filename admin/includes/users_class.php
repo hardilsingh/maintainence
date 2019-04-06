@@ -120,7 +120,7 @@ class Users extends Db_object
 
 
     public static function updatePassword($id , $password) {
-    return self::find_this_query("UPDATE users SET user_password = '{$password}' WHERE user_id = $id");
+    return self::find_this_query("UPDATE users SET user_password = '{$password}' WHERE user_id = $id ");
     }
 
 }
