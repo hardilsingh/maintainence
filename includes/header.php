@@ -27,7 +27,7 @@ if (isset($_GET['logout']) == true) {
 
         <a href="membership.php"><i class="fas fa-paperclip"></i> Membership Plans</a>
         <a href="contactus.php"><i class="fas fa-phone"></i> Contact Us</a>
-        <a href="aboutus.php"><i class="fas fa-address-card"></i> About us</a>
+        <a href="about.php"><i class="fas fa-address-card"></i> About us</a>
 
         <?php
 

@@ -48,20 +48,20 @@ if ($session->is_signed_in()) {
 <section class="requests">
     <!-- START OF FORM -->
     <form id="contact" action="" method="post">
-        <h4><span>Contact Us</span> for any service</h4>
+        <h4><span>Request</span> a service now!</h4>
         <fieldset>
-            <input placeholder="Your name" value="<?php if ($session->is_signed_in()) {
+            <input placeholder="Your name" type="text" value="<?php if ($session->is_signed_in()) {
                                                         echo htmlentities($instant_service->name);
                                                     } ?>" type="text" tabindex="1" name="name" required autofocus>
         </fieldset>
 
         <fieldset>
-            <input placeholder="Your Phone Number" value="<?php if ($session->is_signed_in()) {
+            <input placeholder="Your Phone Number"  value="<?php if ($session->is_signed_in()) {
                                                                 echo htmlentities($instant_service->user_ph);
                                                             }  ?>" type="tel" name="ph" tabindex="2" required>
         </fieldset>
         <fieldset>
-            <input placeholder="Address" value="<?php if ($session->is_signed_in()) {
+            <input placeholder="Address" type="text" value="<?php if ($session->is_signed_in()) {
                                                                 echo htmlentities($instant_service->user_address);
                                                             } ?>" type="tel" name="address" tabindex="3" required>
         </fieldset>

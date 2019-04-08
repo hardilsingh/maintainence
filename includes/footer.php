@@ -14,7 +14,7 @@
             .
             <a href="about.php" role="link">About</a>
             ·
-            <a href="faq.php" role="link">Faq</a>
+            <a href="help.php" role="link">Faq</a>
             ·
             <a href="contactus.php" role="link">Contact</a>
         </p>

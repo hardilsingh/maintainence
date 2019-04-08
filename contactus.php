@@ -17,7 +17,7 @@
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-3 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="fas fa-headphones-alt" style="color:green"></i> Contact us<span style="color: green">.</span></h1>
+                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="far fa-id-badge" style="color:green; margin-right: 1.5rem"></i> Contact us<span style="color: green">.</span></h1>
             </div>
             <!--/.col-lg-12 -->
         </div>

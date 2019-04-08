@@ -2,8 +2,8 @@
 if (isset($_GET['logout'])) {
     $session->logout();
     $hour = time() - 3600 * 24 * 30;
-        setcookie('email', "", $hour);
-        setcookie('password', "", $hour);
+    setcookie('email', "", $hour);
+    setcookie('password', "", $hour);
     redirect("index");
 }
 ?>
@@ -30,7 +30,7 @@ if (isset($_GET['logout'])) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php#services_section"><i class="fab fa-servicestack" style="margin-right:8px"></i>
+                        <a class="nav-link text-white" href="services.php"><i class="fab fa-servicestack" style="margin-right:8px"></i>
                             Services</a>
                     </li>
                     <li class="nav-item">
@@ -43,16 +43,16 @@ if (isset($_GET['logout'])) {
                 <?php
                 if (!$session->is_signed_in()) {
                     ?>
-                <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="signup.php"><i class="fas fa-user-plus" style="margin-right:8px"></i>
-                            Sign up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="login.php"><i class="fas fa-sign-in-alt" style="margin-right:8px"></i>
-                            Log in</a>
-                    </li>
-                </ul>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="signup.php"><i class="fas fa-user-plus" style="margin-right:8px"></i>
+                                Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="login.php"><i class="fas fa-sign-in-alt" style="margin-right:8px"></i>
+                                Log in</a>
+                        </li>
+                    </ul>
                 <?php
 
             }
@@ -63,43 +63,45 @@ if (isset($_GET['logout'])) {
                 <?php
                 if ($session->is_signed_in()) {
                     ?>
-                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
 
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.php?logout=true"><i class="fas fa-sign-out-alt"></i></i>
-                            Logout</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="profile.php?logout=true"><i class="fas fa-sign-out-alt"></i></i>
+                                Logout</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.php">
-                            <?php 
-                            $user = Users::find_by_id($session->user_id);
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="profile.php">
+                                <?php
+                                $user = Users::find_by_id($session->user_id);
 
-                            if ($user->user_photo !== "") {
+                                if ($user->user_photo !== "") {
 
+                                    ?>
+                                    <img src="images/users/<?php echo $user->user_photo ?>" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white">
+
+                                <?php
+                            } else {
                                 ?>
-                            <img src="images/users/<?php echo $user->user_photo ?>" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white">
 
-                            <?php 
-                        } else {
-                            ?>
-
-                            <img src="images/dummy.png" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
+                                    <img src="images/dummy.png" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
 
 
-                            <?php 
-                        } ?>
+                                        <?php
+                                    } ?>
 
-                        </a>
-                    </li>
-                </ul>
-                <?php 
-            } ?>
+                                    </a>
+                                </li>
+
+        
+                    </ul>
+            <?php
+        } ?>
 
 
-            </div>
-
-        </nav>
     </div>
 
-</div> 
+    </nav>
+</div>
+
+</div>

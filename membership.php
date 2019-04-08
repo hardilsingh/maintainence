@@ -12,7 +12,7 @@
 
         <div class="row" role="row">
             <div class="col-lg-12" role="columnheader">
-                <h6 class="display-4 text-center" role="heading">Membership Plans<span style="color: green">.</span></h1>
+                <h6 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="fas fa-ribbon" style="color:green; margin-right: 1.5rem"></i>Membership Plans<span style="color: green">.</span></h1>
                 </h6>
             </div>
         </div>

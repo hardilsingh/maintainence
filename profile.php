@@ -8,18 +8,6 @@ if (!$session->is_signed_in()) {
 ?>
 <?php
 
-if (isset($_GET['request_status']) && isset($_GET['id'])) {
-    $request_id = $_GET['id'];
-    $status = $_GET['request_status'];
-    Requests::updateStatus($status, $request_id);
-    header("Location:profile.php?update_status=success");
-}
-
-if (isset($_GET['update_status'])) {
-    $msg = "<div class='alert alert-success' role='alert'>Your request has been cancelled successfully</div>";
-} else {
-    $msg = "";
-}
 
 $user_profile = Users::find_by_id($session->user_id);
 
@@ -38,7 +26,7 @@ if (isset($_GET['upload_photo'])) {
     move_uploaded_file($image_tmp, "images/users/$newfilename");
     $source = "images/users/$newfilename";
     $destination = "images/users/$newfilename";
-    compress($source , $destination , 5);
+    compress($source, $destination, 5);
     redirect("profile");
 }
 
@@ -88,22 +76,22 @@ if (isset($_GET['delete_photo'])) {
                                         <input type="file" name="profile_photo" id="clicktoupload" style="display:none">
                                         <label for="clicktoupload">
                                             <img src="images/users/<?php $user = Users::find_by_id($session->user_id);
-                                                                echo $user->user_photo ?>" class="rounded-circle" style="object-fit:cover">
+                                                                    echo $user->user_photo ?>" class="rounded-circle" style="object-fit:cover">
 
 
-                                                                </label>
+                                        </label>
 
 
-                                                                                        <?php
-                                                            } elseif ($user_profile->user_photo == "") {
+                                    <?php
+                                } elseif ($user_profile->user_photo == "") {
 
-                                                                ?>
-                                                                <input type="file" name="profile_photo" id="clicktoupload" style="display:none">
-                                                                <label for="clicktoupload">
-                                                                    <img src="images/dummy.png" class="rounded-circle" style="object-fit:cover">
-                                                                </label>
-                                                                                        <?php
-                                                            } ?>
+                                    ?>
+                                        <input type="file" name="profile_photo" id="clicktoupload" style="display:none">
+                                        <label for="clicktoupload">
+                                            <img src="images/dummy.png" class="rounded-circle" style="object-fit:cover">
+                                        </label>
+                                    <?php
+                                } ?>
 
 
                             </div>
@@ -126,16 +114,12 @@ if (isset($_GET['delete_photo'])) {
                                 <div class="row">
                                     <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left" style="padding:20px">
                                         <h1><?php echo $user_profile->name ?></h1>
-                                        <h5 id="success_msg" style="margin-top:10px"><?php echo $msg ?></h5>
-                                        <script>
-                                            setTimeout(() => {
-                                                document.getElementById("success_msg").style.display = "none";
-                                            }, 3000);
-                                        </script>
+                                        <h6 style="color:slategray; margin-top:5px">Active requests: <?php echo Requests::activeRequests($session->user_id) ?></h6>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth" style="padding:20px">
                                         <a href="index.php?request_service=<?php echo $session->user_id ?>" class="btn btn-primary btn-block">Instant service request</a>
-                                        <a href="update_profile.php" class="btn btn-secondary btn-block">Edit Profile</a>
+                                        <a href="update_profile.php"  class="btn btn-secondary btn-block">Edit Profile</a>
+                                        <a href="history.php" class="btn btn-success btn-block">View Requests History</a>
                                     </div>
                                 </div>
                             </div>

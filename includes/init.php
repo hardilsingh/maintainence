@@ -7,5 +7,6 @@
     require_once("admin/includes/session_class.php");
     require_once("admin/includes/requests_class.php");
     require_once("admin/includes/services_class.php");
+    require_once("fpdf.php");
 
 ?>

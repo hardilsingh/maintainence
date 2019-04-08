@@ -118,4 +118,10 @@ class Requests extends Db_object
     {
         return self::find_this_query("SELECT * FROM " . self::$db_table . " WHERE user_id = $user_id ORDER BY open DESC  ");
     }
+
+    public static function activeRequests($id) {
+        global $database;
+        $sql = $database->query("SELECT * FROM requests WHERE user_id = $id AND request_status != 'completed' AND request_status != 'cancelled' ");
+        return mysqli_num_rows($sql);
+    }
 }
