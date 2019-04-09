@@ -1,6 +1,6 @@
 <?php
- //to logout the user from its current session
- if (isset($_GET['logout']) == true) {
+//to logout the user from its current session
+if (isset($_GET['logout']) == true) {
     $session->logout();
     $hour = time() - 3600 * 24 * 30;
     setcookie('email', "", $hour);
@@ -38,4 +38,4 @@
                 </li>
             </ul>
         </li>
-    </ul> 
+    </ul>
