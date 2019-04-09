@@ -1,16 +1,9 @@
 <?php include("includes/main-rest.php") ?>
 
 <?php
-
-if (!$session->is_signed_in()) {
-    redirect("login");
-}
-?>
-<?php
-
+!$session->is_signed_in() ? redirect('login'): 
 
 $user_profile = Users::find_by_id($session->user_id);
-
 
 if (isset($_GET['upload_photo'])) {
     if ($image_name !== "") {
@@ -24,12 +17,12 @@ if (isset($_GET['upload_photo'])) {
     $newfilename = round(microtime(true)) . '.' . end($temp);
     $upload_image = Users::updateProfilePhoto($session->user_id, $newfilename);
     move_uploaded_file($image_tmp, "images/users/$newfilename");
+    //compress image on the server
     $source = "images/users/$newfilename";
     $destination = "images/users/$newfilename";
-    compress($source, $destination, 5);
+    compress($source, $destination, 30);
     redirect("profile");
 }
-
 
 if (isset($_GET['delete_photo'])) {
     $image_name = Users::find_by_id($session->user_id);
@@ -40,12 +33,7 @@ if (isset($_GET['delete_photo'])) {
     unlink($path);
     redirect("profile");
 }
-
-
 ?>
-
-
-
 
 <style>
     label {
@@ -62,8 +50,8 @@ if (isset($_GET['delete_photo'])) {
         <!-- /END OF NAVIGATION BAR -->
 
 
-        <div class="container main-secction" style="margin-top:50px">
-            <div class="row">
+        <div class="container main-section" style="margin-top:50px; box-shadow:none;">
+            <div class="row" >
                 <div class="row user-left-part">
                     <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
                         <div class="row ">

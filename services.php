@@ -3,16 +3,9 @@
 <!-- /.main-rest -->
 
 <!-- body -->
-
-
-
 <body>
-
+    <!-- custom styles -->
     <style>
-        body {
-        }
-
-
         .card {
             position: relative;
             left: 50%;
@@ -62,6 +55,7 @@
             padding: 0;
         }
     </style>
+    <!-- /.custom styles -->
 
     <!-- container-fluid -->
     <div class="container-fluid" role="columnheader">
@@ -83,7 +77,7 @@
         <!-- /.heading row -->
 
 
-
+        <!-- main content -->
         <div class="col-sm-9 col-md-9 col-lg-10 mx-auto" role="columnheader">
             <div class="row" style="margin-top:30px;">
                 <div class="col-lg-12">
@@ -161,6 +155,7 @@
                 </div>
             </div>
         </div>
+        <!-- /.main content -->
 
         <div class="container-fluid">
             <!-- footer row -->

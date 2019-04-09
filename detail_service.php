@@ -1,23 +1,11 @@
 <!-- main-rest -->
 <?php include("includes/main-rest.php") ?>
 <!-- /.main-rest -->
-
+<?php isset($_GET['service']) ? $service = $_GET['service'] : redirect('services') ?>
 <!-- body -->
 
-
-<?php
-
-    if(isset($_GET['service'])) {
-        $service = $_GET['service'];
-    }else {
-        redirect('services');
-    }
-
-?>
-
-
 <body>
-
+    <!-- custome styles -->
     <style>
         h1>img {
             height: 80px;
@@ -33,7 +21,7 @@
             height: 80px;
             margin-right: 30px;
         }
-        
+
 
         h2 {
             color: green;
@@ -48,8 +36,7 @@
             border-radius: 0;
         }
     </style>
-
-
+    <!-- /.custom styles -->
     <!-- container-fluid -->
     <div class="container-fluid" role="columnheader">
 
@@ -57,21 +44,18 @@
         <?php include("includes/navbar.php") ?>
         <!-- /.navigation -->
 
-
         <!-- heading row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center text-capitalize" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><img
-                        src="images/saw.svg"><?php echo $service ?><span style="color: green !important">.</span>
+                <h1 class="display-4 text-center text-capitalize" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><img src="images/saw.svg"><?php echo $service ?><span style="color: green !important">.</span>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.heading row -->
 
-
-
+        <!-- main content -->
         <div class="col-sm-9 col-md-9 col-lg-10 mx-auto" role="columnheader">
             <div class="row">
                 <div class="col-lg-12" style=" padding: 30px 50px;">
@@ -126,20 +110,19 @@
 
                         <div class="col-lg-3">
                             <div class="list-group text-capitalize">
-                                <?php 
-                                    $services = Services::find_all();
-                                    foreach($services as $service_alone) {
-                                        if($service == $service_alone->service_name) {
-                                            echo '<a href="detail_service.php?service=' . $service_alone->service_name . '" class="list-group-item list-group-item-action active">'
-                                        . $service_alone->service_name .'
+                                <?php
+                                $services = Services::find_all();
+                                foreach ($services as $service_alone) {
+                                    if ($service == $service_alone->service_name) {
+                                        echo '<a href="detail_service.php?service=' . $service_alone->service_name . '" class="list-group-item list-group-item-action active">'
+                                            . $service_alone->service_name . '
                                     </a>';
-                                        }else {
-                                            echo '<a href="detail_service.php?service=' . $service_alone->service_name . '" class="list-group-item list-group-item-action">'
-                                        . $service_alone->service_name .'
+                                    } else {
+                                        echo '<a href="detail_service.php?service=' . $service_alone->service_name . '" class="list-group-item list-group-item-action">'
+                                            . $service_alone->service_name . '
                                     </a>';
-                                        }
-                                        
                                     }
+                                }
                                 ?>
                             </div>
                         </div>
@@ -147,6 +130,7 @@
                 </div>
             </div>
         </div>
+        <!-- /.main content -->
 
         <div class="container-fluid">
             <!-- footer row -->
@@ -161,7 +145,9 @@
             </div>
             <!-- /.footer row -->
         </div>
+        <!-- /.footer-container-fluid -->
     </div>
+    <!-- /.body container-fluid -->
 </body>
 <!-- /.body -->
 

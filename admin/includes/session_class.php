@@ -5,7 +5,6 @@
 class Sessions
 {
 
-    //properties
     private $signed_in = false;
     public $user_id;
 
@@ -22,7 +21,6 @@ class Sessions
         return $this->signed_in;
     }
 
-    //to login the user and start his private session
     public function login($user)
     {
         if ($user) {
@@ -31,7 +29,6 @@ class Sessions
         }
     }
 
-    //to logout the user and suspend his private session
     public function logout()
     {
         unset($this->user_id);
@@ -40,7 +37,6 @@ class Sessions
 
     }
 
-    //to chheck the login to see if the user is already logged in
     private function check_the_login()
     {
         if (isset($_SESSION['user_id'])) {
@@ -53,5 +49,4 @@ class Sessions
     }
 }
 
-//instance of session class started
 $session = new Sessions();

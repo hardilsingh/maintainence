@@ -4,9 +4,8 @@
 
 <!-- body -->
 
-
-
 <body>
+    <!-- custom style -->
     <style>
         .card {
             position: relative;
@@ -17,6 +16,8 @@
             box-shadow: 0 10px 40px gray;
         }
     </style>
+    <!-- /.custom style -->
+    
     <!-- container-fluid -->
     <div class="container-fluid" role="columnheader">
 
@@ -24,22 +25,17 @@
         <?php include("includes/navbar.php") ?>
         <!-- /.navigation -->
 
-
         <!-- heading row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i
-                        class="far fa-address-card" style="color:green; margin-right: 1.5rem"></i></i>About us<span
-                        style="color: green !important">.</span>
+                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="far fa-address-card" style="color:green; margin-right: 1.5rem"></i></i>About us<span style="color: green !important">.</span>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.heading row -->
-
-
-
+        <!-- main content -->
         <div class="col-sm-9 col-md-9 col-lg-12 mx-auto " role="columnheader">
             <div class="row">
                 <div class="col-lg-6" style="margin-bottom:20px; padding:50px 50px">
@@ -51,7 +47,7 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-100"  src="images/hero-1.jpg"alt="First slide">
+                                <img class="d-block w-100" src="images/hero-1.jpg" alt="First slide">
                             </div>
                             <div class="carousel-item">
                                 <img class="d-block w-100" src="images/hero-5 (2).jpg" alt="Second slide">
@@ -60,13 +56,11 @@
                                 <img class="d-block w-100" src="images/hero-6.jpg" alt="Third slide">
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                            data-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                            data-slide="next">
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -109,8 +103,7 @@
                 <div class="col-lg-12 mx-auto  col-centered" style="padding:80px">
                     <div class="row" style="margin-bottom:20px;">
                         <div class=" col-lg-12 mx-auto">
-                            <h6 class="text-success display-4 text-center"
-                                style="margin-bottom:20px; font-size: 38px; padding:0 31px">Meet The Team</h6>
+                            <h6 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 38px; padding:0 31px">Meet The Team</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -147,15 +140,16 @@
 
             </div>
         </div>
-
-
+        <!-- /.main-content -->
     </div>
 
+    <!-- slider script -->
     <script>
         $('.carousel').carousel({
             interval: 2000
         })
     </script>
+    <!-- /.slider script -->
 
 
     <div class=" container-fluid">
@@ -171,9 +165,9 @@
         </div>
         <!-- /.footer row -->
     </div>
+    <!-- /.footer conatiner fluid -->
     </div>
     </div>
 </body>
 <!-- /.body -->
-
 </html>

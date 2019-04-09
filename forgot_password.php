@@ -2,14 +2,9 @@
 <?php include("includes/main-rest.php") ?>
 <!-- /.main-rest -->
 
+<?php !$session->is_signed_in() ?: redirect('profile') ?>
+
 <!-- body -->
-
-<?php if(!$session->is_signed_in()) {
-
-}else {
-    redirect("profile");
-} ?>
-
 
 <body>
 
@@ -32,32 +27,36 @@
         </div>
         <!-- /.heading row -->
 
+        <!-- display any error message -->
         <?php $msg = "" ?>
 
 
+        <!-- ----------------------------------To send otp------------------------------------------------------- -->
         <?php
-
         if (isset($_POST['send_otp'])) {
             $email = trim($_POST['email']);
             $user_found = Users::forgotPasswordVerify($email);
             if ($user_found) {
                 $name = $user_found->name;
                 $email = $user_found->user_email;
+                //genrate 4 digit random number for otp
                 $otp = rand(1000, 9999);
                 $id = $user_found->user_id;
+                //send the otp to database for later usage
                 $store_otp = Users::storeOTP($id, $otp);
                 $_SESSION['id'] = $id;
+                //send mail using phpmailer.
                 include("includes/mail.php");
                 header("Location:forgot_password.php?otp_send=true");
             } else {
                 $msg = "<div class='alert alert-danger' role='alert'>Incorrect Email Id</div>";
-            }
-        }
-        ?>
+            } //user found condition
+        } //send otp condition.
 
+        ?>
+        <!-- ---------------------------------verify otp-------------------------------------------------------- -->
 
         <?php
-
         if (isset($_POST['verify_otp'])) {
             $otp = trim($_POST['otp']);
             $user_id = $_SESSION['id'];
@@ -73,9 +72,8 @@
         }
 
         ?>
-
+        <!-- -----------------------------------reset password--------------------------------------------------------- -->
         <?php
-
         if (isset($_POST['reset_password'])) {
             $password = trim($_POST['password']);
             $confirmpassword = trim($_POST['confirmpassword']);
@@ -89,15 +87,20 @@
         }
         ?>
 
-
+        <!-- col-sm-9 col-md-9 col-lg-4 mx-auto  -->
         <div class="col-sm-9 col-md-9 col-lg-4 mx-auto" role="columnheader">
+            <!-- main content -->
             <div class="card card-signin my-5">
+                <!-- card content -->
                 <div class="card-body">
                     <h5 class="card-title text-center text-success" style="margin-bottom:40px" role="heading">Password Reset</h5>
                     <div class="col-sm-9 col-md-9 col-lg-8 mx-auto">
                         <?php echo $msg ?>
                     </div>
+                    <!-- form -->
                     <form class="form-signin" action="" method="post" role="form">
+
+                        <!-- this is step 1 of 3 -->
                         <?php if (isset($_GET['initial'])) { ?>
                             <div class="row">
                                 <div class="col-sm-9 col-md-9 col-lg-8 mx-auto">
@@ -113,9 +116,11 @@
                                 </div>
                             </div>
 
-                            <?php
-                        } ?>
+                        <?php
+                    } ?>
+                        <!-- /.end of step 1 of 3 -->
 
+                        <!-- step 2 of 3 -->
                         <?php if (isset($_GET['otp_send']) == true) { ?>
 
                             <div class="row">
@@ -133,9 +138,11 @@
                             </div>
 
 
-                            <?php
-                        } ?>
+                        <?php
+                    } ?>
+                        <!-- /.end of step 2 of 3 -->
 
+                        <!-- step 3 of 3 -->
                         <?php if (isset($_GET['otp_verify']) == true) { ?>
 
                             <div class="row">
@@ -157,17 +164,18 @@
                             </div>
 
 
-                            <?php
-                        } ?>
-
-
-
-
+                        <?php
+                    } ?>
+                        <!-- /.end of step 3 of 3 -->
                     </form>
+                    <!-- /.form -->
                 </div>
+                <!-- /.card content -->
             </div>
+            <!-- /.main content -->
         </div>
-
+        <!-- /.col-sm-9 col-md-9 col-lg-4 mx-auto -->
+        <!-- conatiner fluid -->
         <div class="container-fluid">
             <!-- footer row -->
             <div class="row" role="row">
@@ -181,6 +189,7 @@
             </div>
             <!-- /.footer row -->
         </div>
+        <!-- /.conatiner-fluid -->
     </div>
 </body>
 <!-- /.body -->
