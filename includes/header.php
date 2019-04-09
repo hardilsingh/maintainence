@@ -120,7 +120,7 @@ if (isset($_GET['logout']) == true) {
     </div>
 
     <div class="btn">
-        <a href="#" class="btn__link"><span>Discover</span> services</a>
+        <a href="services.php" class="btn__link"><span>Discover</span> services</a>
     </div>
 </header>
 
