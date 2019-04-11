@@ -15,9 +15,33 @@
             height: 500px;
             box-shadow: 0 10px 40px gray;
         }
+
+
+
+        .banner {
+            background: linear-gradient(110deg, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .8) 50%, rgba(0, 128, 0, .8) 50%), url("images/b4.jpg");
+            height: 300px;
+            background-size: cover;
+            width: 100%;
+            background-position: center;
+        }
+
+        .heading {
+            position: relative;
+            top: 50%;
+            transform: translateY(-100%);
+            font-weight: bolder;
+            color: whitesmoke;
+            font-family: lato, sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: transparent;
+            padding: 20px 30px;
+        }
     </style>
     <!-- /.custom style -->
-    
+
     <!-- container-fluid -->
     <div class="container-fluid" role="columnheader">
 
@@ -28,13 +52,33 @@
         <!-- heading row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
-            <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="far fa-address-card" style="color:green; margin-right: 1.5rem"></i></i>About us<span style="color: green !important">.</span>
+            <div class="col-lg-12 banner" role="columnheader">
+                <h1 class="display-4 text-center heading" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="far fa-address-card" style="color:green; margin-right: 1.5rem"></i></i>About us<span style="color: green !important">.</span>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.heading row -->
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="h2 text-center display-4" style="font-size:35px; color:slategray">Who are we?</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 80px; color:green">Read about our history and our dedicated team.</h2>
+            </div>
+        </div>
         <!-- main content -->
         <div class="col-sm-9 col-md-9 col-lg-12 mx-auto " role="columnheader">
             <div class="row">
@@ -170,4 +214,5 @@
     </div>
 </body>
 <!-- /.body -->
+
 </html>

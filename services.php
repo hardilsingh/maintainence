@@ -3,6 +3,7 @@
 <!-- /.main-rest -->
 
 <!-- body -->
+
 <body>
     <!-- custom styles -->
     <style>
@@ -19,11 +20,11 @@
         }
 
         .card:hover {
-            outline-color:forestgreen;
+            outline-color: forestgreen;
             outline-width: 2px;
             outline-style: solid;
             box-shadow: 0 15px 20px gray;
-            transform:  translateX(-50%)  scale(1.1);
+            transform: translateX(-50%) scale(1.1);
             z-index: 1000000;
         }
 
@@ -54,6 +55,28 @@
         .card-body {
             padding: 0;
         }
+
+        .banner {
+            background: linear-gradient(110deg, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .8) 50%, rgba(0, 128, 0, .8) 50%), url("images/hero-6.jpg");
+            height: 300px;
+            background-size: cover;
+            width: 100%;
+            background-position: center;
+        }
+
+        .heading {
+            position: relative;
+            top: 50%;
+            transform: translateY(-100%);
+            font-weight: bolder;
+            color: whitesmoke;
+            font-family: lato, sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: transparent;
+            padding: 20px 30px;
+        }
     </style>
     <!-- /.custom styles -->
 
@@ -68,14 +91,36 @@
         <!-- heading row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
-            <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="fab fa-servicestack" style="color:green; margin-right: 1.5rem"></i>Services<span style="color: green !important">.</span>
+            <div class="col-lg-12 banner" role="columnheader">
+                <h1 class="display-4 text-center heading" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="fab fa-servicestack" style="color:green; margin-right: 1.5rem"></i>Services<span style="color: green !important">.</span>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.heading row -->
 
+        <div class="row">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Services</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="h2 text-center display-4" style="font-size:35px; color:slategray">Services we offer.</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 50px; color:green">We specialize in all the services listed below.</h2>
+            </div>
+        </div>
 
         <!-- main content -->
         <div class="col-sm-9 col-md-9 col-lg-10 mx-auto" role="columnheader">

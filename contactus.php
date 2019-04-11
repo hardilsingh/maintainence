@@ -4,6 +4,30 @@
 
 <!-- body -->
 
+<style>
+    .banner {
+        background: linear-gradient(110deg, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .8) 50%, rgba(0, 128, 0, .8) 50%), url("images/b2.jpg");
+        background-position: center;
+        height: 300px;
+        background-size: cover;
+        width: 100%;
+    }
+
+    .heading {
+        position: relative;
+        top: 50%;
+        transform: translateY(-100%);
+        font-weight: bolder;
+        color: whitesmoke;
+        font-family: lato, sans-serif;
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+        padding: 20px 30px;
+    }
+</style>
+
 <body>
 
     <!-- container-fluid -->
@@ -16,12 +40,31 @@
         <!-- heading-row -->
         <div class="row" role="row">
             <!-- col-lg-12 -->
-            <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="far fa-id-badge" style="color:green; margin-right: 1.5rem"></i> Contact us<span style="color: green">.</span></h1>
+            <div class="col-lg-12 banner" role="columnheader">
+                <h1 class="display-4 text-center heading" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i class="far fa-id-badge" style="color:green; margin-right: 1.5rem"></i> Contact us<span style="color: green">.</span></h1>
             </div>
             <!--/.col-lg-12 -->
         </div>
         <!-- /.heading-row -->
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Conatct Us</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="h2 text-center display-4" style="font-size:35px; color:slategray">Contact us for any problem.</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 80px; color:green">We are at your service 24 x 7 365 days.</h2>
+            </div>
+        </div>
 
         <!-- container -->
         <div class="container" role="columnheader">
@@ -70,4 +113,4 @@
 <!-- /.body -->
 
 </html>
-<!-- /.html --> 
+<!-- /.html -->
