@@ -247,13 +247,13 @@ if (isset($_GET['membership'])) {
                             </tr>
                             <tr style="display:none;">
                                 <td>Success URI: </td>
-                                <td><input name="url" value="service.test/payumoney/success.php" size="64" /></td>
+                                <td><input name="surl" value="service.test/payumoney/success.php" size="64" /></td>
                                 <td></td>
 
                             </tr>
                             <tr style="display:none;">
                                 <td>Failure URI: </td>
-                                <td><input name="url" value="service.test/payumoney/failure.php" size="64" /></td>
+                                <td><input name="furl" value="service.test/payumoney/failure.php" size="64" /></td>
                                 <td></td>
 
                             </tr>
