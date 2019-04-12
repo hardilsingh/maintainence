@@ -139,46 +139,6 @@
                     <div class="card" style="width: 18rem;">
                         <div class="img-top">
                             <span class="price">
-                                Free
-                            </span>
-                        </div>
-                        <img class="card-img-top" src="images/hero-6.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:white">Free</h5>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Cras justo odio</li>
-                                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Cras justo odio</li>
-                                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <a href="buynow.php?membership=free" class="card-link btn btn-success btn-lg btn-block">Subscribe (1 week) &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-9 col-md-9 col-lg-3 mx-auto" role="columnheader">
-                    <div class="card" style="width: 18rem;">
-                        <div class="img-top">
-                            <span class="price">
                                 ₹ 800
                             </span>
                         </div>

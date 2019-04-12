@@ -4,21 +4,6 @@
     <div class="membership__cards">
 
         <div class="card">
-            <div class="card__header card__header--4">
-                <span class="price">FREE</span>
-            </div>
-
-            <h3 class="card__type card__type--4">Free service</h3>
-            <ul class="card__features">
-                <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>Discounted Offers</li>
-                <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>24 x 7 Helpline</li>
-                <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>1 service(s) free</li>
-                <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>Onsite repair</li>
-            </ul>
-            <a href="#" class="card__buynow">Know More &rarr;</a>
-        </div>
-
-        <div class="card">
             <div class="card__header card__header--1">
                 <span class="price">₹500</span>
             </div>

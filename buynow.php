@@ -1,5 +1,10 @@
 <?php include("includes/main-rest.php") ?>
 
+<?php
+
+!$session->is_signed_in() ? header("Location:login.php?membership_purchace=true") : true;
+
+?>
 
 <?php
 
@@ -64,6 +69,9 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
     $hash = $posted['hash'];
     $action = $PAYU_BASE_URL . '/_payment';
 }
+
+
+$user = Users::find_by_id($session->user_id);
 ?>
 
 <head>
@@ -84,7 +92,61 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
         background-color: transparent;
         padding: 20px 30px;
     }
+
+    input {
+        border: 0;
+        background-color: transparent;
+    }
+
+    input:focus {
+        border: 0;
+        outline: none;
+    }
+
+
+    .btn {
+        border-radius: 0;
+    }
+
+
+    td {
+        padding: 20px 30px;
+    }
+
+    i {
+        cursor: pointer;
+    }
 </style>
+
+<?php
+
+if (isset($_GET['membership'])) {
+    $type = $_GET['membership'];
+
+    switch ($type) {
+        case 'silver';
+            $amount = 800;
+            $product_info = 'Silver';
+            $valid = '1 Month';
+            break;
+
+        case 'gold';
+            $amount = 1500;
+            $product_info = 'Gold';
+            $valid = '3 Month';
+
+            break;
+
+        case 'platinum';
+            $amount = 3500;
+            $product_info = 'Platinum';
+            $valid = '6 Month';
+
+            break;
+    }
+}
+
+?>
 
 <body onload="submitPayuForm()">
     <div role="columnheader" class="container-fluid signup">
@@ -116,8 +178,7 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
 
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <h2 class="h2 text-center display-4" style="font-size:35px; color:slategray">Please select a payment method
-                    to proceed.</h2>
+                <h2 class="h2 text-center display-4" style="font-size:35px; color:slategray">Please review your details below</h2>
             </div>
         </div>
 
@@ -128,54 +189,86 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto" role="columnheader" style="padding: 20px 30px;">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto" role="columnheader" style="padding: 5px 30px;">
             <?php if ($formError) { ?>
 
                 <span style="color:red">Please fill all mandatory fields.</span>
                 <br />
                 <br />
             <?php } ?>
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <form action="<?php echo $action; ?>" method="post" name="payuForm">
+                        <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
+                        <input type="hidden" name="hash" value="<?php echo $hash ?>" />
+                        <input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Particular</th>
+                                    <th>Deatils</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>Amount: </td>
+                                <td><input readonly name="amount" value="<?php echo $amount ?>" /></td>
+                                <td></td>
 
-            <form action="<?php echo $action; ?>" method="post" name="payuForm">
-                <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
-                <input type="hidden" name="hash" value="<?php echo $hash ?>" />
-                <input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
-                <table>
-                    <tr>
-                        <td>Amount: </td>
-                        <td><input name="amount" value="<?php echo (empty($posted['amount'])) ? '' : $posted['amount'] ?>" /></td>
-                        <td>First Name: </td>
-                        <td><input name="firstname" id="firstname" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>Email: </td>
-                        <td><input name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" /></td>
-                        <td>Phone: </td>
-                        <td><input name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>Product Info: </td>
-                        <td colspan="3"><textarea name="productinfo"><?php echo (empty($posted['productinfo'])) ? '' : $posted['productinfo'] ?></textarea></td>
-                    </tr>
-                    <tr style="display:none;">
-                        <td>Success URI: </td>
-                        <td colspan="3"><input name="surl" value="service.test/payumoney/success.php" size="64" /></td>
-                    </tr>
-                    <tr style="display:none;">
-                        <td>Failure URI: </td>
-                        <td colspan="3"><input name="furl" value="service.test/payumoney/failure.php" size="64" /></td>
-                    </tr>
+                            </tr>
 
-                    <tr>
-                        <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" size="64" /></td>
-                    </tr>
-                    <tr>
+                            <tr>
+                                <td>First Name: </td>
+                                <td><input name="firstname" id="firstname" value="<?php echo "$user->name" ?>" /></td>
+                                <td><i title="edit" id="edit" class="fas fa-edit"></i></td>
+
+                            </tr>
+                            <tr>
+                                <td>Email: </td>
+                                <td><input name="email" id="email" value="<?php echo $user->user_email ?>" /> </td>
+                                <td><i title="edit" id="edit" class="fas fa-edit"></i></td>
+
+
+                            </tr>
+                            <tr>
+                                <td>Phone: </td>
+                                <td><input name="phone" value="<?php echo $user->user_ph ?>" /></td>
+                                <td><i title="edit" id="edit" class="fas fa-edit"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Product Info: </td>
+                                <td><input type="text" readonly value="<?php echo $product_info ?>" name="productinfo"></td>
+                                <td><a href='membership.php' class="btn btn-warning btn-xs">Change</a></td>
+                            </tr>
+                            <tr>
+                                <td>Validity </td>
+                                <td><input type="text" readonly value="<?php echo $valid ?>" name="valid"></td>
+                                <td></td>
+                            </tr>
+                            <tr style="display:none;">
+                                <td>Success URI: </td>
+                                <td><input name="url" value="service.test/payumoney/success.php" size="64" /></td>
+                                <td></td>
+
+                            </tr>
+                            <tr style="display:none;">
+                                <td>Failure URI: </td>
+                                <td><input name="url" value="service.test/payumoney/failure.php" size="64" /></td>
+                                <td></td>
+
+                            </tr>
+
+                            <tr style="display:none;">
+                                <td><input  name="service_provider" value="payu_paisa" size="64" /></td>
+                            </tr>
+                        </table>
                         <?php if (!$hash) { ?>
-                            <td colspan="4"><input type="submit" value="Submit" /></td>
+                            <td><input type="submit" class="btn btn-lg btn-success" value="Proceed&rarr;" /></td>
                         <?php } ?>
-                    </tr>
-                </table>
-            </form>
+                    </form>
+                </div>
+            </div>
+
         </div>
 
         <div class="row">
