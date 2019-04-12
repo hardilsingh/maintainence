@@ -52,6 +52,10 @@
                 <!-- /.nav-second-level -->
             </li>
 
+            <li>
+                <a href="service_add.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Add service</a>
+            </li>
+
         </ul>
     </div>
 </div>
