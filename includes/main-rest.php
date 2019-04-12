@@ -25,6 +25,9 @@ require_once("init.php");
     <!-- START FOR GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass:400,800&amp;subset=latin-ext" rel="stylesheet">
+    
+
+
 </head>
 
 <?php

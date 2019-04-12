@@ -170,7 +170,7 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="#" class="card-link btn btn-success btn-lg btn-block">Subscribe (1 week) &rarr;</a>
+                            <a href="buynow.php?membership=free" class="card-link btn btn-success btn-lg btn-block">Subscribe (1 week) &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="card-link btn btn-success btn-lg btn-block">Subscribe (1 Month)
+                            <a href="buynow.php?membership=silver" class="card-link btn btn-success btn-lg btn-block">Subscribe (1 Month)
                                 &rarr;</a>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="card-link btn btn-success btn-lg btn-block">Subscribe (4 Months)
+                            <a href="buynow.php?membership=gold" class="card-link btn btn-success btn-lg btn-block">Subscribe (4 Months)
                                 &rarr;</a>
                         </div>
                     </div>
@@ -289,7 +289,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="card-link btn btn-success btn-lg btn-block">Subscribe (6 Months)
+                            <a href="buynow.php?membership=platinum" class="card-link btn btn-success btn-lg btn-block">Subscribe (6 Months)
                                 &rarr;</a>
                         </div>
                     </div>
