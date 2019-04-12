@@ -4,9 +4,7 @@
 
 <!-- body -->
 
-<?php if(!$session->is_signed_in()) {
-
-}else {
+<?php if (!$session->is_signed_in()) { } else {
     redirect("profile");
 } ?>
 
@@ -32,9 +30,14 @@ if (isset($_POST['login'])) {
                     setcookie('email', $email, $hour);
                     setcookie('password', $user_found->user_password, $hour);
                 }
+
                 //start session
                 $session->login($user_found);
-                redirect("profile");
+                if ($user_found->name == "") {
+                    redirect("update_profile");
+                } else {
+                    redirect("profile");
+                }
             } elseif ($user_found->user_role == 'admin') {
                 $rememberme = $_POST['rememberme'];
                 if ($rememberme == 'on') {
@@ -85,7 +88,7 @@ if (isset($_POST['login'])) {
                 <!-- col-sm-7 col-md-7 col-lg-6 mx-auto -->
                 <div class="col-sm-7 col-md-7 col-lg-6 mx-auto" role="columnheader" style="position:relative; top:-50%; transform:translateY(36%)">
                     <div class="login100-pic js-tilt " role="img" data-tilt>
-                    <a href="index.php"><img src="images/logo.png" class="img-responsive" alt="IMG"></a>
+                        <a href="index.php"><img src="images/logo.png" class="img-responsive" alt="IMG"></a>
                     </div>
                 </div>
                 <!-- /.col-sm-7 col-md-7 col-lg-6 mx-auto -->

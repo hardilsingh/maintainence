@@ -1,4 +1,3 @@
-<?php header("refresh:5; url=login.php")  ?>
 
 <?php include("includes/main-rest.php") ?>
 
@@ -15,7 +14,7 @@
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-3 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"> Welcome<span style="color: green">.</span> (Email Sent)</h1>
+                <h1 class="display-3 text-center" role="heading" style="margin-bottom:3rem; margin-top: 2rem"> Welcome<span style="color: green">.</span></h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -37,7 +36,6 @@
             <div class="col-lg-12 text-center" role="columnheader">
                 <p class='text-center' style="font-size:17px" role="doc-notice">Welcome to the family user.<br>
                     Now you can enjoy the best home service experience.<br>
-                    A welcome Email with OTP has been sent to your registerd email.<br>
                     Thankyou! for choosing us.
             </div>
             <!-- /.col-lg-12 -->
