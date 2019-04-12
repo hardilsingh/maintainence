@@ -87,7 +87,9 @@ if ($session->is_signed_in()) {
             <button name="request" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
         </fieldset>
 
-        <span class="copyright">Having trouble filling the form. Please <a href="contactus.php">Contact Us</a></span>
+        <span class="copyright">Having trouble filling the form. Please <a href="contactus.php">Contact Us</a></span><br><br>
+        <span  class="copyright">Keep track of all requests <a href="signup.php" style="font-weight:bolder; font-size:16px">Register Now</a></span>
+        
     </form>
     <!-- /END OF FORM -->
 </section>

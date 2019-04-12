@@ -84,6 +84,11 @@
                         </div>
                     </form>
                 </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-center text-danger">Note: If you didnt get the email, check in spam.</p>
+                    </div>
+                </div>
             </div>
         </div>
 

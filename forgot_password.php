@@ -137,6 +137,12 @@
                                 </div>
                             </div>
 
+                            <div class="row" style="margin-top:30px">
+                                <div class="col-lg-12">
+                                    <p class="text-center text-danger">Note: If you didnt get the email, check in spam.</p>
+                                </div>
+                            </div>
+
 
                         <?php
                     } ?>
