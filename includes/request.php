@@ -42,9 +42,6 @@ if ($session->is_signed_in()) {
     $instant_service = Users::find_by_id($session->user_id);
 }
 ?>
-
-
-
 <section class="requests">
     <!-- START OF FORM -->
     <form id="contact" action="" method="post">
@@ -90,7 +87,7 @@ if ($session->is_signed_in()) {
             <button name="request" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
         </fieldset>
 
-        <span class="copyright">Having trouble filling the form. Please <a href="#">Contact Us</a></span>
+        <span class="copyright">Having trouble filling the form. Please <a href="contactus.php">Contact Us</a></span>
     </form>
     <!-- /END OF FORM -->
 </section>

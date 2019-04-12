@@ -166,7 +166,7 @@ if (isset($_GET['delete_photo'])) {
                                                         <label>Plan</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>Platinum</p> <a href="#">Change Plan</a>
+                                                        <p><?php echo $user_profile->plan ?></p> 
                                                     </div>
                                                 </div>
                                             </div>

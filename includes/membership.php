@@ -15,7 +15,7 @@
                 <li class="list"><i style="color:red" class="fas fa-times"></i>1 service(s) free</li>
                 <li class="list"><i style="color:red" class="fas fa-times"></i>Onsite repair</li>
             </ul>
-            <a href="#" class="card__buynow">Know more &rarr;</a>
+            <a href="membership.php" class="card__buynow">Know more &rarr;</a>
         </div>
 
         <div class="card">
@@ -30,7 +30,7 @@
                 <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>1 service(s) free</li>
                 <li class="list"><i style="color:red" class="fas fa-times"></i>Onsite repair</li>
             </ul>
-            <a href="#" class="card__buynow">Know more &rarr;</a>
+            <a href="membership.php" class="card__buynow">Know more &rarr;</a>
         </div>
 
         <div class="card">
@@ -45,7 +45,7 @@
                 <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>1 service(s) free</li>
                 <li class="list"><i style="color:#43A047" class="fas fa-check-circle"></i>Onsite repair</li>
             </ul>
-            <a href="#" class="card__buynow">Know More &rarr;</a>
+            <a href="membership.php" class="card__buynow">Know More &rarr;</a>
         </div>
     </div>
 </section> 

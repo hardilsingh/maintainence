@@ -133,14 +133,14 @@ if (isset($_GET['membership'])) {
         case 'gold';
             $amount = 1500;
             $product_info = 'Gold';
-            $valid = '3 Month';
+            $valid = '3 Months';
 
             break;
 
         case 'platinum';
             $amount = 3500;
             $product_info = 'Platinum';
-            $valid = '6 Month';
+            $valid = '6 Months';
 
             break;
     }
@@ -198,6 +198,9 @@ if (isset($_GET['membership'])) {
             <?php } ?>
             <div class="row">
                 <div class="col-lg-12 mx-auto">
+                    <?php if (!$hash) { ?>
+                        <input style="margin-bottom:20px;" type="submit" class="btn btn-lg btn-success" value="Proceed&rarr;" />
+                    <?php } ?>
                     <form action="<?php echo $action; ?>" method="post" name="payuForm">
                         <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
                         <input type="hidden" name="hash" value="<?php echo $hash ?>" />
@@ -259,11 +262,11 @@ if (isset($_GET['membership'])) {
                             </tr>
 
                             <tr style="display:none;">
-                                <td><input  name="service_provider" value="payu_paisa" size="64" /></td>
+                                <td><input name="service_provider" value="payu_paisa" size="64" /></td>
                             </tr>
                         </table>
                         <?php if (!$hash) { ?>
-                            <td><input type="submit" class="btn btn-lg btn-success" value="Proceed&rarr;" /></td>
+                            <input style="margin-top:20px;" type="submit" class="btn btn-lg btn-success" value="Proceed&rarr;" />
                         <?php } ?>
                     </form>
                 </div>
@@ -271,7 +274,7 @@ if (isset($_GET['membership'])) {
 
         </div>
 
-        <div class="row">
+        <div class="row" style="margin-top:40px">
             <div class="col-lg-12">
                 <ol style="color:gray">
                     <li>By clicking on subscribe you agree to our terms and services.</li>

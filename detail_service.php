@@ -81,7 +81,7 @@
 
                         </div>
                         <div class="col-lg-4 mx-auto" style="padding:20px 30px">
-                            <a href="buy_now.php" class="btn btn-lg btn-primary">Buy now &rarr;</a>
+                            <a href="index.php?service=<?php echo $service ?>" class="btn btn-lg btn-primary">Buy now &rarr;</a>
                         </div>
                     </div>
 
