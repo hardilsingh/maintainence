@@ -126,7 +126,7 @@
                             <div class="row">
                                 <div class="col-sm-9 col-md-9 col-lg-8 mx-auto">
                                     <div class="form-label-group">
-                                        <input type="number" role="textbox" name="otp" id="inputotp" class="form-control" placeholder="OTP" required autofocus>
+                                        <input type="text" maxlength="4" role="textbox" name="otp" id="inputotp" class="form-control" placeholder="OTP" required autofocus>
                                         <label for="inputotp" role="note">OTP<span style="color:red">*</span></label>
                                     </div>
                                 </div>

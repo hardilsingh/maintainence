@@ -80,7 +80,7 @@ if (isset($_POST['register'])) {
             </div>
 
 
-            <div class="col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto" role="columnheader">
+            <div class="col-sm-6 col-md-5 col-lg-3 mx-auto" role="columnheader">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center text-success" role="heading">Register now</h5>
@@ -104,10 +104,7 @@ if (isset($_POST['register'])) {
                                 <input type="radio" checked class="custom-control-input" name="designation" value="customer" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Customer</label>
                             </div>
-                            <div role="checkbox" class="custom-control custom-checkbox mb-3">
-                                <input type="radio" class="custom-control-input" name="designation" value="provider" id="provider">
-                                <label class="custom-control-label" for="provider">Service Provider</label>
-                            </div>
+                            
                             <button role="button" class="btn btn-lg btn-success btn-block text-uppercase" name="register" type="submit">Register</button>
                             <hr class="my-4">
                             <button role="button" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>

@@ -89,7 +89,7 @@ if (isset($_GET['update_profile'])) {
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="number" maxlength="10" name="ph" value="<?php echo $user->user_ph ?>" role="textbox" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                    <input type="tel" maxlength="10" minlength="10"  name="ph" value="<?php echo $user->user_ph ?>" role="textbox" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                     <label for="inputPassword">Phone Number*</label>
                                 </div>
                                 <div class="form-label-group">

@@ -56,7 +56,7 @@ if ($session->is_signed_in()) {
         <fieldset>
             <input placeholder="Your Phone Number"  value="<?php if ($session->is_signed_in()) {
                                                                 echo htmlentities($instant_service->user_ph);
-                                                            }  ?>" type="tel" name="ph" tabindex="2" required>
+                                                            }  ?>" type="tel" maxlength="10" minlength="10" name="ph" tabindex="2" required>
         </fieldset>
         <fieldset>
             <input placeholder="Address" type="text" value="<?php if ($session->is_signed_in()) {
