@@ -13,7 +13,7 @@
 <!-- -------------------------------------------------------------------------- -->
 
 <?php
- // to check the type of page and change sub-heading
+// to check the type of page and change sub-heading
 if (isset($_GET['user_type'])) {
     $page_request = $_GET['user_type'];
 
@@ -21,7 +21,7 @@ if (isset($_GET['user_type'])) {
     switch ($page_request) {
         case 'admin';
             $sub_heading = "Admin";
-            $list =Users::adminUsers();
+            $list = Users::adminUsers();
             break;
 
         case 'customer';
@@ -69,7 +69,7 @@ if (isset($_GET['user_type'])) {
                         <h1 class="page-header">Users
                         </h1>
                     </div>
-                    <!--/.col-lg-12 -->  
+                    <!--/.col-lg-12 -->
                 </div>
                 <!-- /.heading-row-->
 
@@ -104,7 +104,7 @@ if (isset($_GET['user_type'])) {
                                         <th class="col">Pincode</th>
                                         <th class="col">State</th>
                                         <th class="col">City</th>
-                
+
                                     </tr>
                                 </thead>
                                 <!-- /.table head -->
@@ -132,9 +132,9 @@ if (isset($_GET['user_type'])) {
                     <!-- /.table-row -->
                 </form>
                 <!-- /.form -->
-                
 
-                
+
+
 
             </div>
             <!-- /.container-fluid -->
@@ -150,5 +150,5 @@ if (isset($_GET['user_type'])) {
 </body>
 <!-- /.body -->
 
-</html> 
+</html>
 <!-- /.html -->
