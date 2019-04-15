@@ -30,6 +30,9 @@
                     <li>
                         <a href="users.php?user_type=provider">Service providers</a>
                     </li>
+                    <li>
+                        <a href="create_admin.php">Create Admin</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

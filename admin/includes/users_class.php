@@ -124,6 +124,17 @@ class Users extends Db_object
     return self::find_this_query("UPDATE users SET user_password = '{$password}' WHERE user_id = $id ");
     }
 
+    public static function findByEmail($email) {
+        global $database;
+        $clean_email = $database->escapeString($email);
+        $sql = self::find_this_query("SELECT * FROM users WHERE user_email = '{$clean_email}' LIMIT 1");
+        return !empty($sql) ? array_shift($sql) : false;
+    }
+
+    public static function changeRole($id) {
+    return self::find_this_query("UPDATE users SET user_role = 'admin' WHERE user_id = $id ");
+    }
+
 }
 
 

@@ -160,57 +160,7 @@ if (!$session->is_signed_in()) {
 
 
                 <!-- ******************************CHART***************************************************************************** -->
-                <div class="row">
-                    <div class="col-lg-12 mx-auto">
-
-                        <script type="text/javascript">
-                            google.charts.load('current', {
-                                'packages': ['bar']
-                            });
-                            google.charts.setOnLoadCallback(drawStuff);
-
-                            function drawStuff() {
-                                var data = new google.visualization.arrayToDataTable([
-                                    ['Move', 'Total'],
-                                    ["Completed requests", <?php echo Requests::completedRequestsTotal() ?>],
-                                    ["Pending Requests", <?php echo Requests::newRequestsTotal() ?>],
-                                    ["Users", <?php echo Users::num() ?>],
-                                    ["Service Providers", <?php echo Users::numProviders() ?>]
-                                ]);
-
-                                var options = {
-                                    width: 800,
-                                    legend: {
-                                        position: 'none'
-                                    },
-                                    chart: {
-                                        title: '',
-                                        subtitle: ''
-                                    },
-                                    axes: {
-                                        x: {
-                                            0: {
-                                                side: 'top',
-                                                label: ''
-                                            } // Top x-axis.
-                                        }
-                                    },
-                                    bar: {
-                                        groupWidth: "50%"
-                                    }
-                                };
-
-                                var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-                                // Convert the Classic options to Material options.
-                                chart.draw(data, google.charts.Bar.convertOptions(options));
-                            };
-                        </script>
-                        </head>
-
-                        <body>
-                            <div id="top_x_div" style="width: 800px; height: 450px;"></div>
-                    </div>
-                </div>
+                
 
 
 

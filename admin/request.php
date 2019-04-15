@@ -159,16 +159,15 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
                                 <!-- table head -->
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th class="col"><input type="checkbox" class="checkAll"></th>
-                                        <th class="col">#</th>
-                                        <th class="col">Request Type</th>
-                                        <th class="col">Name</th>
-                                        <th class="col">Address</th>
-                                        <th class="col">Ph. No</th>
-                                        <th class="col">Refrence Id</th>
-                                        <th class="col">View Request</th>
-                                        <th class="col">Update Status</th>
-                                        <th class="col"></th>
+                                        <th><input type="checkbox" class="checkAll"></th>
+                                        <th>#</th>
+                                        <th>Request Type</th>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Ph. No</th>
+                                        <th>Refrence Id</th>
+                                        <th>View Request</th>
+                                        <th>Update Status</th>
                                     </tr>
                                 </thead>
                                 <!-- /.table head -->
@@ -181,7 +180,7 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
                                     echo "<td>" . $i++ . "</td>";
                                     echo "<td>$services->service_name</td>";
                                     echo "<td>$request->user_name</td>";
-                                    echo "<td>$request->address</td>";
+                                    echo "<td><textarea rows='5' class='form-control' readonly>$request->address</textarea></td>";
                                     echo "<td>$request->user_ph</td>";
                                     echo "<td>$request->refrence_id</td>";
                                     echo "<td><div class='form-group'><textarea disabled class='form-control' rows='5' id='comment'>$request->msg</textarea></div></td>";
