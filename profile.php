@@ -83,7 +83,8 @@ if (isset($_GET['delete_photo'])) {
 
 
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 mx-auto user-detail-section1 text-center">
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 mx-auto user-detail-section1 text-center" style="display:flex; flex-direction:column">
+                                <span class="text-center text-success">Click on the photo above to change.</span>
                                 <a href="profile.php?delete_photo" class="btn btn-warning btn-lg" style="margin-top:30px;">Remove Photo</a>
                             </div>
                             </form>

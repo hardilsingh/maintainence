@@ -70,7 +70,7 @@ $msg = ""
                         $service_name = Services::requestName($history_entry->request_type);
                         echo "<tr>";
                         echo "<td>" . $i++ . "</td>";
-                        echo "<td>$service_name->service_name</td>";
+                        echo "<td class='text-capitalize'>$service_name->service_name</td>";
                         echo "<td>$history_entry->refrence_id</td>";
                         echo "<td>$history_entry->open</td>";
                         echo "<td>$history_entry->closed</td>";

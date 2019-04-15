@@ -61,20 +61,20 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12 mx-auto">
+            <div class="col-lg-12 col-sm-12 col-md-12 mx-auto">
                 <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 80px; color:green">We are at your service 24 x 7 365 days.</h2>
             </div>
         </div>
 
         <!-- content-row -->
         <div class="row" role="row">
-            <div class="col-lg-12 mx-auto">
+            <div class="col-lg-12 col-sm-12 col-md-12 text-center mx-auto">
                 <div class="row">
                     <!-- col-lg-6 -->
-                    <div class="col-lg-6" role="columnheader" style="">
-                        <h4 class=" h4 text-left" role="heading" style="padding:2rem"> <i class="fas fa-at" class="text-success"></i> You can reach us at: <a href="mailto:hardilsingh87@gmail">company@info.com</a></h4>
+                    <div class="col-lg-6 col-md-12 col-sm-12 text-center" role="columnheader" >
+                        <h4 class=" h4 " role="heading" style="padding:2rem"> <i class="fas fa-at" class="text-success"></i> You can reach us at: <a href="mailto:hardilsingh87@gmail">company@info.com</a></h4>
 
-                        <h5 class=" h5 text-left" role="heading" style="padding:2rem"> <i class="fas fa-home" class="text-success"></i> Our office address:</h5>
+                        <h5 class=" h5" role="heading" style="padding:2rem"> <i class="fas fa-home" class="text-success"></i> Our office address:</h5>
 
                         <p style="padding:0rem 2rem" role="article">Kalanaur Rd, Near Kalsi Palace,<br> Desh Bhagat Nagar,<br> Gurdaspur,
                             Punjab
@@ -85,8 +85,8 @@
                     <!-- /.col-lg-6 -->
 
                     <!-- col-lg-5 -->
-                    <div class="col-lg-5" role="columnheader">
-                        <iframe style="padding:30px 50px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.24369955475!2d75.39454091516336!3d32.03559448120222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b9262ba2fb121%3A0xbc43838fd9bd4370!2sCBA+INFOTECH%C2%AE+%7C+Php+Java+%7C+Website+Development+%7C+Projects+%7C+Industrial+Training+%7CGurdaspur+%7C+Jaipur!5e0!3m2!1sen!2sin!4v1552625993358" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <div class="col-lg-5 col-md-12 col-sm-12 embed-responsive embed-responsive-16by9" role="columnheader">
+                        <iframe  class="embed-responsive-item" style="padding:30px 50px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.24369955475!2d75.39454091516336!3d32.03559448120222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b9262ba2fb121%3A0xbc43838fd9bd4370!2sCBA+INFOTECH%C2%AE+%7C+Php+Java+%7C+Website+Development+%7C+Projects+%7C+Industrial+Training+%7CGurdaspur+%7C+Jaipur!5e0!3m2!1sen!2sin!4v1552625993358" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                     <!-- /.col-lg-5 -->
                 </div>

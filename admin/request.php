@@ -13,7 +13,7 @@
 <!-- -------------------------------------------------------------------------- -->
 
 <?php
- // to check the type of page and change sub-heading
+// to check the type of page and change sub-heading
 if (isset($_GET['type'])) {
     $page_request = $_GET['type'];
 
@@ -33,6 +33,11 @@ if (isset($_GET['type'])) {
             $sub_heading = "Completed Requests";
             $list = Requests::completed();
             break;
+
+        case 'cancelled';
+            $sub_heading = "Cancelled Requests";
+            $list = Requests::cancelled();
+            break;
     }
 } else {
     $sub_heading = "";
@@ -43,7 +48,7 @@ if (isset($_GET['type'])) {
 <!-- ----------------------------------------------------------------------------- -->
 
 <?php
- //to change the request status in bulk
+//to change the request status in bulk
 if (isset($_POST['apply'])) {
     $actions = $_POST['action'];
     $checkAllBoxes = $_POST['checkAllBoxes'];
@@ -68,12 +73,13 @@ if (isset($_POST['apply'])) {
 <!-- ------------------------------------------------------------------------------ -->
 
 <?php
- //to update status of a request one at a time
+//to update status of a request one at a time
 if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
     $status = $_GET['update_status'];
     $id = $_GET['request_id'];
 
-    $status = Requests::updateStatus($status, $id);
+    Requests::updateStatus($status, $id);
+    header("location:request.php?type=$status");
 }
 ?>
 
@@ -106,7 +112,7 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
                         <h1 class="page-header">Service Requests
                         </h1>
                     </div>
-                    <!--/.col-lg-12 -->  
+                    <!--/.col-lg-12 -->
                 </div>
                 <!-- /.heading-row-->
 
@@ -120,7 +126,7 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
                     <!--/.col-lg-8 -->
                 </div>
                 <!-- /.subheading-row -->
-                
+
 
                 <!-- form -->
                 <form action="" method="post">
@@ -147,7 +153,7 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
                     <!-- table-row -->
                     <div class="row">
                         <!-- col-lg-12 -->
-                        <div class="col-lg-12 table-responsive" >
+                        <div class="col-lg-12 table-responsive">
                             <!-- table -->
                             <table class="table  table-hover">
                                 <!-- table head -->
@@ -224,5 +230,5 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
 </body>
 <!-- /.body -->
 
-</html> 
+</html>
 <!-- /.html -->

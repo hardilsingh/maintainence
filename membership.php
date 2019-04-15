@@ -23,6 +23,14 @@
         z-index: 1000000;
     }
 
+    @media only screen and (max-width:600px) {
+    .card:hover {
+        outline: none;
+        box-shadow: none;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
 
     .card>img {
         height: 185px;
@@ -101,10 +109,10 @@
 
         <div class="row" role="row">
             <div class="col-lg-12 banner" role="columnheader">
-                <h6 class="display-4 text-center heading" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i
-                        class="fas fa-id-card-alt" style="color:green; margin-right: 1.5rem"></i>Membership Plans<span
+                <h1 class="display-4 text-center heading" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><i
+                        class="fas fa-id-card-alt" style="color:green; margin-right: 1.5rem"></i>Plans<span
                         style="color: green">.</span></h1>
-                </h6>
+                </h1>
             </div>
         </div>
 
@@ -128,7 +136,7 @@
 
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 90px; color:green">You can
+                <h3 class="h3 text-center display-4" style="font-size:25px; margin-bottom: 90px; color:green">You can
                     cancel the membership plan at anytime.</h2>
             </div>
         </div>

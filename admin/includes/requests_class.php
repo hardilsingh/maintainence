@@ -75,6 +75,12 @@ class Requests extends Db_object
         return self::find_this_query("SELECT * FROM requests WHERE request_status = 'completed' ORDER BY request_id DESC");
     }
 
+    //method to find only cancelled requests
+    public static function cancelled()
+    {
+        return self::find_this_query("SELECT * FROM requests WHERE request_status = 'cancelled' ORDER BY request_id DESC");
+    }
+
     //method to update the status of a request
     public static function updateStatus($status, $id)
     {
@@ -109,9 +115,11 @@ class Requests extends Db_object
     public static function completedRequestsTotal()
     {
         global $database;
-        $newRequests = $database->query("SELECT * FROM requests WHERE request_status = 'pending'");
+        $newRequests = $database->query("SELECT * FROM requests WHERE request_status = 'completed'");
         return mysqli_num_rows($newRequests);
     }
+
+    
 
     //find all using user id for profile
     public static function requestHistory($user_id)

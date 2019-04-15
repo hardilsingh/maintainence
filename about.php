@@ -144,11 +144,11 @@
                 </div>
             </div>
             <div class="row" class="row-centered" style="background-color:whitesmoke">
-                <div class="col-lg-12 mx-auto  col-centered" style="padding:80px">
+                <div class="col-lg-12 col-md-12 col-sm-12 mx-auto  col-centered" style="padding:80px">
                     <div class="row" style="margin-bottom:20px;">
-                        <div class=" col-lg-12 mx-auto">
-                            <h6 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 38px; padding:0 31px">Meet The Team</h6>
-                            <h6 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 25px; padding:0 31px">The dedicated development team</h6>
+                        <div class=" col-lg-12 col-sm-12 col-md-12 mx-auto">
+                            <h2 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 38px; padding:0 31px">Meet The Team</h6>
+                            <h3 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 25px; padding:0 31px">The dedicated development team</h6>
                         </div>
                     </div>
                     <div class="row">

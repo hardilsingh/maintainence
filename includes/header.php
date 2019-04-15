@@ -26,6 +26,7 @@ if (isset($_GET['logout']) == true) {
 
         <?php if (!$session->is_signed_in()) { ?>
             <a href="login.php" class="last"><i class='fas fa-user-alt'></i>Login</a>
+            <a href="signup.php" class="last"><i class='fas fa-user-alt'></i>Sign Up</a>
         <?php } else { ?>
             <a href="index.php?logout=true">Logout</a>
 
@@ -46,8 +47,8 @@ if (isset($_GET['logout']) == true) {
         ?>
 
         <?php } ?>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars" height="2rem"></i>
+        <a href="javascript:void(0);" class="icon" style="height:100% !important" onclick="myFunction()">
+            <i class="fa fa-bars" height="100%"></i>
         </a>
     </div>
 

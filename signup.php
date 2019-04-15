@@ -54,6 +54,16 @@ if (isset($_POST['register'])) {
 ?>
 
 <body>
+
+<style>
+
+    @media only screen and (max-width:748px) {
+        .already {
+            margin-top:5rem !important;
+        }
+    }
+
+</style>
     <div class="container-fluid signup" role="columnheader">
 
 
@@ -63,14 +73,14 @@ if (isset($_POST['register'])) {
 
 
         <div class="row" role="row">
-            <div class="col-lg-6" role="columnheader">
-                <h6 class="display-4 text-center" role="heading" style="margin-top:13rem;">Already Have an Account<span style="color: green">?</span></h1>
+            <div class="col-lg-6 col-md-6 col-sm-12" role="columnheader">
+                <h1 class="display-4 text-center already" role="heading" style="margin-top:13rem;">Already Have an Account<span style="color: green">?</span></h1>
                     <h4 class="text-center" role="heading" style="margin-top:4rem;"><a href="login.php">Sign in now. <i class="fas fa-arrow-right"></i></a>
-                </h6>
+                </h1>
             </div>
 
 
-            <div class="col-sm-7 col-md-7 col-lg-3 mx-auto" role="columnheader">
+            <div class="col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto" role="columnheader">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center text-success" role="heading">Register now</h5>

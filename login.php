@@ -94,7 +94,7 @@ if (isset($_POST['login'])) {
                 <!-- /.col-sm-7 col-md-7 col-lg-6 mx-auto -->
 
                 <!-- col-sm-7 col-md-7 col-lg-4 mx-auto -->
-                <div class="col-sm-7 col-md-7 col-lg-4 mx-auto" role="columnheader">
+                <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" role="columnheader">
                     <!-- card -->
                     <div class="card card-signin my-5">
                         <!-- card-body -->

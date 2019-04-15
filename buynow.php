@@ -197,7 +197,7 @@ if (isset($_GET['membership'])) {
                 <br />
             <?php } ?>
             <div class="row">
-                <div class="col-lg-12 mx-auto">
+                <div class="col-lg-12 table-responsive mx-auto">
                     <?php if (!$hash) { ?>
                         <input style="margin-bottom:20px;" type="submit" class="btn btn-lg btn-success" value="Proceed&rarr;" />
                     <?php } ?>
@@ -210,54 +210,45 @@ if (isset($_GET['membership'])) {
                                 <tr>
                                     <th>Particular</th>
                                     <th>Deatils</th>
-                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tr>
                                 <td>Amount: </td>
                                 <td><input readonly name="amount" value="<?php echo $amount ?>" /></td>
-                                <td></td>
 
                             </tr>
 
                             <tr>
                                 <td>First Name: </td>
-                                <td><input name="firstname" id="firstname" value="<?php echo "$user->name" ?>" /></td>
-                                <td><i title="edit" id="edit" class="fas fa-edit"></i></td>
+                                <td><input name="firstname" readonly id="firstname" value="<?php echo "$user->name" ?>" /></td>
 
                             </tr>
                             <tr>
                                 <td>Email: </td>
-                                <td><input name="email" id="email" value="<?php echo $user->user_email ?>" /> </td>
-                                <td><i title="edit" id="edit" class="fas fa-edit"></i></td>
+                                <td><input name="email" readonly id="email" value="<?php echo $user->user_email ?>"> </td>
 
 
                             </tr>
                             <tr>
                                 <td>Phone: </td>
-                                <td><input name="phone" value="<?php echo $user->user_ph ?>" /></td>
-                                <td><i title="edit" id="edit" class="fas fa-edit"></i></td>
+                                <td><input name="phone" readonly value="<?php echo $user->user_ph ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Product Info: </td>
                                 <td><input type="text" readonly value="<?php echo $product_info ?>" name="productinfo"></td>
-                                <td><a href='membership.php' class="btn btn-warning btn-xs">Change</a></td>
                             </tr>
                             <tr>
                                 <td>Validity </td>
                                 <td><input type="text" readonly value="<?php echo $valid ?>" name="valid"></td>
-                                <td></td>
                             </tr>
                             <tr style="display:none;">
                                 <td>Success URI: </td>
-                                <td><input name="surl" value="service.test/payumoney/success.php" size="64" /></td>
-                                <td></td>
+                                <td><input name="surl" value=payumoney/success.php" size="64" /></td>
 
                             </tr>
                             <tr style="display:none;">
                                 <td>Failure URI: </td>
-                                <td><input name="furl" value="service.test/payumoney/failure.php" size="64" /></td>
-                                <td></td>
+                                <td><input name="furl" value="payumoney/failure.php" size="64" /></td>
 
                             </tr>
 

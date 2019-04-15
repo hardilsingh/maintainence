@@ -48,6 +48,9 @@
                     <li>
                         <a href="request.php?type=completed">Completed requests</a>
                     </li>
+                    <li>
+                        <a href="request.php?type=cancelled">Cancelled Requests</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
