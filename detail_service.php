@@ -4,6 +4,17 @@
 <?php isset($_GET['service']) ? $service = $_GET['service'] : redirect('services') ?>
 <!-- body -->
 
+
+<?php
+
+if (isset($_GET['id'])) {
+    $service_id = $_GET['id'];
+    $service_from_id = Services::requestName($service_id);
+}
+
+
+?>
+
 <body>
     <!-- custome styles -->
     <style>
@@ -48,7 +59,7 @@
         <div class="row" role="row">
             <!-- col-lg-12 -->
             <div class="col-lg-12" role="columnheader">
-                <h1 class="display-4 text-center text-capitalize" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><img src="images/saw.svg"><?php echo $service ?><span style="color: green !important">.</span>
+                <h1 class="display-4 text-center text-capitalize" role="heading" style="margin-bottom:3rem; margin-top: 2rem"><img src="images/service/<?php echo $service_from_id->image ?>"><?php echo $service ?><span style="color: green !important">.</span>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -61,7 +72,7 @@
                 <div class="col-lg-12" style=" padding: 30px 50px;">
                     <div class="row">
                         <div class="col-lg-1">
-                            <img src="images/saw.svg" class="show" alt="saw">
+                            <img src="images/service/<?php echo $service_from_id->image?>" class="show" alt="saw">
                         </div>
                         <div class="col-lg-7" style="padding:0 50px;">
                             <div class="row">
@@ -114,11 +125,11 @@
                                 $services = Services::find_all();
                                 foreach ($services as $service_alone) {
                                     if ($service == $service_alone->service_name) {
-                                        echo '<a href="detail_service.php?service=' . $service_alone->service_name . '" class="list-group-item list-group-item-action active">'
+                                        echo '<a href="detail_service.php?service=' . $service_alone->service_name . '&id='. $service_alone->service_id .'" class="list-group-item list-group-item-action active">'
                                             . $service_alone->service_name . '
                                     </a>';
                                     } else {
-                                        echo '<a href="detail_service.php?service=' . $service_alone->service_name . '" class="list-group-item list-group-item-action">'
+                                        echo '<a href="detail_service.php?service=' . $service_alone->service_name . '&id='. $service_alone->service_id .'" class="list-group-item list-group-item-action">'
                                             . $service_alone->service_name . '
                                     </a>';
                                     }

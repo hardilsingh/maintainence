@@ -19,6 +19,9 @@
             z-index: 1000;
         }
 
+
+        
+
         .card:hover {
             outline-color: forestgreen;
             outline-width: 2px;
@@ -30,7 +33,7 @@
 
 
         .col-lg-4 {
-            padding: 20px 30px;
+            padding: 20px 0;
         }
 
         .card-title {
@@ -118,87 +121,68 @@
 
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 50px; color:green">We specialize in all the services listed below.</h2>
+                <h2 class="h2 text-center display-4" style="font-size:25px; margin-bottom: 50px; color:green">We
+                    specialize in all the services listed below.</h2>
             </div>
         </div>
 
         <!-- main content -->
-        <div class="col-sm-9 col-md-9 col-lg-10 mx-auto" role="columnheader">
-            <div class="row" style="margin-top:30px;">
-                <div class="col-lg-12">
-                    <div class="row" style="position: relative;left: 50%;transform: translateX(-50%);">
-                        <div class="col-lg-4">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="images/saw.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Carpenter</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="detail_service.php?service=carpenter" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="images/resume.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Jobs</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="detail_service.php?service=jobs" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="images/broken-cable.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Electrician</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="detail_service.php?service=electrician" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
+        <div class="col-sm-12 col-md-11 col-lg-11" role="columnheader">
+            <div class="col-lg-12">
+                <div class="row">
+                    <?php
+                    $service_list = Services::find_all();
+                    foreach ($service_list as $service_item) {
+                        echo '
+                        
+                        <div class="col-lg-4 col-md-6 col-sm-8 load_more " style="display:none;">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="images/service/' . $service_item->image . '" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">' . $service_item->service_name . '</h5>
+                        <p class="card-text">' . substr($service_item->text, 0, 140) . '</p>
+                        <a href="detail_service.php?service=' . $service_item->service_name . '&id=' . $service_item->service_id . '" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
                     </div>
-
                 </div>
             </div>
-
-            <div class="row" style="margin-top:40px">
-                <div class="col-lg-12">
-                    <div class="row" style="position: relative;left: 50%;transform: translateX(-50%);">
-                        <div class="col-lg-4">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="images/car.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Auto Repair</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="detail_service.php?service=auto-repair" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="images/faucet.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Plumber</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="detail_service.php?service=plumber" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="images/first-aid-kit.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hospital</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="detail_service.php?service=hospital" class="btn btn-block btn-success btn-lg">View details &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                        ';
+                    }
+                    ?>
+                </div>
+                <div class="row" style="padding:30px 20px">
+                    <a href="#" class='btn btn-primary btn-lg text-center' style="position:relative; left:50% ; transform:translateX(-50%)" id="loadMore">Load More</a>
                 </div>
             </div>
+            <script>
+                $(function() {
+                    $(".load_more").slice(0, 6).show();
+                    $("#loadMore").on('click', function(e) {
+                        e.preventDefault();
+                        $(".load_more:hidden").slice(0, 4).slideDown();
+                        if ($(".load_more:hidden").length == 0) {
+                            $("#load").fadeOut('slow');
+                        }
+                        $('html,body').animate({
+                            scrollTop: $(this).offset().top
+                        }, 1500);
+                    });
+                });
+
+                $('a[href=#top]').click(function() {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 600);
+                    return false;
+                });
+
+                $(window).scroll(function() {
+                    if ($(this).scrollTop() > 50) {
+                        $('.totop a').fadeIn();
+                    } else {
+                        $('.totop a').fadeOut();
+                    }
+                });
+            </script>
         </div>
         <!-- /.main content -->
 

@@ -87,8 +87,8 @@ if (isset($_GET['added']) == true) {
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="service_text">Service Text:</label>
-                                    <textarea type="text" class="form-control" required rows="5" name="text" id="service_text"></textarea>
+                                    <label for="service_text">Service Text: <span class="text-danger">(Note:Please enter min 110 characters and max 140 characters.)</span></label>
+                                    <textarea type="text" maxlength="140" minlength="110" class="form-control" required rows="5" name="text" id="service_text"></textarea>
                                 </div>
 
                                 <div class="form-group">

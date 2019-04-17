@@ -1,17 +1,28 @@
 // ajax script
-$(document).ready(function() {
-    $('#search_text').keyup(function() {
+$(document).ready(function () {
+    $('#search_text').keyup(function () {
         var txt = $(this).val();
 
         if (txt != '') {
             $.post("fetch.php", {
                 suggestion: txt,
-            }, function(data, status) {
+            }, function (data, status) {
                 $("#result").html(data);
             });
-        }else {
+        } else {
             $("#result").html("No data found");
         }
     });
+
+
+    
+
+
+
+
+
 });
+
+
+
 //.ajax script

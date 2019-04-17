@@ -9,6 +9,7 @@ require_once("users_class.php");
 require_once("session_class.php");
 require_once("requests_class.php");
 require_once("services_class.php");
+require_once("team_class.php");
 
 
 

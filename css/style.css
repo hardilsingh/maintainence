@@ -851,7 +851,7 @@ html {
 .membership__cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(28rem, min-content));
-  grid-column-gap: 7rem;
+  grid-column-gap: 18rem;
   justify-content: center;
   text-align: center;
   margin-bottom: 3rem;

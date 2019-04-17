@@ -1,18 +1,19 @@
 <?php
 
 
-//conatins methods and properties for the services
-class Services extends Db_object
+class Team extends Db_object
 {
-
-    protected static $db_table = "services";
-    protected static $db_table_fields = array('service_id', 'service_name' , 'image' , 'text');
-    public $service_id;
-    public $service_name;
+    protected static $db_table = 'team';
+    protected static $db_table_fields = array('first_name', 'last_image' , 'service_given');
+    public $team_id;
+    public $first_name;
+    public $last_name;
     public $image;
-    public $text;
+    public $service_given;
 
 
+
+    //method used to assign the valued bought from from the database to object properties
     protected function properties()
     {
         // return get_object_vars($this);
@@ -41,17 +42,12 @@ class Services extends Db_object
         return $clean_properties;
     }
 
-    //select name of services from the request type id
-    public static function requestName($request_id)
-    {
-        $sql = self::find_this_query("SELECT * FROM services WHERE service_id = $request_id");
-        return !empty($sql) ? array_shift($sql) : false;
+
+    public static function deletemember($team_id) {
+        return self::find_this_query("DELETE FROM team WHERE team_id = $team_id");
     }
 
-
-    public static function limited_services() {
-        return self::find_this_query("SELECT * FROM services LIMIT 6");
+    public static function limited_names() {
+        return self::find_this_query("SELECT * FROM team LIMIT 6");
     }
-
-
 }

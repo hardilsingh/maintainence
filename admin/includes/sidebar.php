@@ -1,4 +1,3 @@
-
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
@@ -17,7 +16,7 @@
                 <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
 
-            
+
             <li>
                 <a href="users.php"><i class="fa fa-bar-chart-o fa-fw"></i> Users<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -58,11 +57,23 @@
                 <!-- /.nav-second-level -->
             </li>
 
+
+
             <li>
-                <a href="service_add.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Add service</a>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Dynamic content<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="team.php">Service Team</a>
+                    </li>
+                    <li>
+                        <a href="service_add.php" > Add service</a>
+                    </li>
+
+                </ul>
+                <!-- /.nav-second-level -->
             </li>
 
         </ul>
     </div>
 </div>
-</nav> 
+</nav>
