@@ -4,11 +4,13 @@
 class Notify extends Db_object
 {
     protected static $db_table = 'notifications';
-    protected static $db_table_fields = array('id', 'user_id' , 'msg' , 'seen');
+    protected static $db_table_fields = array('id', 'user_id' , 'msg' , 'seen', 'date' , 'time');
     public $id;
     public $user_id;
     public $msg;
     public $seen;
+    public $date;
+    public $time;
 
 
 

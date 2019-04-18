@@ -81,6 +81,9 @@ if (isset($_GET['update_status']) && isset($_GET['request_id']) & isset($_GET['u
     Requests::updateStatus($status, $id);
     $notify = new Notify;
     $notify->user_id = $user_id;
+    date_default_timezone_set("Asia/Kolkata");
+    $notify->date = date("Y-m-d");
+    $notify->time = date("H:i:s");
     $get_request_type = Requests::find_name_by_request_id($id);
     $find_service = Services::requestName($get_request_type->request_type);
     if ($status == 'completed') {

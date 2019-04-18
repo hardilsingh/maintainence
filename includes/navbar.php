@@ -46,9 +46,9 @@ if ($session->is_signed_in()) {
 
     @media only screen and (max-width:991px) {
         .dropdown-menu {
-            width:100% !important;
+            width: 100% !important;
             height: 50% !important;
-            overflow: scroll !important;
+            
         }
 
         .dropleft {
@@ -56,7 +56,13 @@ if ($session->is_signed_in()) {
             flex-direction: column !important;
         }
 
-        
+        .no-shadow:focus {
+            outline: none;
+            border: 0;
+            box-shadow: 0;
+        }
+
+
     }
 </style>
 
@@ -119,8 +125,8 @@ if ($session->is_signed_in()) {
 
                         <li class=" nav-item display-change">
                             <!-- Default dropleft button -->
-                            <div class="btn-group dropleft">
-                                <button style="background-color:transparent; border:0;" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="btn-group dropleft no-shadow">
+                                <button style="background-color:transparent; border:0; outline:none" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell"></i>
                                 </button>
                                 <div class="dropdown-menu" style="">
@@ -134,7 +140,7 @@ if ($session->is_signed_in()) {
                                             preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                                             <rect fill="#007aff" width="100%" height="100%" /></svg>
                                         <strong class="mr-auto">Status Update</strong>
-                                        <small>11 mins ago</small>
+                                        <small class=""><time class="timeago" datetime="'.$notify->date.'T'.$notify->time.'+5:30">'.$notify->date.'</time></small>
                                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -147,6 +153,13 @@ if ($session->is_signed_in()) {
                                     } ?>
                                 </div>
                             </div>
+
+                            <script>
+                                jQuery(document).ready(function() {
+                                    jQuery("time.timeago").timeago();
+                                    jQuery.timeago.settings.allowFuture = true;
+                                });
+                            </script>
 
 
                         </li>
@@ -178,16 +191,16 @@ if ($session->is_signed_in()) {
                                     <img src="images/dummy.png" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
 
 
-                                                                                                                <?php
-                                                                                                            } ?>
+                                                                                                                    <?php
+                                                                                                                } ?>
 
-                                                                                                            </a>
-                                                                                                        </li>
+                                                                                                                </a>
+                                                                                                            </li>
 
                                                         
 
 
-                                                                    </ul>
+                                                                        </ul>
                 <?php
             } ?>
 

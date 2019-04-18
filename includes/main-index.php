@@ -31,6 +31,7 @@ require_once("init.php");
 
 
     <script src="script.js"></script>
+    <script src="jquery.timeago.js"></script>
 
 </head> 
 
