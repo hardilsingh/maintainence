@@ -25,7 +25,7 @@ if (isset($_POST['request'])) {
         $uniqueid = uniqid(rand(1, 5, true));
         $request->refrence_id =  $uniqueid;
         $request->open = $open;
-        $request->create();
+        $request->create(); 
         $msg = "Your request has been submitted successfully with refrence id " . $uniqueid . " We will conatct you shortly";
         $number = '91'.$ph;
         $cSession = curl_init();

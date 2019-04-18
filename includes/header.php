@@ -67,7 +67,7 @@ if (isset($_GET['logout']) == true) {
     <div class="cta-1">
         <a href="index.php"><img src="images/logo.png" alt="logo" class="logo"></a>
         <span class="contact__us"><a href="membership.php"><i class="fas fa-paperclip"></i>Membership plans</a></span>
-        <span class="contact__us"><a href="contactus.php"><i class="fas fa-phone"></i>Contact Us</a></span>
+        <span class="contact__us"><a href="services.php"><i class="fab fa-servicestack"></i>Services</a></span>
 
         <?php
 

@@ -74,11 +74,21 @@ if (isset($_POST['apply'])) {
 
 <?php
 //to update status of a request one at a time
-if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
+if (isset($_GET['update_status']) && isset($_GET['request_id']) & isset($_GET['user_id'])) {
     $status = $_GET['update_status'];
     $id = $_GET['request_id'];
-
+    $user_id = $_GET['user_id'];
     Requests::updateStatus($status, $id);
+    $notify = new Notify;
+    $notify->user_id = $user_id;
+    $get_request_type = Requests::find_name_by_request_id($id);
+    $find_service = Services::requestName($get_request_type->request_type);
+    if ($status == 'completed') {
+        $notify->msg = 'Your request for ' . $find_service->service_name . ' has been COMPLETED successfully.';
+    } elseif ($status == 'in_process') {
+        $notify->msg = 'Your request for ' . $find_service->service_name . ' is IN PROCESS. ';
+    }
+    $notify->create();
     header("location:request.php?type=$status");
 }
 ?>
@@ -189,11 +199,11 @@ if (isset($_GET['update_status']) && isset($_GET['request_id'])) {
 
                                         switch ($type) {
                                             case 'pending_requests';
-                                                echo "<td><a href='request.php?type=in_process&update_status=in_process&request_id=$request->request_id' class='btn btn-primary'>In Process</a></td>";
+                                                echo "<td><a href='request.php?type=in_process&update_status=in_process&request_id=$request->request_id&user_id=$request->user_id' class='btn btn-primary'>In Process</a></td>";
                                                 break;
 
                                             case 'in_process';
-                                                echo "<td><a href='request.php?type=completed&update_status=completed&request_id=$request->request_id' class='btn btn-success'>Completed</a></td>";
+                                                echo "<td><a href='request.php?type=completed&update_status=completed&request_id=$request->request_id&user_id=$request->user_id' class='btn btn-success'>Completed</a></td>";
                                                 break;
 
                                             case 'completed';

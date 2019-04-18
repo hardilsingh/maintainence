@@ -132,4 +132,12 @@ class Requests extends Db_object
         $sql = $database->query("SELECT * FROM requests WHERE user_id = $id AND request_status != 'completed' AND request_status != 'cancelled' ");
         return mysqli_num_rows($sql);
     }
+
+
+    public static function find_name_by_request_id($id) {
+        $sql =self::find_this_query("SELECT * FROM requests WHERE request_id = $id LIMIT 1" );
+        return !empty($sql) ? array_shift($sql) : false;
+    }
+
+    
 }

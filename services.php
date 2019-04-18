@@ -127,8 +127,8 @@
         </div>
 
         <!-- main content -->
-        <div class="col-sm-12 col-md-11 col-lg-11" role="columnheader">
-            <div class="col-lg-12">
+        <div class="col-sm-12 col-md-11 col-lg-11 mx-auto" role="columnheader">
+            <div class="col-lg-12 mx-auto">
                 <div class="row">
                     <?php
                     $service_list = Services::find_all();

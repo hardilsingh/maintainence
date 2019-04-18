@@ -9,6 +9,58 @@ if (isset($_GET['logout'])) {
 ?>
 
 
+<?php
+if ($session->is_signed_in()) {
+    $notifications  = Notify::notifyById($session->user_id);
+}
+
+?>
+
+
+<style>
+    .notify:focus {
+        box-shadow: none !important;
+    }
+
+    .bell {
+        font-size: 23px;
+    }
+
+    .number {
+        position: absolute;
+        top: -8px;
+        right: 18px;
+        background: red;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+    }
+
+    @media only screen and (min-width:991px) {
+        .dropdown-menu {
+            position: absolute;
+            left: -657%;
+            top: 50px;
+        }
+    }
+
+    @media only screen and (max-width:991px) {
+        .dropdown-menu {
+            width:100% !important;
+            height: 50% !important;
+            overflow: scroll !important;
+        }
+
+        .dropleft {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        
+    }
+</style>
+
+
 <div class="row">
     <div class="col-lg-12">
         <nav class="navbar navbar-expand-lg navbar-light bg-success">
@@ -17,7 +69,7 @@ if (isset($_GET['logout'])) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" style="diaplay:flex; align-items:flex-start;">
                     <li class="nav-item active">
                         <a class="nav-link text-white" href="index.php"><i class="fas fa-home" style="margin-right:8px"></i>
                             Home<span class="sr-only">(current)</span></a>
@@ -63,12 +115,51 @@ if (isset($_GET['logout'])) {
                 <?php
                 if ($session->is_signed_in()) {
                     ?>
-                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <ul class="navbar-nav ml-auto nav-flex-icons" style="diaplay:flex; align-items:center">
+
+                        <li class=" nav-item display-change">
+                            <!-- Default dropleft button -->
+                            <div class="btn-group dropleft">
+                                <button style="background-color:transparent; border:0;" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell"></i>
+                                </button>
+                                <div class="dropdown-menu" style="">
+                                    <!-- Dropdown menu links -->
+                                    <?php foreach ($notifications as $notify) {
+                                        echo '
+                                        
+                                        <div role="alert" aria-live="assertive" style="padding: 10px 20px;" aria-atomic="true" class="toast" data-autohide="false">
+                                        <div class="toast-header">
+                                        <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                                            preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                                            <rect fill="#007aff" width="100%" height="100%" /></svg>
+                                        <strong class="mr-auto">Status Update</strong>
+                                        <small>11 mins ago</small>
+                                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="toast-body">
+                                        ' . $notify->msg . '
+                                        </div>
+                                    </div>
+                                        ';
+                                    } ?>
+                                </div>
+                            </div>
+
+
+                        </li>
+
+
+
 
                         <li class="nav-item">
                             <a class="nav-link text-white" href="profile.php?logout=true"><i class="fas fa-sign-out-alt"></i></i>
                                 Logout</a>
                         </li>
+
+
 
                         <li class="nav-item">
                             <a class="nav-link text-white" href="profile.php">
@@ -87,21 +178,23 @@ if (isset($_GET['logout'])) {
                                     <img src="images/dummy.png" class="rounded-circle" height="30px" width="30px" style="border-radius:50%; object-fit:cover;border:2px solid white"">
 
 
-                                        <?php
-                                    } ?>
+                                                                                                                <?php
+                                                                                                            } ?>
 
-                                    </a>
-                                </li>
+                                                                                                            </a>
+                                                                                                        </li>
 
-        
-                    </ul>
-            <?php
-        } ?>
+                                                        
 
 
+                                                                    </ul>
+                <?php
+            } ?>
+
+
+            </div>
+
+        </nav>
     </div>
-
-    </nav>
-</div>
 
 </div>

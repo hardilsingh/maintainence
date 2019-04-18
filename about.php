@@ -120,24 +120,10 @@
                     </div>
                     <div class="row" style="transform:translateY(10px)">
                         <div class="col-lg-8 col-md-10 col-sm-12 mx-auto" style="font-size:17.5px; color:dimgrey">
-                            <p class="text-justify">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Eligendi pariatur cumque ullam quasi
-                                repellat totam qui? Sed doloremque officiis aliquam! Minus
-                                sit illum accusantium vero laudantium molestias nostrum
-                                aliquid soluta?</p>
-                            <p class="text-justify">n ligula arcu, luctus nec justo et, rhoncus maximus ex.
-                                Praesent varius, urna et auctor consectetur, quam arcu
-                                mollis sapien, et porta lacus lectus nec urna. Nam mi nibh,
-                                suscipit id pretium vitae, placerat in orci. Pellentesque
-                                fringilla mi id suscipit
-                                leo.</p>
-
-                            <p class="text-justify">consectetur, quam arcu
-                                mollis sapien, et porta lacus lectus nec urna. Nam mi nibh,
-                                suscipit id pretium vitae,
-                                Vestibulum viverra enim eget lectus sollicitudin luctus.
-                                Nulla vitae neque sollicitudin, rhoncus est id, fringilla
-                                leo.</p>
+                            <?php $find_text = About::find_by_id(1) ?>
+                            <p class="text-justify"><?php echo $find_text->p1 ?></p>
+                            <p class="text-justify"><?php echo $find_text->p2 ?></p>
+                            <p class="text-justify"><?php echo $find_text->p3 ?></p>
                         </div>
                     </div>
 
@@ -148,38 +134,30 @@
                     <div class="row" style="margin-bottom:20px;">
                         <div class=" col-lg-12 col-sm-12 col-md-12 mx-auto">
                             <h2 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 38px; padding:0 31px">Meet The Team</h6>
-                            <h3 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 25px; padding:0 31px">The dedicated development team</h6>
+                                <h3 class="text-success display-4 text-center" style="margin-bottom:20px; font-size: 25px; padding:0 31px">The dedicated development team</h6>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 my-auto " style="text-align:center">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" style="height:400px; object-fit: cover;" src="images/p9.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="text-left" style="font-weight:bold; font-size: 20px;">Hardil Singh</p>
-                                    <p class="text-left text-success" style="transform:translateY(-10px)">Developer And
-                                        Designer</p>
+
+                        <?php
+
+                        $team_list = Dev_team::find_all();
+                        foreach ($team_list as $member) {
+                            echo '
+                                <div class="col-lg-4 my-auto " style="text-align:center">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" style="height:400px; object-fit: cover;" src="images/'.$member->img.'" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="text-left" style="font-weight:bold; font-size: 20px;">'.$member->name.'</p>
+                                        <p class="text-left text-success" style="transform:translateY(-10px)">'.$member->desig.'</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 mx-auto">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" style="height:400px;  object-fit: cover;" src="images/p10.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="text-left" style="font-weight:bold; font-size: 20px;">Mansimar Singh</p>
-                                    <p class="text-left text-success" style="transform:translateY(-10px)">Research and Development</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mx-auto">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" style="height:400px;  object-fit: cover;" src="images/p11.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="text-left" style="font-weight:bold; font-size: 20px;">Deepinder Singh</p>
-                                    <p class="text-left text-success" style="transform:translateY(-10px)">Graphics Designer</p>
-                                </div>
-                            </div>
-                        </div>
+                                
+                                ';
+                        }
+
+                        ?>
                     </div>
                 </div>
 

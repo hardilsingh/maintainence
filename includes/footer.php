@@ -20,6 +20,7 @@
         </p>
 
         <p class="footer-company-name" role="doc-footnote">Town Helpline &copy;2019
+        <p class="footer-company-name" style="margin-top:20px;" role="doc-footnote">Designed and Developed by Hardil Singh &copy;2019
 
         </p>
     </div>

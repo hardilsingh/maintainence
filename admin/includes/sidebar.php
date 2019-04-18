@@ -66,7 +66,15 @@
                         <a href="team.php">Service Team</a>
                     </li>
                     <li>
-                        <a href="service_add.php" > Add service</a>
+                        <a href="service_add.php" >Add service</a>
+                    </li>
+
+                    <li>
+                        <a href="aboutus.php" >About us</a>
+                    </li>
+
+                    <li>
+                        <a href="dev_team.php" >Dev Team</a>
                     </li>
 
                 </ul>

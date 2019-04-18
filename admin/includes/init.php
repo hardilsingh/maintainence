@@ -10,6 +10,9 @@ require_once("session_class.php");
 require_once("requests_class.php");
 require_once("services_class.php");
 require_once("team_class.php");
+require_once("notification_class.php");
+require_once("about_class.php");
+require_once("development_team_class.php");
 
 
 
